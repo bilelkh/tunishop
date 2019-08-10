@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Liste des Categories
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6 pr-0 ">
+                    <div class="form-group row">
+                        <div class="col-sm-10"> <input type="text" (keyup)="search($event)" placeholder="Chercher" class="form-control" id="staticEmail"> </div>
+                    </div>
+                </div>
+
+                <div class="col-6 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal" data-whatever="@mdo" class="btn btn-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
+                        nouvelle catégorie </button></div>
+            </div>
+            <div class="row">
+                <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="line-scale-pulse-out">
+                    <p style="font-size: 20px; color: #fff"></p>
+                </ngx-spinner>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">TITRE</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let category of categoryList  | paginate: { itemsPerPage: pageSize, currentPage:p ,totalItems: totalItems } ;let i = index ">
+                            <th scope="row">{{i}}</th>
+                            <td>{{category.title}}</td>
+                            <td>
+                                <button class="btn btn-primary mr-1" (click)='delete(category)'><i
+                                        class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-primary" (click)='edit(category)' data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                    <label class="mb-0 mr-2 ">Display</label>
+                    <select (change)="onchangePageSize($event)" class="form-control mr-2">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                    </select>
+                    <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel="" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page" class="float-right pagination py-auto" (pageChange)="getCategory($event)"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<i class="fas fa-chevron-right"></i>
+<div *ngIf='showModal' class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="categoryForm" (ngSubmit)="submit()">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input name="id" formControlName="_id" type="hidden" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">TITRE:</label>
+                        <input name="title" formControlName="title" type="text" class="form-control" id="recipient-name" [ngClass]="{ 'is-invalid': submitted && categoryForm.controls.title.errors }">
+                        <div *ngIf="submitted && categoryForm.controls.title.errors" class="invalid-feedback">
+                            <div *ngIf="submitted && categoryForm.controls.title.errors.required">Ce champ est obligatoire !</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary text-uppercase">ANNULER</button>
+                    <button type="submit" class="btn btn-primary  text-uppercase">{{btnName}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
