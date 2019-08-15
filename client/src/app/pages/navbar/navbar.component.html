@@ -1,18 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="container">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
+            <ul class="navbar-nav d-flex align-items-center">
+                <!--  <li class="mr-5 nav-item">
+                    <img class="img-fluid ml-3" width="50px" height="50px" src="https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/images/elements/bootstrap-logo.svg" alt="">
+                </li>
+             
+                <li class="nav-item mx-auto">
+                    <form class="form-inline md-form form-sm mt-0">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
+                        <a class="btn btn-danger">Chercher</a>
+                    </form>
+                </li>-->
+                <li *ngIf="false" class="nav-item dropdown">
                     <a class="nav-link ac dropdown-toggle current text-uppercase" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                        Paramètre
                             </a>
                     <ul class="dropdown-menu    text-uppercase" routerLinkActive="active">
                         <li class="d-flex justify-content-around  align-items-center"><i class="fas fa-circle pb-2 ml-3 "></i> <a href="./administration/settings/category" class="dropdown-item pl-2 ">Catégorie</a></li>
-                        <li class="d-flex justify-content-around align-items-center "><i class="fas fa-circle pb-2 ml-3 "></i> <a class="dropdown-item pl-2 " href="# ">SOUS Catégorie</a></li>
+                        <li class="d-flex justify-content-around align-items-center "><i class="fas fa-circle pb-2 ml-3 "></i> <a href="./administration/settings/sub-category" class="dropdown-item pl-2 ">SOUS Catégorie</a></li>
                     </ul>
+                </li>
+                <li class=" nav-item ml-auto">
+                    <a (click)="navigate('signup')" class="btn btn-outline-primary mr-2 text-uppercase">Créer une annonce</a>
                 </li>
             </ul>
         </div>

@@ -60,7 +60,7 @@ mongoose.connection.on('connected', () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('<center><h3>TUNISHOP REST FULL API WORK USING NODEJS<h3></center>');
+    res.send('TUNISHOP REST FULL API');
 });
 app.listen(port, () => {
     console.log('----->SERVER RUNNING ON PORT : ' + port + '<--------');

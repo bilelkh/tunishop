@@ -9,17 +9,16 @@ import { NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { NotificationService } from "./shared/services/notification.service"
+import { NotificationService } from "./shared/services/notification.service";
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    FormsModule , 
-   
+    FormsModule ,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

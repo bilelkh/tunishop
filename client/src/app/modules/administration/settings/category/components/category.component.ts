@@ -3,7 +3,6 @@ import { CategoryService } from "../services/category.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import {Renderer2} from '@angular/core';
 import { NotificationService } from "../../../../../shared/services/notification.service";
 @Component({
   selector: "app-category",
@@ -23,7 +22,6 @@ export class CategoryComponent implements OnInit {
   private pageSize : number = 5 ;  
   public totalItems : number = 0 ; 
   constructor(
-    private renderer: Renderer2,
     private notificationService : NotificationService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -33,7 +31,8 @@ export class CategoryComponent implements OnInit {
   ) {
     this.categoryForm = this.formBuilder.group({
       _id: [""],
-      title: ["", Validators.required]
+      title: ["", Validators.required],
+      icon: ["", Validators.required]
     });
   }
 
@@ -42,6 +41,7 @@ export class CategoryComponent implements OnInit {
   }
   search($event) {
     this.searchText= $event.target.value ;
+    console.log("this.searchText", this.searchText)
   }
   getCategory(page) {
     this.p=page ; 
@@ -130,4 +130,5 @@ export class CategoryComponent implements OnInit {
       this.pageSize= parseInt($event.target.value) ; 
       this.getCategory(1) ;
   }
+
 }
