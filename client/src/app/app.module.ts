@@ -10,14 +10,18 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from "./shared/services/notification.service";
+import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     PagesModule,
+
+    RouterModule,
+    AppRoutingModule,
     FormsModule ,
     ReactiveFormsModule,
     HttpClientModule,

@@ -7,22 +7,9 @@ import {Router} from "@angular/router"
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private categoryList : any [] ;
-  constructor(private sharedService : SharedService , public router : Router) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getCategory() ;
   }
-  getCategory() {
-      this.sharedService.getCategory().subscribe((data:any)=>{
-          this.categoryList =data.categorys ;
-      },error=>{
-         throw error ;
-      })
-  }
-
-  goToCategory(category) {
-    this.router.navigate(['category']);
-  }
-
+  
 }

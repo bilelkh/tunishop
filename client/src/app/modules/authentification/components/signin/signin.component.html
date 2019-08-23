@@ -3,12 +3,14 @@
         <div class="container">
             <div class="row">
                 <div class="container container--mini">
-                    <img class="img-fluid mx-auto d-block text-center mb-3" src="https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/images/elements/bootstrap-logo.svg" alt="">
+                    <div *ngIf="showErrorMessage" class="alert alert-danger text-center rounded-0 shadow-sm" role="alert">
+                        {{errorMessage}}
+                    </div>
                     <h2 class="mb-1 main-title text-center  mb-3">Sign In</h2>
                     <form [formGroup]="loginForm" (ngSubmit)="submit()" id="loginform">
                         <div class="form-group">
                             <label for="user_login">Email</label>
-                            <input formControlName="email" type="text" class="form-control" value="" size="20">
+                            <input formControlName="email" type="text" class="form-control " value="" size="20">
                         </div>
                         <div class="form-group">
                             <label for="user_pass">Password</label>

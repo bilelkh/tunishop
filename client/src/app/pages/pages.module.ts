@@ -7,6 +7,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { SharedService } from "../shared/services/shared.service";
 import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { HomeComponent } from './home/home.component';
     SidebarComponent,
     HomeComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   exports: [PagesComponent],
   providers: [SharedService]
 })

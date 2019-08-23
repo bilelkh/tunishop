@@ -9,6 +9,7 @@ const session = require('express-session');
 const userRoutes = require('./src/routes/user');
 const categoryRoutes = require('./src/routes/category');
 const subCategoryRoutes = require('./src/routes/subCategory');
+const adRoutes = require('./src/routes/ad');
 
 
 const app = express();
@@ -29,9 +30,10 @@ const port = process.env.PORT || 5500;
 
 
 app.use(userRoutes);
-app.use(categoryRoutes)
-app.use(subCategoryRoutes)
-    // Express session
+app.use(categoryRoutes);
+app.use(adRoutes)
+app.use(subCategoryRoutes);
+// Express session
 app.use(
     session({
         secret: 'FLATI',

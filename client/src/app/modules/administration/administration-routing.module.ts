@@ -7,8 +7,8 @@ const routes: Routes = [
     path: "",
     component: AdministrationComponent,
     children: [
-      { path: "", pathMatch: "full", redirectTo: "settings" },
-      { path: "settings", loadChildren: './settings/settings.module#SettingsModule' }
+      { path: "", pathMatch: "full", redirectTo: "shopper" },
+      { path: "shopper", loadChildren: '../shopper/shopper.module#ShopperModule' }
     ]
   }
 ];
