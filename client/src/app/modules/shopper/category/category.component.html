@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 p-0 text-center my-auto" *ngFor="let category of categoryList">
-            <div (click)="goToSubCategory(category)" class="card card-block d-flex mt-5">
+            <div (click)="goToCategory(category)" class="card card-block d-flex mt-5">
                 <div class="card-body flex-column  align-items-center d-flex justify-content-center">
                     <h4 class="mt-2 text-uppercase">{{category.title}}</h4>
                 </div>

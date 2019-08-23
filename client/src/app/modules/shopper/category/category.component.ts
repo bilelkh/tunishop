@@ -17,15 +17,16 @@ export class CategoryComponent implements OnInit {
       this.sharedService.getCategory().subscribe((data:any)=>{
           this.categoryList =data.categorys ;
       },error=>{
-        console.log(error)
          throw error ;
-         
       })
   }
 
-  goToSubCategory(category) {
-    console.log(category)
+  goToCategory(category) {
+    console.log("category",category)
+    this.router.navigate(['./category',category._id]);
   }
+
+  
   
 
 }
