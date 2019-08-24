@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { ShopperComponent } from "./shopper.component";
 import { CategoryComponent } from "./category/category.component";
 import { SubCategoryComponent } from "./sub-category/sub-category.component";
-import {NewAdsComponent} from "./new-ads/new-ads.component"
+import {AdsComponent} from "./ads/ads.component"
 const routes: Routes = [
   {
     path: "",
@@ -12,7 +12,7 @@ const routes: Routes = [
       { path: "", redirectTo: "category", pathMatch: "full" },
       { path: "category", component: CategoryComponent },
       { path: "category/:id", component: SubCategoryComponent },
-      { path: "new-ads", component: NewAdsComponent }
+      { path: "ads", component: AdsComponent }
 
     ]
   }

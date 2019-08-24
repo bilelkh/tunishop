@@ -9,7 +9,8 @@ import { SignupComponent } from "./components/signup/signup.component";
 import { LostPasswordComponent } from "./components/lost-password/lost-password.component";
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxPaginationModule } from "ngx-pagination";
 @NgModule({
   declarations: [
     AuthentificationComponent,
@@ -19,6 +20,6 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
     ResetPasswordComponent,
     
   ],
-  imports: [CommonModule,FormsModule,HttpClientModule ,ReactiveFormsModule, AuthentificationRoutingModule]
+  imports: [CommonModule,FormsModule,NgxSpinnerModule,NgxPaginationModule,HttpClientModule ,ReactiveFormsModule, AuthentificationRoutingModule]
 })
 export class AuthentificationModule {}

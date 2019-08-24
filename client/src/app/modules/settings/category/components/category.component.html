@@ -6,10 +6,12 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 pr-0 ">
-                    <div class="col-sm-10"> <input type="search" (keyup)="search($event)" placeholder="Chercher" class="form-control"> </div>
+                    <div class="col-sm-10"> <input type="search" (keyup)="search($event)" placeholder="Chercher"
+                            class="form-control"> </div>
                 </div>
-
-                <div class="col-md-6 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal" data-whatever="@mdo" class="btn btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
+                <div class="col-md-6 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal"
+                        data-whatever="@mdo"
+                        class="btn btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
                         nouvelle catégorie </button></div>
             </div>
             <div class="row">
@@ -25,13 +27,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let category of categoryList  | paginate: { itemsPerPage: pageSize, currentPage:p ,totalItems: totalItems } ;let i = index ">
+                        <tr
+                            *ngFor="let category of categoryList  | paginate: { itemsPerPage: pageSize, currentPage:p ,totalItems: totalItems } ;let i = index ">
                             <th scope="row">{{i}}</th>
                             <td>{{category.title}}</td>
                             <td>
                                 <button class="btn btn-primary mr-1" (click)='delete(category)'><i
                                         class="fas fa-trash-alt"></i></button>
-                                <button class="btn btn-primary" (click)='edit(category)' data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-primary" (click)='edit(category)' data-toggle="modal"
+                                    data-target="#addModal"><i class="far fa-edit"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -48,14 +52,16 @@
                         <option>20</option>
                         <option>25</option>
                     </select>
-                    <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel="" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page" class="float-right pagination py-auto" (pageChange)="getCategory($event)"></pagination-controls>
+                    <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel=""
+                        screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
+                        class="float-right pagination py-auto" (pageChange)="getCategory($event)"></pagination-controls>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<i class="fas fa-chevron-right"></i>
-<div *ngIf='showModal' class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngIf='showModal' class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -71,16 +77,20 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">TITRE:</label>
-                        <input name="title" formControlName="title" type="text" class="form-control" id="recipient-name" [ngClass]="{ 'is-invalid': submitted && categoryForm.controls.title.errors }">
+                        <input name="title" formControlName="title" type="text" class="form-control" id="recipient-name"
+                            [ngClass]="{ 'is-invalid': submitted && categoryForm.controls.title.errors }">
                         <div *ngIf="submitted && categoryForm.controls.title.errors" class="invalid-feedback">
-                            <div *ngIf="submitted && categoryForm.controls.title.errors.required">Ce champ est obligatoire !</div>
+                            <div *ngIf="submitted && categoryForm.controls.title.errors.required">Ce champ est
+                                obligatoire !</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">ICON:</label>
-                        <input name="title" formControlName="icon" type="text" class="form-control" id="recipient-name" [ngClass]="{ 'is-invalid': submitted && categoryForm.controls.icon.errors }">
+                        <input name="title" formControlName="icon" type="text" class="form-control" id="recipient-name"
+                            [ngClass]="{ 'is-invalid': submitted && categoryForm.controls.icon.errors }">
                         <div *ngIf="submitted && categoryForm.controls.icon.errors" class="invalid-feedback">
-                            <div *ngIf="submitted && categoryForm.controls.icon.errors.required">Ce champ est obligatoire !</div>
+                            <div *ngIf="submitted && categoryForm.controls.icon.errors.required">Ce champ est
+                                obligatoire !</div>
                         </div>
                     </div>
                 </div>

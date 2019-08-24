@@ -6,10 +6,9 @@ import { SharedService } from "../../shared/services/shared.service";
 import { CategoryComponent } from "./category/category.component";
 import { SubCategoryComponent } from './sub-category/sub-category.component';
 import { ProductComponent } from './product/product.component';
-import { AddProductComponent } from './add-product/add-product.component';
-import { NewAdsComponent } from './new-ads/new-ads.component';
+import { AdsComponent } from './ads/ads.component';
 @NgModule({
-  declarations: [CategoryComponent,ShopperComponent, SubCategoryComponent, ProductComponent, AddProductComponent, NewAdsComponent],
+  declarations: [CategoryComponent,ShopperComponent, SubCategoryComponent, ProductComponent, AdsComponent],
   imports: [CommonModule, ShopperRoutingModule],
   providers: [SharedService]
 })

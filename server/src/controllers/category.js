@@ -1,6 +1,7 @@
 const Category = require("../models/category");
 
 exports.createCategory = async(req, res, next) => {
+
     const category = new Category(req.body);
     await category
         .save()

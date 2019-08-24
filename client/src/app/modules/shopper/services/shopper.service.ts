@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class ShopperService {
 
-  constructor() { }
+  URL: string = environment.URL;
+  constructor(private http: HttpClient) {
+    
+  }
+  getSubCategoryByIdCategory(id) {
+    console.log("id",id)
+    return this.http.get(this.URL + "subCategoryByIdCategory/"+id);
+  }
 }

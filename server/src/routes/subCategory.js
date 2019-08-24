@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.post('/subCategory', subCategoryController.createSubCategory);
 router.get('/subCategory/', subCategoryController.getSubCategory);
+router.get('/subCategoryByIdCategory/:categoryId', subCategoryController.subCategoryByIdCategory);
 router.get('/subCategory/:subCategoryId', subCategoryController.getSubCategoryById);
 router.put('/subCategory/:subCategoryId', subCategoryController.updateSubCategory);
 router.delete('/subCategory/:subCategoryId', subCategoryController.deleteSubCategory);

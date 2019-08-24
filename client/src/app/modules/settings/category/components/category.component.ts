@@ -3,7 +3,7 @@ import { CategoryService } from "../services/category.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { NotificationService } from "../../../../../shared/services/notification.service";
+import { NotificationService } from "../../../../shared/services/notification.service";
 @Component({
   selector: "app-category",
   templateUrl: "./category.component.html",
@@ -41,7 +41,6 @@ export class CategoryComponent implements OnInit {
   }
   search($event) {
     this.searchText= $event.target.value ;
-    console.log("this.searchText", this.searchText)
   }
   getCategory(page) {
     this.p=page ; 
@@ -61,15 +60,12 @@ export class CategoryComponent implements OnInit {
 
   submit() {
     this.submitted = true;
-          console.log("this.categoryForm.invalid",this.categoryForm)
-        // stop here if form is invalid
         if (this.categoryForm.invalid) {
             return;
         }
     if (this.categoryForm.value._id) {
       this.categoryService.edit(this.categoryForm.value).subscribe(
         data => {
-          console.log("data",data)
           this.notificationService.showSuccess("categorie modifieé avec succes","succes") ; 
           this.showModal = false ;
           document.getElementsByClassName("modal-backdrop")[0].remove() ;
