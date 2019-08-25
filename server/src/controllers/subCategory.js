@@ -89,12 +89,14 @@ exports.deleteSubCategory = (req, res, next) => {
 };
 
 exports.subCategoryByIdCategory = (req, res, next) => {
-  /*   SubCategory.findById({'category._id' : req.params.categoryId}).then(subCategory => {
+  console.log("req.params.categoryId",req.params.categoryId)
+    SubCategory.find({'category._id' : req.params.categoryId}).then(subCategory => {
             if (!subCategory) {
                 const error = new Error('Could not find subCategory.');
                 error.statusCode = 404;
                 throw error;
             }
+            console.log("subCategory",subCategory)
             res.status(200).json(subCategory);
         })
         .catch(err => {
@@ -103,5 +105,4 @@ exports.subCategoryByIdCategory = (req, res, next) => {
             }
             next(err);
         });
-        */
 };

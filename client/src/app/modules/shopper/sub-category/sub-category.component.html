@@ -1,1 +1,15 @@
-<p>sub-category works!</p>
+<div class="container mt-5">
+    <div class="row mb-5">
+        <div class="col-12">
+            <button class="btn btn-danger float-right mr-4">Retour</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <ul *ngFor="let subCategory of subCategoryList">
+                <li (click)='goToProduct(subCategory)'> <button class="btn btn-primary">{{subCategory.title}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

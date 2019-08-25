@@ -1,3 +1,10 @@
-<ul *ngFor="let category of categoryList">
-    <li (click)='goToSubCategory(category)'>{{category.title}}</li>
-</ul>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <ul *ngFor="let category of categoryList">
+                <li (click)='goToSubCategory(category)'> <button class="btn btn-primary shadow">{{category.title}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

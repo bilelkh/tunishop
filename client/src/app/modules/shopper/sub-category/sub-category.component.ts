@@ -26,11 +26,16 @@ export class SubCategoryComponent implements OnInit {
    getSubCategory() {
     this.shopperService.getSubCategoryByIdCategory(this.idCategory).subscribe(
       (data: any) => {
-        this.subCategoryList = data.categorys;
+        console.log("data",data)
+        this.subCategoryList = data;
       },
       error => {
         throw error;
       }
     );
+   }
+
+   goToProduct(subCategory) {
+
    }
 }
