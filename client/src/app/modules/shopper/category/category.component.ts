@@ -8,14 +8,23 @@ import { Router } from "@angular/router";
 })
 export class CategoryComponent implements OnInit {
   private categoryList: any[];
+  private user: unknown;
   constructor(private sharedService: SharedService, public router: Router) {}
 
   ngOnInit() {
+    console.log(1)
+    this.getUserData();
     this.getCategory();
+  }
+
+  getUserData() {
+    this.user = this.sharedService.getUserData();
+    console.log('this.user',this.user)
   }
   getCategory() {
     this.sharedService.getCategory().subscribe(
       (data: any) => {
+        console.log("data",data)
         this.categoryList = data.categorys;
       },
       error => {

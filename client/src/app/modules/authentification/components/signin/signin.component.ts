@@ -38,10 +38,12 @@ export class SigninComponent implements OnInit {
 
     this.authentificationService.signin(this.loginForm.value).subscribe(
       (data: any) => {
-       this.router.navigateByUrl('category')
+        console.log("data",data)
+
         this.spinner.hide()
-        localStorage.setItem('token',data.token)
-        if (data.succes) {
+        if (data.success) {
+          this.router.navigateByUrl('category')
+          localStorage.setItem('token',data.token)
         } else {
           if (data.msg === "WRONG EMAIL" || data.msg === "WRONG PASSWORD") {
             this.showErrorMessage = true;

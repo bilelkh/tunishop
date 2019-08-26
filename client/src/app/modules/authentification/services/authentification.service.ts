@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
-import { map } from "rxjs/operators";
 import { environment } from "../../../../environments/environment";
+import { Router } from "@angular/router";
 @Injectable({
   providedIn: "root"
 })
 export class AuthentificationService {
-  URL: string = environment.URL;
-  constructor(private http: HttpClient) {}
+  public URL: string = environment.URL;
+  public isLoggedIn :boolean =false ; 
+  constructor(private router: Router, private http: HttpClient) {
+  }
 
   signin(user) {
     return this.http.post(this.URL + "signin", user);
@@ -19,12 +20,22 @@ export class AuthentificationService {
   }
 
   sendEmailReset(email) {
-    return this.http.post(this.URL + "forgot-password",  email );
+    return this.http.post(this.URL + "forgot-password", email);
   }
 
-
-
   logout() {
-    localStorage.removeItem("currentUser");
+    localStorage.clear();
+    this.router.navigateByUrl("signin");
+  }
+
+  isAuthenticated() {
+    if (localStorage.getItem("token")) {
+      this.isLoggedIn=true ; 
+    }
+    else {
+      this.isLoggedIn=false ; 
+    }
+
+    return this.isLoggedIn
   }
 }

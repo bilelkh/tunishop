@@ -11,7 +11,10 @@ export class ShopperService {
     
   }
   getSubCategoryByIdCategory(id) {
-    console.log("id",id)
     return this.http.get(this.URL + "subCategoryByIdCategory/"+id);
+  }
+
+  getAds(pageSize,page) {
+    return this.http.get(this.URL + "ads?pageSize="+pageSize+"&page="+page);
   }
 }

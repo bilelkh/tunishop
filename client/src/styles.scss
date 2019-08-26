@@ -17,14 +17,12 @@ body {
     background: #f9f9fc;
     margin: 0;
     height: 100%;
-    zoom: 0.75 ;
 }
 
 
 /*Utility*/
 
 a {
-    color: #00a4ff !important;
     &:hover,
     &:focus,
     &:visited {

@@ -84,15 +84,6 @@
                                 obligatoire !</div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ICON:</label>
-                        <input name="title" formControlName="icon" type="text" class="form-control" id="recipient-name"
-                            [ngClass]="{ 'is-invalid': submitted && categoryForm.controls.icon.errors }">
-                        <div *ngIf="submitted && categoryForm.controls.icon.errors" class="invalid-feedback">
-                            <div *ngIf="submitted && categoryForm.controls.icon.errors.required">Ce champ est
-                                obligatoire !</div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary text-uppercase">ANNULER</button>

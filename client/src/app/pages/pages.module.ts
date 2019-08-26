@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
   ],
   imports: [CommonModule,RouterModule],
-  exports: [PagesComponent],
+  exports: [NavbarComponent],
   providers: [SharedService]
 })
 export class PagesModule {}

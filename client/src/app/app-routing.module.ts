@@ -1,17 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+
 const routes: Routes = [
-  {
-    path: "",
-    loadChildren:
-      "./modules/authentification/authentification.module#AuthentificationModule"
-  },
-  {
-    path: "administration",
-    loadChildren:
-      "./modules/administration/administration.module#AdministrationModule"
-  },
-  { path: "shopper", loadChildren: "./modules/shopper/shopper.module#ShopperModule" }
+{ path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '',   loadChildren:"./modules/authentification/authentification.module#AuthentificationModule"},
+  { path: "shopper", loadChildren: "./modules/shopper/shopper.module#ShopperModule" },
+  { path: "administration", loadChildren: "./modules/administration/administration.module#AdministrationModule"  },
+  { path: "settings", loadChildren: "./modules/settings/settings.module#SettingsModule" },
 ];
 
 @NgModule({

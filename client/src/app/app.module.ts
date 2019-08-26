@@ -13,16 +13,17 @@ import { NotificationService } from "./shared/services/notification.service";
 import { RouterModule } from "@angular/router";
 import { ShopperModule } from "./modules/shopper/shopper.module";
 import { SettingsModule } from "./modules/settings/settings.module";
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     PagesModule,
     ShopperModule,
     SettingsModule,
     RouterModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -35,7 +36,7 @@ import { SettingsModule } from "./modules/settings/settings.module";
       preventDuplicates: true
     })
   ],
-  providers: [NotificationService],
+  providers: [NotificationService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
