@@ -17,4 +17,9 @@ export class ShopperService {
   getAds(pageSize,page) {
     return this.http.get(this.URL + "ads?pageSize="+pageSize+"&page="+page);
   }
+
+  addAds(ads) {
+    return this.http.post(this.URL + "ads",ads);
+  }
+
 }

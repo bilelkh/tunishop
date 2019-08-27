@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { ShopperRoutingModule } from "./shopper-routing.module";
 import { ShopperComponent } from "./shopper.component";
 import { SharedService } from "../../shared/services/shared.service";
@@ -17,7 +19,7 @@ import { NgxPaginationModule } from "ngx-pagination"; // <-- import the module
     ProductComponent,
     AdsComponent
   ],
-  imports: [CommonModule, ShopperRoutingModule, NgxPaginationModule, NgxSpinnerModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule, ShopperRoutingModule, NgxPaginationModule, NgxSpinnerModule],
   providers: [SharedService]
 })
 export class ShopperModule {}
