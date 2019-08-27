@@ -46,7 +46,6 @@ exports.getAds = async(req, res, next) => {
         var totalItem = await Ad.count({});
     }
     await Ad.find({}, {}, query)
-        .select("_id title icon")
         .then(ads => {
             if (!ads) {
                 const error = new Error("Could not find ad.");

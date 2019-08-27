@@ -58,12 +58,12 @@ app.use((error, req, res, next) => {
 
 mongoose.connect("mongodb://admin:azerty123#@ds157901.mlab.com:57901/falti", { useNewUrlParser: true }).catch(err => console.log(err));;
 mongoose.connection.on('connected', () => {
-    console.log('---->DATABASE CONNECTED SUCCESFULLY<----');
+    console.log("\x1b[31m",'---->DATABASE CONNECTED SUCCESFULLY<----');
 });
 
 app.get('/', (req, res) => {
     res.send('TUNISHOP REST FULL API');
 });
 app.listen(port, () => {
-    console.log('----->SERVER RUNNING ON PORT : ' + port + '<--------');
+    console.log('\x1b[31m','----->SERVER RUNNING ON PORT : ' + port + '<--------');
 });
