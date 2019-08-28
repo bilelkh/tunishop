@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
           if(data.user.authorization==="admin"){
           this.router.navigateByUrl('category')
           localStorage.setItem('token',data.token)
+          localStorage.setItem('user',data.user)
         }else {
               this.showErrorMessage = true;
               this.errorMessage =  "vous n'avez pas la permission"

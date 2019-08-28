@@ -35,7 +35,6 @@ export class SigninComponent implements OnInit {
 
   submit() {
     this.spinner.show()
-
     this.authentificationService.signin(this.loginForm.value).subscribe(
       (data: any) => {
         console.log("data",data)

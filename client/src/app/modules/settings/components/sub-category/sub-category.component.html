@@ -5,11 +5,12 @@
         </div>
         <div class="card-body">
             <div class="row">
+                <!--
                 <div class="col-md-6 pr-0 ">
                     <div class="col-sm-10"> <input type="text" (keyup)="search($event)" placeholder="Chercher" class="form-control"> </div>
                 </div>
-
-                <div class="col-md-6 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal" data-whatever="@mdo" class="btn btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
+-->
+                <div class="col-md-12 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal" data-whatever="@mdo" class="btn btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
                             nouvelle sous catégorie </button></div>
             </div>
             <div class="row">
@@ -42,14 +43,14 @@
             <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6 d-flex align-items-center justify-content-end">
-                    <label class="mb-0 mr-2 ">Display</label>
+                    <!-- <label class="mb-0 mr-2 ">Display</label>
                     <select (change)="onchangePageSize($event)" class="form-control displayPages mr-2">
                             <option>5</option>
                             <option>10</option>
                             <option>15</option>
                             <option>20</option>
                             <option>25</option>
-                        </select>
+                        </select> -->
                     <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel="" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page" class="float-right pagination py-auto" (pageChange)="getsubCategory($event)"></pagination-controls>
                 </div>
             </div>

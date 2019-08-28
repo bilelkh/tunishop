@@ -40,7 +40,9 @@ exports.signin = (req, res, next) => {
                         firstName: user.firstName,
                         lastName: user.firstName,
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        authorization: user.authorization
+
                     }
                 })
             } else {
