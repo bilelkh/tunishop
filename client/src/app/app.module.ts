@@ -5,7 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { PagesModule } from "./pages/pages.module";
-import { NgxPaginationModule } from "ngx-pagination"; // <-- import the module
+import { NgxPaginationModule } from "ngx-pagination";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
@@ -13,8 +13,9 @@ import { NotificationService } from "./shared/services/notification.service";
 import { RouterModule } from "@angular/router";
 import { ShopperModule } from "./modules/shopper/shopper.module";
 import { SettingsModule } from "./modules/settings/settings.module";
-import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
-
+import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { AuthentificationModule } from "./modules/authentification/authentification.module";
+import { AdministrationModule } from "./modules/administration/administration.module";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,9 +23,11 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     BrowserModule,
     PagesModule,
     RouterModule,
+    AdministrationModule,
     SettingsModule,
     FormsModule,
     ShopperModule,
+    AuthentificationModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -36,7 +39,11 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
       preventDuplicates: true
     })
   ],
-  providers: [NotificationService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
+  providers: [
+    NotificationService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

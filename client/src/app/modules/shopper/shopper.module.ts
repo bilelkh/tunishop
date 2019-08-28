@@ -7,7 +7,7 @@ import { SharedService } from "../../shared/services/shared.service";
 import { CategoryComponent } from "./components/category/category.component";
 import { SubCategoryComponent } from "./components/sub-category/sub-category.component";
 import { ProductComponent } from "./components/product/product.component";
-import { AdsComponent } from "./ads/ads.component";
+import { AdsComponent } from "./components/ads/ads.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxPaginationModule } from "ngx-pagination"; // <-- import the module
 @NgModule({
