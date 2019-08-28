@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ShopperService } from "../services/shopper.service";
-import { SharedService } from "../../../shared/services/shared.service";
+import { ShopperService } from "../../services/shopper.service";
+import { SharedService } from "../../../../shared/services/shared.service";
 import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-sub-category",

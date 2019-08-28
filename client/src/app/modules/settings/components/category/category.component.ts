@@ -1,5 +1,5 @@
 import { Component, OnInit ,ViewChild ,ElementRef} from "@angular/core";
-import { CategoryService } from "../services/category.service";
+import { CategoryService } from "../../services/category.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";

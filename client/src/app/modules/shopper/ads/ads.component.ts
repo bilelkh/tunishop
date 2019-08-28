@@ -5,7 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from "../../../shared/services/notification.service";
 import { ShopperService } from "../services/shopper.service";
 import { SharedService } from "../../../shared/services/shared.service";
-import { SubCategoryService } from "../../../modules/settings/sub-category/services/sub-category.service";
+import { SubCategoryService } from "../../settings/services/sub-category.service";
 import { Governorates } from "../../../enum/governorate";
 @Component({
   selector: "app-ads",

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SharedService } from "../../../shared/services/shared.service";
+import { SharedService } from "../../../../shared/services/shared.service";
 import { Router } from "@angular/router";
 @Component({
   selector: "app-category",
