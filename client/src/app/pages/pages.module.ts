@@ -8,6 +8,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { SharedService } from "../shared/services/shared.service";
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { PageTopComponent } from './page-top/page-top.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     SidebarComponent,
     HomeComponent,
+    PageTopComponent,
   ],
   imports: [CommonModule,RouterModule],
-  exports: [NavbarComponent],
+  exports: [NavbarComponent,PageTopComponent],
   providers: [SharedService]
 })
 export class PagesModule {}

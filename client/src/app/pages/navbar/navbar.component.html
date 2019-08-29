@@ -1,22 +1,9 @@
-<header *ngIf="isAuthenticated" class="pt-2 pb-2">
-    <div class="d-flex align-items-center justify-content-end mr-5">
-        <span class="mr-2">khadhraoui bilel </span>
-        <img width="50px" height="50px" class="mr-2" src="../../../assets/icons/img_549112.png">
-        <i class="fas fa-angle-down fa-2x dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"></i>
-        <div class="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item"><i class="fas fa-user-alt mr-2"></i>Profile</a>
-            <a class="dropdown-item" (click)="logout()"><i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>
-        </div>
-    </div>
-</header>
-
+<app-page-top *ngIf="isAuthenticated"></app-page-top>
 <nav *ngIf="isAuthenticated" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm ">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto pt-1 pb-1">
            <li class="nav-item">

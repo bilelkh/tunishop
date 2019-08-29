@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   private errorMessage: unknown = "incorrect email ou mot de passe";
   private showErrorMessage: boolean = false;
   private loading: boolean = true;
-
+  private isAuthenticated: boolean = true;
   constructor(
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
@@ -31,7 +31,10 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isAuthenticated =  this.authentificationService.isAuthenticated()
+
+  }
 
   submit() {
     this.spinner.show()
@@ -42,7 +45,8 @@ export class SigninComponent implements OnInit {
         this.spinner.hide()
         if (data.success) {
           this.router.navigateByUrl('category')
-          localStorage.setItem('token',data.token)
+          localStorage.setItem('token',data.token) ; 
+        //  this.authentificationService.isAuthenticated() ; 
         } else {
           if (data.msg === "WRONG EMAIL" || data.msg === "WRONG PASSWORD") {
             this.showErrorMessage = true;
