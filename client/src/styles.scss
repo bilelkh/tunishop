@@ -6,6 +6,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 
 body {
     font-family: "Roboto", sans-serif !important;
@@ -16,7 +21,6 @@ body {
     text-align: left;
     background: #f9f9fc;
     margin: 0;
-    height: 100%;
 }
 
 

@@ -1,6 +1,7 @@
 .navbar {
   background-color: #fff !important;
   margin-bottom: 100px !important;
+  box-shadow: 0 0 10px 0 rgba(82, 63, 105, 0.1);
   .navbar-nav {
     .nav-item {
       .nav-link {
@@ -66,32 +67,3 @@
   font-size: 5px;
 }
 
-.dropdown-menu {
-  .dropdown-item {
-    color: #000 !important;
-    margin-right: 100px;
-    font-size: 15px !important;
-
-  }
-
-  margin-top: 0.6rem;
-  border: none !important;
-  background-color: #fff;
-  box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
-  li {
-
-    &:hover {
-      background-color: #f8f8fb !important;
-      a {
-        &:hover {
-          background-color: #f8f8fb !important;
-          color: #5867dd !important;
-          cursor: pointer !important;
-        }
-      }
-      i.fas {
-        color: #5867dd !important;
-      }
-    }
-  }
-}

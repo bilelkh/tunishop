@@ -21,7 +21,7 @@ import { PageTopComponent } from './page-top/page-top.component';
     PageTopComponent,
   ],
   imports: [CommonModule,RouterModule],
-  exports: [NavbarComponent,PageTopComponent],
+  exports: [NavbarComponent,PageTopComponent,FooterComponent],
   providers: [SharedService]
 })
 export class PagesModule {}

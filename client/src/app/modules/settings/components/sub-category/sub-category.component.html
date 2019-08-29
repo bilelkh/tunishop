@@ -10,7 +10,7 @@
                     <div class="col-sm-10"> <input type="text" (keyup)="search($event)" placeholder="Chercher" class="form-control"> </div>
                 </div>
 -->
-                <div class="col-md-12 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal" data-whatever="@mdo" class="btn btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
+                <div class="col-md-12 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal" data-whatever="@mdo" class="btn btn-sm btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
                             nouvelle sous catégorie </button></div>
             </div>
             <div class="row">
@@ -32,9 +32,9 @@
                             <td>{{subCategory.title}}</td>
                             <td>{{subCategory.category.title}}</td>
                             <td>
-                                <button class="btn btn-primary mr-1" (click)='delete(subCategory)'><i
+                                <button class="btn btn-sm btn-sm btn-primary mr-1" (click)='delete(subCategory)'><i
                                             class="fas fa-trash-alt"></i></button>
-                                <button class="btn btn-primary" (click)='edit(subCategory)' data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-sm btn-sm btn-primary" (click)='edit(subCategory)' data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -89,8 +89,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary text-uppercase">ANNULER</button>
-                    <button type="submit" class="btn btn-primary  text-uppercase">{{btnName}}</button>
+                    <button type="reset" class="btn btn-sm btn-secondary text-uppercase">ANNULER</button>
+                    <button type="submit" class="btn btn-sm btn-primary  text-uppercase">{{btnName}}</button>
                 </div>
             </form>
         </div>

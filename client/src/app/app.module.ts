@@ -16,8 +16,11 @@ import { SettingsModule } from "./modules/settings/settings.module";
 import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { AuthentificationModule } from "./modules/authentification/authentification.module";
 import { AdministrationModule } from "./modules/administration/administration.module";
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ConfirmModalComponent } from './shared/Modals/confirm-modal/confirm-modal.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ConfirmModalComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -33,6 +36,7 @@ import { AdministrationModule } from "./modules/administration/administration.mo
     BrowserAnimationsModule,
     NgxPaginationModule,
     NgxSpinnerModule,
+    ModalModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: "toast-top-right",

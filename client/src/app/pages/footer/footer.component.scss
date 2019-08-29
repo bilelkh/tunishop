@@ -3,24 +3,5 @@ footer {
     bottom: 0px;
     background-color: #0069d9;
     width: 100%;
-    height: 400px;
-    .footer-top {
-        display: flex;
-    }
-    .footer-bottom {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-        background-color: #007bff !important;
-        ul {
-            list-style: none;
-            li {
-                a {
-                    color: #000 !important;
-                }
-            }
-        }
-    }
+    height:50px;
 }

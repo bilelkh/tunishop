@@ -58,14 +58,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary text-uppercase">ANNULER</button>
-                    <button type="submit" class="btn btn-primary   text-uppercase"
+                    <button type="reset" class="btn btn-sm btn-secondary text-uppercase">ANNULER</button>
+                    <button type="submit" class="btn btn-sm  btn-primary   text-uppercase"
                         (click)="scrollDown()">{{btnName}}</button>
                 </div>
             </form>
         </div>
     </div>
-    <div class="card mt-5">
+    <div class="card mt-5 mb-5">
         <div class="card-header">
             Liste des Annonces
         </div>
@@ -86,17 +86,17 @@
                     </thead>
                     <tbody>
                         <tr
-                            *ngFor="let ad of adsList  | paginate: { itemsPerPage: 1, currentPage:p ,totalItems: totalItems } ;let i = index">
+                            *ngFor="let ad of adsList  | paginate: { itemsPerPage: 5, currentPage:p ,totalItems: totalItems } ;let i = index">
                             <th scope="row">{{i}}</th>
                             <td>{{ad.title}}</td>
                             <td>{{ad.category.title}}</td>
                             <td>{{ad.subCategory.title}}</td>
                             <td>
-                                <button class="btn btn-primary mr-1" (click)='delete(category)'><i
+                                <button class="btn btn-sm btn-primary mr-1" (click)='delete(category)'><i
                                         class="fas fa-trash-alt"></i></button>
-                                <button class="btn btn-primary mr-1" (click)='edit(category)' data-toggle="modal"
+                                <button class="btn btn-sm btn-primary mr-1" (click)='edit(category)' data-toggle="modal"
                                     data-target="#addModal"><i class="far fa-edit"></i></button>
-                                <button class="btn btn-primary " (click)='edit(category)' data-toggle="modal"
+                                <button class="btn btn-sm btn-primary " (click)='edit(category)' data-toggle="modal"
                                     data-target="#addModal"><i class="fas fa-info-circle"></i></button>
                             </td>
                         </tr>

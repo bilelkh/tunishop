@@ -1,5 +1,5 @@
 <div class="container mt-4">
-    <div class="card">
+    <div class="card mb-5">
         <div class="card-header">
             Liste des Categories
         </div>
@@ -12,7 +12,7 @@
                 </div>-->
                 <div class="col-md-12 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal"
                         data-whatever="@mdo"
-                        class="btn btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
+                        class="btn btn-sm btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
                         nouvelle catégorie </button></div>
             </div>
             <div class="row">
@@ -33,9 +33,9 @@
                             <th scope="row">{{i}}</th>
                             <td>{{category.title}}</td>
                             <td>
-                                <button class="btn btn-primary mr-1" (click)='delete(category)'><i
+                                <button class="btn btn-sm btn-primary mr-1" (click)='delete(category)'><i
                                         class="fas fa-trash-alt"></i></button>
-                                <button class="btn btn-primary" (click)='edit(category)' data-toggle="modal"
+                                <button class="btn btn-sm btn-primary" (click)='edit(category)' data-toggle="modal"
                                     data-target="#addModal"><i class="far fa-edit"></i></button>
                             </td>
                         </tr>
@@ -44,14 +44,6 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <!--       <label class="mb-0 mr-2 ">Display</label>
-                    <select (change)="onchangePageSize($event)" class="form-control mr-2">
-                        <option>5</option>
-                        <option>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option>25</option>
-                    </select>-->
                     <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel=""
                         screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
                         class="float-right pagination py-auto" (pageChange)="getCategory($event)"></pagination-controls>
@@ -86,8 +78,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary text-uppercase">ANNULER</button>
-                    <button type="submit" class="btn btn-primary  text-uppercase">{{btnName}}</button>
+                    <button type="reset" class="btn  btn-sm btn-secondary text-uppercase">ANNULER</button>
+                    <button type="submit" class="btn  btn-sm btn-primary  text-uppercase">{{btnName}}</button>
                 </div>
             </form>
         </div>
