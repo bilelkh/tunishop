@@ -10,12 +10,14 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxPaginationModule } from "ngx-pagination";
+import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
   declarations: [
     SigninComponent,
     SignupComponent,
     LostPasswordComponent,
     ResetPasswordComponent,
+    ProfileComponent,
     
   ],
   imports: [CommonModule,FormsModule,NgxSpinnerModule,NgxPaginationModule,HttpClientModule ,ReactiveFormsModule, AuthentificationRoutingModule]
