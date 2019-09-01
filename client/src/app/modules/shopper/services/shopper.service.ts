@@ -22,4 +22,8 @@ export class ShopperService {
     return this.http.post(this.URL + "ads",ads);
   }
 
+  deleteAds(adId) {
+    return this.http.delete(this.URL + "ad/"+adId);
+  }
+
 }

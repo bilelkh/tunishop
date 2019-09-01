@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { SharedService } from "../../../../shared/services/shared.service";
 import { Router } from "@angular/router";
+import { BsModalRef,BsModalService } from 'ngx-bootstrap';
+
 @Component({
   selector: "app-category",
   templateUrl: "./category.component.html",
-  styleUrls: ["./category.component.scss"]
+  styleUrls: ["./category.component.scss"],
+  providers : [BsModalRef,BsModalService]
 })
 export class CategoryComponent implements OnInit {
   private categoryList: any[];
@@ -12,7 +15,6 @@ export class CategoryComponent implements OnInit {
   constructor(private sharedService: SharedService, public router: Router) {}
 
   ngOnInit() {
-    console.log(1)
     this.getUserData();
     this.getCategory();
   }

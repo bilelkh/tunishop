@@ -6,6 +6,6 @@ router.post('/ads', adController.createAd);
 router.get('/ads/', adController.getAds);
 router.get('/ad/:adId', adController.getAdById);
 router.put('/ads/:adId', adController.updateAd);
-router.delete('/ads/:adId', adController.deleteAd);
+router.delete('/ad/:adId', adController.deleteAd);
 
 module.exports = router;

@@ -1,162 +1,274 @@
-<div class="container mt-4">
-    <div class="card mb-5">
-        <div class="card-header">
-            Crée une Annonce
-        </div>
-        <div class="card-body">
-            <form [formGroup]="adsForm" (ngSubmit)="submit()">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input name="id" formControlName="_id" type="hidden" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="form-label">TITRE:</label>
-                        <input name="title" formControlName="title" type="text" class="form-control" id="recipient-name"
-                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.title.errors }">
-                        <div *ngIf="submitted && adsForm.controls.title.errors" class="invalid-feedback">
-                            <div *ngIf="submitted && adsForm.controls.title.errors.required">Ce champ est
-                                obligatoire !</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label text-uppercase">Catégories:</label>
-                        <select class="form-control" id="recipient-name" (change)="changeCategory($event)"
-                            formControlName="category"
-                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.category.errors }">
-                            <option value=""></option>
-                            <option *ngFor="let category of categoryList" name="category" value="{{category._id}}">
-                                {{category.title}}</option>
-                        </select>
-                        <div *ngIf="submitted && adsForm.controls.category.errors" class="invalid-feedback">
-                            <div *ngIf="submitted && adsForm.controls.category.errors.required">Ce champ est
-                                obligatoire !</div>
-                        </div>
-                    </div>
-                    <div class="form-group" *ngIf='showSubCategory'>
-                        <label for="recipient-name" class="col-form-label text-uppercase">Sous Catégories:</label>
-                        <select class="form-control" id="recipient-name" (change)="onChangeSubCategory($event)"
-                            formControlName="subCategory"
-                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.subCategory.errors }">
-                            <option *ngFor="let subCategory of subCategoryList" name="category"
-                                value="{{subCategory._id}}">
-                                {{subCategory.title}}</option>
-                        </select>
-                        <div *ngIf="submitted && adsForm.controls.category.errors" class="invalid-feedback">
-                            <div *ngIf="submitted && adsForm.controls.category.errors.required">Ce champ est
-                                obligatoire !</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label text-uppercase" for="comment">Description:</label>
-                        <textarea [ngClass]="{ 'is-invalid': submitted && adsForm.controls.description.errors }"
-                            formControlName="description" class="form-control" rows="5" id="comment"></textarea>
-                        <div *ngIf="submitted && adsForm.controls.description.errors" class="invalid-feedback">
-                            <div *ngIf="submitted && adsForm.controls.description.errors.required">Ce champ est
-                                obligatoire !</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-sm btn-secondary text-uppercase">ANNULER</button>
-                    <button type="submit" class="btn btn-sm  btn-primary   text-uppercase"
-                        (click)="scrollDown()">{{btnName}}</button>
-                </div>
-            </form>
+<div class="container  mb-5">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <button class="btn btn-sm btn-outline-primary float-right text-uppercase" data-toggle="modal"
+                data-target="#addModal">Ajoutée une nouvelle annoce</button>
         </div>
     </div>
-    <div class="card mt-5 mb-5">
-        <div class="card-header">
-            Liste des Annonces
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <!--       <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="line-scale-pulse-out">
-                        <p style="font-size: 20px; color: #fff"></p>
-                    </ngx-spinner>-->
-                <table class="table">
-                    <thead>
-                        <tr class="text-uppercase">
-                            <th scope="col">#</th>
-                            <th scope="col">TITRE</th>
-                            <th scope="col">catégorie</th>
-                            <th scope="col">sous catégorie</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            *ngFor="let ad of adsList  | paginate: { itemsPerPage: 5, currentPage:p ,totalItems: totalItems } ;let i = index">
-                            <th scope="row">{{i}}</th>
-                            <td>{{ad.title}}</td>
-                            <td>{{ad.category.title}}</td>
-                            <td>{{ad.subCategory.title}}</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary mr-1" (click)='delete(category)'><i
-                                        class="fas fa-trash-alt"></i></button>
-                                <button class="btn btn-sm btn-primary mr-1" (click)='edit(category)' data-toggle="modal"
-                                    data-target="#addModal"><i class="far fa-edit"></i></button>
-                                <button class="btn btn-sm btn-primary " (click)='edit(category)' data-toggle="modal"
-                                    data-target="#addModal"><i class="fas fa-info-circle"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-12 float-right mr-5">
-                    <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel=""
-                        screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
-                        class="float-right pagination py-auto" (pageChange)="getCategory($event)"></pagination-controls>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Liste des Annonces
                 </div>
+                <div class="card-body">
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr class="text-uppercase">
+                                    <th scope="col">#</th>
+                                    <th scope="col">TITRE</th>
+                                    <th scope="col">catégorie</th>
+                                    <th scope="col">sous catégorie</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let ad of adsList  | paginate: { itemsPerPage: 10, currentPage:p ,totalItems: totalItems } ;let i = index">
+                                    <th scope="row">{{i}}</th>
+                                    <td>{{ad.title}}</td>
+                                    <td>{{ad.category.title}}</td>
+                                    <td>{{ad.subCategory.title}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary mr-1" (click)='confirmModal(ad)'><i
+                                                class="fas fa-trash-alt" data-toggle="modal"
+                                                data-target="#deleteModal"></i></button>
+                                        <button class="btn btn-sm btn-primary mr-1" (click)='edit(ad)'
+                                            data-toggle="modal" data-target="#addModal"><i
+                                                class="far fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-primary " data-toggle="modal"
+                                            data-target="#detailsModal" (click)="detail(ad)"><i
+                                                class="fas fa-info-circle"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 float-right mr-5">
+                            <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel=""
+                                screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
+                                class="float-right pagination py-auto" (pageChange)="getCategory($event)">
+                            </pagination-controls>
+                        </div>
 
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--   <div *ngIf='showModal' class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-uppercase" id="exampleModalLabel">{{modalTitle}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<!--
+<div *ngIf="showConfirmModal" class="modal " id="deleteModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase">Confirmation du suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-content-mesage">Vous etes sur de vouloir supprimer cette annonce</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="confirmDelete(false)"
+                    class="btn btn-sm btn-danger text-uppercase">Annuler</button>
+                <button type="button" (click)="confirmDelete(true)" class="btn btn-sm btn-primary text-uppercase"
+                    data-dismiss="modal">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<!--
+<div *ngIf="showDetail" class="modal fade" id="detailsModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel">annonce details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 text-uppercase">
+                        <h6 class="title">TITRE : </h6>
+                        <h6>{{ad.title}}</h6>
+                        <h6 class="title">catégorie : </h6>
+                        <h6>{{ad.category.title}}</h6>
+                        <h6 class="title">sous catégorie : </h6>
+                        <h6>{{ad.subCategory.title}}</h6>
+
+                    </div>
+                    <div class="col-md-6 text-uppercase">
+                        <h6 class="title">Date du création : </h6>
+                        <h6>{{ad.createdAt}}</h6>
+                        <h6 class="title">description : </h6>
+                        <h6>{{ad.description}}</h6>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+
+<div class="modal " id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase"> Crée une Annonce</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
                 <form [formGroup]="adsForm" (ngSubmit)="submit()">
                     <div class="modal-body">
-                        <div class="form-group">
-                            <input name="id" formControlName="_id" type="hidden" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">TITRE:</label>
-                            <input name="title" formControlName="title" type="text" class="form-control" id="recipient-name"
-                                [ngClass]="{ 'is-invalid': submitted && adsForm.controls.title.errors }">
-                            <div *ngIf="submitted && adsForm.controls.title.errors" class="invalid-feedback">
-                                <div *ngIf="submitted && adsForm.controls.title.errors.required">Ce champ est
-                                    obligatoire !</div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="form-label">TITRE:</label>
+                                    <input name="title" formControlName="title" type="text"
+                                        class="form-control form-control-sm" id="recipient-name"
+                                        [ngClass]="{ 'is-invalid': submitted && adsForm.controls.title.errors }">
+                                    <div *ngIf="submitted && adsForm.controls.title.errors" class="invalid-feedback">
+                                        <div *ngIf="submitted && adsForm.controls.title.errors.required">Ce champ est
+                                            obligatoire !</div>
+                                    </div>
+                                </div>
+                               
+                                
+                                <div class="form-group">
+                                        <label for="recipient-name"
+                                            class="form-label text-uppercase">gouvernorat:</label>
+                                        <select class="form-control form-control-sm" id="recipient-name"
+                                            (change)="changeGovernorate($event)" formControlName="governorate"
+                                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.governorate.errors }">
+                                            <option value=""></option>
+                                            <option *ngFor="let governorate of governoratesList" name="governorate"
+                                                value="{{governorate.key}}">
+                                                {{governorate.value}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && adsForm.controls.governorate.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="submitted && adsForm.controls.governorate.errors.required">Ce champ
+                                                est
+                                                obligatoire !</div>
+                                        </div>
+                                    </div>
+                                         
+                                <div class="form-group">
+                                        <label for="recipient-name"
+                                            class="form-label text-uppercase">délégations:</label>
+                                        <select class="form-control form-control-sm" id="recipient-name"
+                                            (change)="changeDelegations($event)" formControlName="governorate"
+                                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.governorate.errors }">
+                                            <option value=""></option>
+                                            <option *ngFor="let delegations of delegationsListSelected" name="governorate"
+                                                value="{{delegations.key}}">
+                                                {{delegations.value}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && adsForm.controls.governorate.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="submitted && adsForm.controls.governorate.errors.required">Ce champ
+                                                est
+                                                obligatoire !</div>
+                                        </div>
+                                    </div>
+                                <div class="form-group">
+                                    <input name="id" formControlName="_id" type="hidden"
+                                        class="form-control form-control-sm" id="recipient-name">
+                                </div>
+                                <!-- <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" multiple (change)="getFileDetails($event)"
+                                            class="custom-file-input form-control form-control-sm">
+                                        <label class="custom-file-label"></label>
+                                        <small class="text-uppercase">Choisir au maximum 5 images</small>
+
+                                    </div>
+                                    <div class="mt-1">
+                                        <ul class="ml-2 mb-0" *ngFor="let images of images">
+                                            <li>
+                                                {{images.name}}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div> -->
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label text-uppercase">Catégories:</label>
+                                    <select class="form-control form-control-sm" id="recipient-name"
+                                        (change)="changeCategory($event)" formControlName="category"
+                                        [ngClass]="{ 'is-invalid': submitted && adsForm.controls.category.errors }">
+                                        <option value=""></option>
+                                        <option *ngFor="let category of categoryList" name="category"
+                                            value="{{category._id}}">
+                                            {{category.title}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && adsForm.controls.category.errors" class="invalid-feedback">
+                                        <div *ngIf="submitted && adsForm.controls.category.errors.required">Ce champ est
+                                            obligatoire !</div>
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf='showSubCategory'>
+                                    <label for="recipient-name" class="form-label text-uppercase">Sous
+                                        Catégories:</label>
+                                    <select class="form-control form-control-sm" id="recipient-name"
+                                        (change)="onChangeSubCategory($event)" formControlName="subCategory"
+                                        [ngClass]="{ 'is-invalid': submitted && adsForm.controls.subCategory.errors }">
+                                        <option *ngFor="let subCategory of subCategoryList" name="category"
+                                            value="{{subCategory._id}}">
+                                            {{subCategory.title}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && adsForm.controls.category.errors" class="invalid-feedback">
+                                        <div *ngIf="submitted && adsForm.controls.category.errors.required">Ce champ est
+                                            obligatoire !</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <label for="recipient-name" class="form-label">PRIX:</label>
+                                        <input name="prix" formControlName="price" min="0" type="number"
+                                            class="form-control form-control-sm" id="recipient-name"
+                                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.price.errors }">
+                                        <div *ngIf="submitted && adsForm.controls.price.errors" class="invalid-feedback">
+                                            <div *ngIf="submitted && adsForm.controls.price.errors.required">Ce champ est
+                                                obligatoire !</div>
+                                        </div>
+                                    </div>
+                                <div class="form-group">
+                                    <label class="form-label text-uppercase" for="comment">Description:</label>
+                                    <textarea
+                                        [ngClass]="{ 'is-invalid': submitted && adsForm.controls.description.errors }"
+                                        formControlName="description" class="form-control form-control-sm" rows="5"
+                                        id="comment"></textarea>
+                                    <div *ngIf="submitted && adsForm.controls.description.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="submitted && adsForm.controls.description.errors.required">Ce champ
+                                            est
+                                            obligatoire !</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary text-uppercase">ANNULER</button>
-                        <button type="submit" class="btn btn-primary  text-uppercase">{{btnName}}</button>
+                        <button type="reset" class="btn btn-sm btn-secondary text-uppercase">ANNULER</button>
+                        <button type="submit" class="btn btn-sm  btn-primary   text-uppercase"
+                            (click)="scrollDown()">{{btnName}}</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>-->
-<!-- <div class="form-group">
-                            <label for="recipient-name" class="col-form-label text-uppercase">gouvernorat:</label>
-                            <select class="form-control" id="recipient-name" (change)="changeGovernorate($event)"
-                                formControlName="governorate"
-                                [ngClass]="{ 'is-invalid': submitted && adsForm.controls.category.errors }">
-                                <option *ngFor="let governorate of governoratesList" name="governorate" value="{{governorate}}">
-                                    {{governorate.value}}</option>
-                            </select>
-                            <div *ngIf="submitted && adsForm.controls.category.errors" class="invalid-feedback">
-                                <div *ngIf="submitted && adsForm.controls.category.errors.required">Ce champ est
-                                    obligatoire !</div>
-                            </div>
-                        </div> -->
+    </div>
+</div>

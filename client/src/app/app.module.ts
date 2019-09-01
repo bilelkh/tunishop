@@ -16,11 +16,11 @@ import { SettingsModule } from "./modules/settings/settings.module";
 import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { AuthentificationModule } from "./modules/authentification/authentification.module";
 import { AdministrationModule } from "./modules/administration/administration.module";
+//import { SharedModule } from "./shared/shared.module";
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ConfirmModalComponent } from './shared/Modals/confirm-modal/confirm-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, ConfirmModalComponent],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,

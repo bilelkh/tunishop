@@ -32,7 +32,6 @@ export class CategoryComponent implements OnInit {
     this.categoryForm = this.formBuilder.group({
       _id: [""],
       title: ["", Validators.required],
-      icon: ["", Validators.required]
     });
   }
 
@@ -59,10 +58,13 @@ export class CategoryComponent implements OnInit {
   }
 
   submit() {
+    console.log(1)
     this.submitted = true;
+    console.log("this.categoryForm",this.categoryForm.controls)
         if (this.categoryForm.invalid) {
             return;
         }
+        console.log("this.categoryForm.value",this.categoryForm.value)
     if (this.categoryForm.value._id) {
       this.categoryService.edit(this.categoryForm.value).subscribe(
         data => {
