@@ -11,13 +11,17 @@ import { AdsComponent } from "./components/ads/ads.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxPaginationModule } from "ngx-pagination";
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AdComponent } from './components/ad/ad.component';
 
 @NgModule({
   declarations: [
     CategoryComponent,
     SubCategoryComponent,
     ProductComponent,
-    AdsComponent
+    AdsComponent,
+    ProfileComponent,
+    AdComponent
   ],
   imports: [CommonModule,ModalModule,NgbModule,FormsModule,ReactiveFormsModule, ShopperRoutingModule, NgxPaginationModule, NgxSpinnerModule],
   providers: [SharedService]

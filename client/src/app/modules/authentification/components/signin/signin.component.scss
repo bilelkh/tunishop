@@ -4,6 +4,9 @@
     .section {
         position: relative;
         padding: 65px 0;
+        .card {
+            border-radius: 2px ;
+        }
         #loginform {
             .form-group {
                 margin-bottom: 1.5rem;
@@ -17,14 +20,16 @@
                 .form-sublink {
                     display: inline-block !important;
                     float: right;
-                    color: #838e95;
+                    color: #000;
                     font-size: 12px;
                     margin-top: 0.3rem;
                 }
             }
         }
-        .text-gray-soft {
-            color: #838E95 !important;
+        .sub-text {
+            color: #000 !important;
+            margin-top: 5px ;
+            font-size: 14px ;
         }
     }
 }
