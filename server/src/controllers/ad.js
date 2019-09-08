@@ -1,7 +1,19 @@
 const Ad = require("../models/ad");
+const IncomingForm = require('formidable').IncomingForm
 
 exports.createAd = async(req, res, next) => {
+     let data = req.body[Object.keys(req.body)[0]] ; 
+     console.log("=====data=======",JSON.parse(data.substring(data.indexOf('{'),data.lastIndexOf('}')+1))) ;
+    const form = new IncomingForm()
     const ad = new Ad(req.body);
+    // form.on('file', (field, file) => {
+    //      console.log("field",field,"file",file)
+    //   })
+    //   form.on('end', () => {
+    //     res.json()
+    //   })
+    //   form.parse(req)
+
     await ad
         .save()
         .then(result => {

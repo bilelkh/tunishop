@@ -89,8 +89,7 @@ exports.deleteSubCategory = (req, res, next) => {
 };
 
 exports.subCategoryByIdCategory = (req, res, next) => {
-  console.log("req.params.categoryId",req.params.categoryId)
-    SubCategory.find({'category._id' : req.params.categoryId}).then(subCategory => {
+    SubCategory.find({'category._id' : req.params.categoryId}).select("category title _id").then(subCategory => {
             if (!subCategory) {
                 const error = new Error('Could not find subCategory.');
                 error.statusCode = 404;

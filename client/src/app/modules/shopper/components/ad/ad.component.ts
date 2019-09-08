@@ -1,4 +1,10 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -10,17 +16,14 @@ import { Governorates } from "../../../../enum/governorate";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { ConfirmModalComponent } from "../../../../shared/modals/confirm-modal/confirm-modal.component";
 import { Delegations } from "../../../../enum/delegations";
-import Stepper from 'bs-stepper';
 
 @Component({
-  selector: 'app-ad',
-  templateUrl: './ad.component.html',
-  styleUrls: ['./ad.component.scss']
+  selector: "app-ad",
+  templateUrl: "./ad.component.html",
+  styleUrls: ["./ad.component.scss"]
 })
 export class AdComponent implements OnInit {
-
-    
-  @ViewChild('labelImport',null)
+  @ViewChild("labelImport", null)
   labelImport: ElementRef;
 
   private fileToUpload: File = null;
@@ -50,10 +53,8 @@ export class AdComponent implements OnInit {
   private showConfirmModal: boolean = false;
   private ad: any;
   private showDetail: boolean = false;
-  private images: string[] = [];
-  private stepper: Stepper;
+  private files: unknown[] = [];
 
- 
   constructor(
     private sharedService: SharedService,
     private notificationService: NotificationService,
@@ -84,9 +85,7 @@ export class AdComponent implements OnInit {
     this.getAds(1);
     this.getCategory();
   }
-  next() {
-    this.stepper.next();
-  }
+
   getAds(page) {
     this.p = page;
     this.spinner.show();
@@ -142,23 +141,32 @@ export class AdComponent implements OnInit {
   }
 
   onChangeSubCategory($event) {
+    console.log("this.subCategoryList", this.subCategoryList);
     this.subCategoryId = $event.target.value;
     this.subCategory = this.subCategoryList.filter(
       subCategory => subCategory._id === this.subCategoryId
     )[0];
+    console.log("====subCategory====", this.subCategory);
   }
   submit() {
+    console.log("====submit====");
     this.submitted = true;
     if (this.adsForm.valid) {
-      let ads = {
+      let paylod = {
         title: this.adsForm.value.title,
         description: this.adsForm.value.description,
         category: this.category,
         price: this.adsForm.value.price,
         subCategory: this.subCategory
       };
-
-      this.shopperService.addAds(ads).subscribe(
+       const formData: FormData = new FormData();
+      // this.files.forEach((file:any) => {
+      // formData.append('file', file, file.name);
+      // })
+      let ad=JSON.stringify(paylod)   ; 
+      formData.append('ad',ad)
+ 
+      this.shopperService.addAds(formData).subscribe(
         data => {
           console.log("data", data);
           this.notificationService.showSuccess(
@@ -174,10 +182,7 @@ export class AdComponent implements OnInit {
     }
   }
 
-  scrollDown() {
-    let el = document.getElementsByTagName("table")[0];
-    el.scrollIntoView();
-  }
+
 
   confirmModal(ad: unknown) {
     this.showConfirmModal = true;
@@ -217,13 +222,7 @@ export class AdComponent implements OnInit {
     }
   }
 
-  getFileDetails($event) {
-    for (var i = 0; i < $event.target.files.length; i++) {
-      this.images.push($event.target.files[i]);
-    }
-
-    console.log("this.images", this.images);
-  }
+ 
 
   changeGovernorate($event) {
     console.log("$event", $event.target.value);
@@ -248,7 +247,12 @@ export class AdComponent implements OnInit {
   onFileChange(files: FileList) {
     this.labelImport.nativeElement.innerText = Array.from(files)
       .map(f => f.name)
-      .join(', ');
+      .join(", ");
     this.fileToUpload = files.item(0);
-  }
+ 
+
+  for (var i = 0; i < files.length; i++) {
+    this.files.push(files[i] );
+  } 
+}
 }
