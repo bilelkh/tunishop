@@ -1,19 +1,16 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import {} from "./modules/shopper/shopper.module"
-const routes: Routes = [
-  /*
-{ path: '', redirectTo: '', pathMatch: 'full' },
-{ path: '',   loadChildren:"../modules/authentification/authentification.module#AuthentificationModule"},
-{ path: 'settings',   loadChildren:"./modules/authentification/settings.module#SettingsModule"},
-{ path: 'shopper',   loadChildren:"./modules/authentification/shopper.module#ShopperModule"},
-*/
-{ path: '', redirectTo: '', pathMatch: 'full' },
-{ path: '',   loadChildren:"./modules/authentification/authentification.module#AuthentificationModule"},
-{ path: 'shopper',   loadChildren:"./modules/shopper/shopper.module#ShopperModule"},
-{ path: 'settings',   loadChildren:"./modules/settings/settings.module#SettingsModule"},
-{ path: 'administration',   loadChildren:"./modules/administration/administration.module#AdministrationModule"},
+import { NotFoundComponent } from './pages/not-found/not-found.component'
 
+const routes: Routes = [
+{ path: '', loadChildren: () => import(`./modules/authentification/authentification.module`).then(m => m.AuthentificationModule) },
+{ path: 'shopper', loadChildren: () => import(`./modules/shopper/shopper.module`).then(m => m.ShopperModule) },
+{ path: 'settings', loadChildren: () => import(`./modules/settings/settings.module`).then(m => m.SettingsModule) },
+{ path: 'administration', loadChildren: () => import(`./modules/administration/administration.module`).then(m => m.AdministrationModule) },
+{
+  path: '**',
+  component: NotFoundComponent
+}
 ];
 
 @NgModule({

@@ -1,58 +1,56 @@
 import {
   Component,
   ElementRef,
-  OnDestroy,
   OnInit,
   ViewChild
-} from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { NgxSpinnerService } from "ngx-spinner";
-import { NotificationService } from "../../../../shared/services/notification.service";
-import { ShopperService } from "../../services/shopper.service";
-import { SharedService } from "../../../../shared/services/shared.service";
-import { SubCategoryService } from "../../../settings/services/sub-category.service";
-import { Governorates } from "../../../../enum/governorate";
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-import { ConfirmModalComponent } from "../../../../shared/modals/confirm-modal/confirm-modal.component";
-import { Delegations } from "../../../../enum/delegations";
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NotificationService } from '../../../../shared/services/notification.service';
+import { ShopperService } from '../../services/shopper.service';
+import { SharedService } from '../../../../shared/services/shared.service';
+import { SubCategoryService } from '../../../settings/services/sub-category.service';
+import { Governorates } from '../../../../enum/governorate';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Delegations } from '../../../../enum/delegations';
 
 @Component({
-  selector: "app-ad",
-  templateUrl: "./ad.component.html",
-  styleUrls: ["./ad.component.scss"]
+  selector: 'app-ad',
+  templateUrl: './ad.component.html',
+  styleUrls: ['./ad.component.scss']
 })
 export class AdComponent implements OnInit {
-  @ViewChild("labelImport", null)
+  @ViewChild('labelImport', null)
   labelImport: ElementRef;
 
   private fileToUpload: File = null;
-  private modalTitle: string = "AJOUTER UN NOUVEAU CATEGORIES";
-  private btnName: string = "Ajouter";
-  private loading: boolean = false;
-  private submitted: boolean = false;
-  private showModal: boolean = false;
+  private modalTitle = 'AJOUTER UN NOUVEAU CATEGORIES';
+  private btnName = 'Ajouter';
+  private loading = false;
+  private submitted = false;
+  private showModal = false;
   private adsList = [];
-  private p: number = 1;
-  private searchText: string = "";
-  private pageSize: number = 5;
-  private totalItems: number = 0;
-  private categoryList: any = [];
+  private p = 1;
+  private searchText = '';
+  private pageSize = 5;
+  private totalItems = 0;
+  private categoryList = [];
   private subCategoryList: any = [];
   private categoryId: string;
   private subCategoryId: string;
-  private showSubCategory: boolean = false;
-  private governoratesList: any = [];
+  private showSubCategory = false;
+  private governoratesList: unknown = [];
   private delegationsList: any = [];
   private delegationsListSelected: any = [];
-  private delegationSelected: any = [];
+  private delegationSelected: unknown = [];
 
   private adsForm: FormGroup;
   private category: any;
-  private subCategory: any;
-  private showConfirmModal: boolean = false;
+  private subCategory: unknown;
+  private showConfirmModal = false;
   private ad: any;
-  private showDetail: boolean = false;
+  private showDetail = false;
   private files: unknown[] = [];
 
   constructor(
@@ -67,21 +65,23 @@ export class AdComponent implements OnInit {
     private modalService: BsModalService
   ) {
     this.adsForm = this.formBuilder.group({
-      _id: [""],
-      files: ["", Validators.required],
-      title: ["", Validators.required],
-      category: ["", Validators.required],
-      subCategory: ["", Validators.required],
-      description: ["", Validators.required],
-      price: ["", Validators.required],
-      governorate: ["", Validators.required]
+      _id: [''],
+      // tslint:disable-next-line: comment-format
+      //files: ['', Validators.required],
+      title: ['', Validators.required],
+      category: ['', Validators.required],
+      subCategory: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      governorate: ['', Validators.required],
+      delegation: ['', Validators.required]
     });
   }
 
   ngOnInit() {
     this.governoratesList = Governorates;
     this.delegationsList = Delegations;
-    console.log("this.delegationsList", this.delegationsList);
+    console.log('this.delegationsList', this.delegationsList);
     this.getAds(1);
     this.getCategory();
   }
@@ -96,7 +96,7 @@ export class AdComponent implements OnInit {
         this.spinner.hide();
       },
       error => {
-        console.log("error", error);
+        console.log('error', error);
         throw error;
       }
     );
@@ -106,10 +106,9 @@ export class AdComponent implements OnInit {
     this.sharedService.getCategory().subscribe(
       (data: any) => {
         this.categoryList = data.categorys;
-        console.log(" this.categoryList", this.categoryList);
       },
       error => {
-        console.log("error", error);
+        console.log('error', error);
         throw error;
       }
     );
@@ -134,49 +133,50 @@ export class AdComponent implements OnInit {
         }
       },
       error => {
-        console.log("error", error);
+        console.log('error', error);
         throw error;
       }
     );
   }
 
   onChangeSubCategory($event) {
-    console.log("this.subCategoryList", this.subCategoryList);
     this.subCategoryId = $event.target.value;
     this.subCategory = this.subCategoryList.filter(
       subCategory => subCategory._id === this.subCategoryId
     )[0];
-    console.log("====subCategory====", this.subCategory);
+    console.log('====subCategory====', this.subCategory);
   }
   submit() {
-    console.log("====submit====");
+    console.log('====submit====', this.adsForm.valid);
     this.submitted = true;
     if (this.adsForm.valid) {
-      let paylod = {
+      /*
+      governorate: ['', Validators.required],
+      delegation: ['', Validators.required]
+      */
+      const ad = {
         title: this.adsForm.value.title,
         description: this.adsForm.value.description,
+        governorate: this.adsForm.value.governorate,
+        delegation: this.adsForm.value.delegation,
         category: this.category,
         price: this.adsForm.value.price,
         subCategory: this.subCategory
       };
-       const formData: FormData = new FormData();
-      // this.files.forEach((file:any) => {
+      //  const formData: FormData = new FormData();
+      // this.files.forEach((file:unknown) => {
       // formData.append('file', file, file.name);
       // })
-      let ad=JSON.stringify(paylod)   ; 
-      formData.append('ad',ad)
- 
-      this.shopperService.addAds(formData).subscribe(
+      // let ad=JSON.stringify(paylod)   ;
+      // formData.append('ad',ad)
+      this.shopperService.addAd(ad).subscribe(
         data => {
-          console.log("data", data);
-          this.notificationService.showSuccess(
-            "",
-            "annonce ajoutée avec succès"
-          );
-          this.getAds(1);
+          console.log('data', data);
+          this.notificationService.showSuccess('', 'annonce ajouté avec succès') ;
+          this.router.navigateByUrl('ads');
         },
         error => {
-          console.log("error", error);
+          console.log('error', error);
         }
       );
     }
@@ -211,8 +211,8 @@ export class AdComponent implements OnInit {
         data => {
           this.getAds(1);
           this.notificationService.showSuccess(
-            "annonces a été supprimé avec succès",
-            ""
+            'annonces a été supprimé avec succès',
+            ''
           );
         },
         error => {
@@ -222,37 +222,29 @@ export class AdComponent implements OnInit {
     }
   }
 
- 
+
 
   changeGovernorate($event) {
-    console.log("$event", $event.target.value);
-    let governorateKey = $event.target.value;
+    const governorateKey = $event.target.value;
     this.delegationsListSelected = this.delegationsList.filter(
-      x => x.governorateKey == governorateKey
+      x => x.governorateKey === governorateKey
     )[0].delegations;
-    console.log("delegationsListSelected", this.delegationsListSelected);
   }
 
   changeDelegations($event) {
-    let delegationKey = $event.target.value;
-    console.log("delegationKey", delegationKey);
-    console.log("delegationsListSelected", this.delegationsListSelected);
-
+    const delegationKey = $event.target.value;
     this.delegationSelected = this.delegationsListSelected.filter(
-      x => x.key == delegationKey
+      x => x.key === delegationKey
     )[0];
-    console.log(" this.delegationSelected", this.delegationSelected);
   }
 
   onFileChange(files: FileList) {
-    this.labelImport.nativeElement.innerText = Array.from(files)
-      .map(f => f.name)
-      .join(", ");
-    this.fileToUpload = files.item(0);
- 
-
-  for (var i = 0; i < files.length; i++) {
-    this.files.push(files[i] );
-  } 
+  //   this.labelImport.nativeElement.innerText = Array.from(files)
+  //     .map(f => f.name)
+  //     .join(', ');
+  //   this.fileToUpload = files.item(0);
+  //   for (var i = 0; i < files.length; i++) {
+  //   this.files.push(files[i] );
+  // }
 }
 }

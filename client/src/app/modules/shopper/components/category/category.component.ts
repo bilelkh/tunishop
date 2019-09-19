@@ -36,6 +36,6 @@ export class CategoryComponent implements OnInit {
   }
 
   goToSubCategory(category) {
-    this.router.navigate(["./category", category._id]);
+    this.router.navigate(["./shopper/category", category._id]);
   }
 }

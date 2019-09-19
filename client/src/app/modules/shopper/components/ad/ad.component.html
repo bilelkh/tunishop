@@ -27,7 +27,7 @@
                                                 obligatoire !</div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="text-uppercase">images</label>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" multiple
@@ -36,7 +36,7 @@
                                             <label class="custom-file-label shadow-sm" #labelImport for="importFile"><i></i></label>
                                                
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="recipient-name"
                                             class="form-label text-uppercase">gouvernorat:</label>
@@ -60,16 +60,16 @@
                                         <label for="recipient-name"
                                             class="form-label text-uppercase">délégations:</label>
                                         <select class="form-control shadow-sm form-control-sm" id="recipient-name"
-                                            (change)="changeDelegations($event)" formControlName="governorate"
-                                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.governorate.errors }">
+                                            (change)="changeDelegations($event)" formControlName="delegation"
+                                            [ngClass]="{ 'is-invalid': submitted && adsForm.controls.delegation.errors }">
                                             <option value=""></option>
                                             <option *ngFor="let delegations of delegationsListSelected"
-                                                name="governorate" value="{{delegations.key}}">
+                                                name="delegation" value="{{delegations.key}}">
                                                 {{delegations.value}}</option>
                                         </select>
-                                        <div *ngIf="submitted && adsForm.controls.governorate.errors"
+                                        <div *ngIf="submitted && adsForm.controls.delegation.errors"
                                             class="invalid-feedback">
-                                            <div *ngIf="submitted && adsForm.controls.governorate.errors.required">Ce
+                                            <div *ngIf="submitted && adsForm.controls.delegation.errors.required">Ce
                                                 champ
                                                 est
                                                 obligatoire !</div>

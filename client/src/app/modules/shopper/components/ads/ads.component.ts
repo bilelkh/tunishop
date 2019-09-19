@@ -135,37 +135,8 @@ export class AdsComponent implements OnInit {
       subCategory => subCategory._id === this.subCategoryId
     )[0];
   }
-  submit() {
-    this.submitted = true;
-    if (this.adsForm.valid) {
-      let ads = {
-        title: this.adsForm.value.title,
-        description: this.adsForm.value.description,
-        category: this.category,
-        price: this.adsForm.value.price,
-        subCategory: this.subCategory
-      };
+  
 
-      this.shopperService.addAds(ads).subscribe(
-        data => {
-          console.log("data", data);
-          this.notificationService.showSuccess(
-            "",
-            "annonce ajoutée avec succès"
-          );
-          this.getAds(1);
-        },
-        error => {
-          console.log("error", error);
-        }
-      );
-    }
-  }
-
-  scrollDown() {
-    let el = document.getElementsByTagName("table")[0];
-    el.scrollIntoView();
-  }
 
   confirmModal(ad: unknown) {
     this.showConfirmModal = true;

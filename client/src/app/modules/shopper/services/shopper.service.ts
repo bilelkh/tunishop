@@ -25,8 +25,8 @@ export class ShopperService {
     return this.http.get(this.URL + "ads?pageSize="+pageSize+"&page="+page);
   }
 
-  addAds(ad:FormData) {
-    return this.http.post(this.URL + "ads",ad,HttpOptions);
+  addAd(ad) {
+    return this.http.post(this.URL + "ad",ad);
   }
 
   deleteAds(adId) {

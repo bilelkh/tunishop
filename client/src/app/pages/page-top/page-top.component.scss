@@ -1,32 +1,11 @@
-.dropdown-menu {
-  border-radius: 0px;  
-  margin-top: 0.6rem;
-  border: none !important;
-  background-color: #fff;
-  box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
-  .dropdown-item {
-    color: #000 !important;
-    margin-right: 100px;
-    font-size: 15px !important;
-    &:hover {
-      background-color: #fff !important ;
-      cursor: pointer;
-    }
-  }
-  li {
-    &:hover {
-      background-color: #f8f8fb !important;
-      a {
-        &:hover {
-          background-color: #f8f8fb !important;
-          color: #5867dd !important;
-          cursor: pointer !important;
-        }
-      }
-      i.fas {
-        color: #5867dd !important;
-      }
-    }
+.jumbotron {
+  background: linear-gradient(90deg, rgba(140, 187, 237, 1) 0%, rgba(0, 123, 255, 1) 50%) !important;
+  font-family: 'Oswald', sans-serif !important;
+  border-radius: 0;
+  .main-title {
+    color: #fff;
+    font-size: 80px;
   }
 }
