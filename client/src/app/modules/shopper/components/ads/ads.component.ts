@@ -10,6 +10,7 @@ import { Governorates } from "../../../../enum/governorate";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { ConfirmModalComponent } from "../../../../shared/modals/confirm-modal/confirm-modal.component";
 import { Delegations } from "../../../../enum/delegations";
+
 @Component({
   selector: "app-ads",
   templateUrl: "./ads.component.html",
@@ -74,13 +75,16 @@ export class AdsComponent implements OnInit {
     this.getAds(1);
     this.getCategory();
   }
-
+  public url :any ; 
   getAds(page) {
     this.p = page;
     this.spinner.show();
     this.shopperService.getAds(5, page).subscribe(
       (data: any) => {
         this.adsList = data.ads;
+        console.log("===this.adsList===",this.adsList) ;
+        // console.log("ad.filesURL[0]",this.adsList[1].filesURL[0]);
+        //esthis.url = this.adsList[1].filesURL[0] ; 
         this.totalItems = data.totalItem;
         this.spinner.hide();
       },

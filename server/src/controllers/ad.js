@@ -1,22 +1,10 @@
 const Ad = require("../models/ad");
 
 exports.createAd = async (req, res, next) => {
-  // let data = req.body[Object.keys(req.body)[0]] ;
-  // console.log("=====data=======",JSON.parse(data.substring(data.indexOf('{'),data.lastIndexOf('}')+1))) ;
-  // const form = new IncomingForm()
-  console.log("req.body",req.body)
-  const ad = new Ad(req.body);
-  console.log("ad",ad)
-  // form.on('file', (field, file) => {
-  //      console.log("field",field,"file",file)
-  //   })
-  //   form.on('end', () => {
-  //     res.json()
-  //   })
-  //   form.parse(req)
 
+  const ad = new Ad(req.body);
   await ad
-    .save()
+    .save(req)
     .then(result => {
       res.status(201).json({
         succes: "add",

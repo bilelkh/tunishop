@@ -1,9 +1,16 @@
+#header {
+  background-color: rgb(255, 0, 0);
+}
+
+
 .navbar {
+  font-family: "Open Sans", sans-serif !important;
   .navbar-nav {
     .nav-item {
       .nav-link {
         color: #000 !important;
-        font-family: "Open Sans", sans-serif !important;
+        background-color: #F2F3F8;
+        border-radius: 2px;
       }
 
       input[type="search"] {
@@ -16,53 +23,53 @@
       }
     }
 
-    li {
-      form {
-        a {
-          border-top-left-radius: 0px !important;
-          border-bottom-left-radius: 0px !important;
-          color: #000 !important;
-        }
+    // li {
+    //   form {
+    //     a {
+    //       border-top-left-radius: 0px !important;
+    //       border-bottom-left-radius: 0px !important;
+    //       color: #000 !important;
+    //     }
 
-        input {
-          transition: border-color 0.15s ease-in-out,
-            box-shadow 0.15s ease-in-out;
-          outline: 0;
-          box-shadow: none;
-          border: none;
-          border-bottom: 1px solid #ced4da;
-          border-radius: 0;
-          box-sizing: content-box;
-          background-color: transparent;
-          width: 600px;
-        }
+    //     input {
+    //       transition: border-color 0.15s ease-in-out,
+    //         box-shadow 0.15s ease-in-out;
+    //       outline: 0;
+    //       box-shadow: none;
+    //       border: none;
+    //       border-bottom: 1px solid #ced4da;
+    //       border-radius: 0;
+    //       box-sizing: content-box;
+    //       background-color: transparent;
+    //       width: 600px;
+    //     }
 
-        i {
-          position: absolute;
-          left: 434px;
-          padding: 9px;
-          top: 18px;
-        }
-      }
+    //     i {
+    //       position: absolute;
+    //       left: 434px;
+    //       padding: 9px;
+    //       top: 18px;
+    //     }
+    //   }
 
-      a {
-        padding-top: 6px;
-        padding-bottom: 6px;
-        padding-right: 20px;
-        padding-left: 20px;
-        font-size: 18px;
+    //   a {
+    //     padding-top: 6px;
+    //     padding-bottom: 6px;
+    //     padding-right: 20px;
+    //     padding-left: 20px;
+    //     font-size: 18px;
 
-        &:hover {
-          color: #000 !important;
-        }
-      }
-    }
+    //     &:hover {
+    //       color: #000 !important;
+    //     }
+    //   }
+    // }
   }
 }
 
-.dropdown-toggle:after {
-  content: none;
-}
+// .dropdown-toggle:after {
+//   content: none;
+// }
 
 .fa-circle:before {
   content: "\f111";

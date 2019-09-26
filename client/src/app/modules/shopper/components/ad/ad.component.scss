@@ -1,8 +1,18 @@
-.custom-file-label {
-    color: #000 ;
-    border-radius: 3px;
+input[type="file"] {
+  display: none;
 }
 
-.custom-file-label::after {
-    content: 'CHOISIR DES IMAGES' !important 
+.form-group {
+  img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  
+  i {
+    position: absolute;
+    color: red;
+    font-weight: 700;
+    font-size: 30px;
+  }
 }

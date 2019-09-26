@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdComponent } from './components/ad/ad.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AdComponent } from './components/ad/ad.component';
     ProductComponent,
     AdsComponent,
     ProfileComponent,
-    AdComponent
+    AdComponent,
+    HomeComponent
   ],
 
   imports: [

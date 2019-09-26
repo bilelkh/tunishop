@@ -1,7 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
+import {  Component, ElementRef,  OnInit,
+
+ 
+
   ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -44,14 +44,16 @@ export class AdComponent implements OnInit {
   private delegationsList: any = [];
   private delegationsListSelected: any = [];
   private delegationSelected: unknown = [];
-
-  private adsForm: FormGroup;
+  private adForm: FormGroup;
   private category: any;
   private subCategory: unknown;
   private showConfirmModal = false;
   private ad: any;
   private showDetail = false;
-  private files: unknown[] = [];
+  private files: any[] = [];
+  private filesURL: any[] = [];
+  private selectedGovernorate: any; ;
+  private selectedDelegation: any; ;
 
   constructor(
     private sharedService: SharedService,
@@ -64,10 +66,8 @@ export class AdComponent implements OnInit {
     private subCategoryService: SubCategoryService,
     private modalService: BsModalService
   ) {
-    this.adsForm = this.formBuilder.group({
+    this.adForm = this.formBuilder.group({
       _id: [''],
-      // tslint:disable-next-line: comment-format
-      //files: ['', Validators.required],
       title: ['', Validators.required],
       category: ['', Validators.required],
       subCategory: ['', Validators.required],
@@ -77,6 +77,8 @@ export class AdComponent implements OnInit {
       delegation: ['', Validators.required]
     });
   }
+
+
 
   ngOnInit() {
     this.governoratesList = Governorates;
@@ -147,38 +149,33 @@ export class AdComponent implements OnInit {
     console.log('====subCategory====', this.subCategory);
   }
   submit() {
-    console.log('====submit====', this.adsForm.valid);
+    console.log('====submit====', this.adForm.valid);
+    console.log("this.delegationsList",this.delegationsList);
+    console.log("this.governoratesList",this.governoratesList)
+
     this.submitted = true;
-    if (this.adsForm.valid) {
-      /*
-      governorate: ['', Validators.required],
-      delegation: ['', Validators.required]
-      */
+    if (this.adForm.valid) {
       const ad = {
-        title: this.adsForm.value.title,
-        description: this.adsForm.value.description,
-        governorate: this.adsForm.value.governorate,
-        delegation: this.adsForm.value.delegation,
+        title: this.adForm.value.title,
+        description: this.adForm.value.description,
+        governorate: this.adForm.value.governorate,
+        delegation: this.adForm.value.delegation,
         category: this.category,
-        price: this.adsForm.value.price,
-        subCategory: this.subCategory
+        price: this.adForm.value.price,
+        subCategory: this.subCategory ,
+        filesURL : this.filesURL
       };
-      //  const formData: FormData = new FormData();
-      // this.files.forEach((file:unknown) => {
-      // formData.append('file', file, file.name);
-      // })
-      // let ad=JSON.stringify(paylod)   ;
-      // formData.append('ad',ad)
-      this.shopperService.addAd(ad).subscribe(
-        data => {
-          console.log('data', data);
-          this.notificationService.showSuccess('', 'annonce ajouté avec succès') ;
-          this.router.navigateByUrl('ads');
-        },
-        error => {
-          console.log('error', error);
-        }
-      );
+      console.log('===ad===',ad)
+      // this.shopperService.addAd(ad).subscribe(
+      //   data => {
+      //     console.log('data', data);
+      //     this.notificationService.showSuccess('', 'annonce ajouté avec succès');
+      //     this.router.navigateByUrl('ads');
+      //   },
+      //   error => {
+      //     console.log('error', error);
+      //   }
+      // );
     }
   }
 
@@ -190,7 +187,7 @@ export class AdComponent implements OnInit {
   }
 
   edit(ad) {
-    this.adsForm.setValue({
+    this.adForm.setValue({
       _id: ad._id,
       title: ad.title,
       price: ad.price,
@@ -223,28 +220,63 @@ export class AdComponent implements OnInit {
   }
 
 
-
   changeGovernorate($event) {
-    const governorateKey = $event.target.value;
+     const governorateKey =parseInt(this.selectedGovernorate.key);
     this.delegationsListSelected = this.delegationsList.filter(
-      x => x.governorateKey === governorateKey
+      x => x.governorateKey ===  governorateKey
     )[0].delegations;
+    // console.log("=== this.delegationsListSelected===", this.delegationsListSelected)
+    //console.log("this.delegationsListSelected",this.delegationsListSelected)
+    //console.log("selectedGovernorate",this.selectedGovernorate)
   }
 
   changeDelegations($event) {
-    const delegationKey = $event.target.value;
+    console.log("===selectedDelegation===",this.selectedDelegation)
+     const delegationKey = parseInt(this.selectedDelegation.key);
+     console.log("delegationKey",delegationKey)
     this.delegationSelected = this.delegationsListSelected.filter(
       x => x.key === delegationKey
     )[0];
+    console.log("this.delegationSelected",this.delegationSelected)
   }
 
-  onFileChange(files: FileList) {
-  //   this.labelImport.nativeElement.innerText = Array.from(files)
-  //     .map(f => f.name)
-  //     .join(', ');
-  //   this.fileToUpload = files.item(0);
-  //   for (var i = 0; i < files.length; i++) {
-  //   this.files.push(files[i] );
-  // }
-}
+  onFileChange(files) {
+    console.log('===files===', files);
+    this.filesURL = [] ;
+    // this.fileToUpload = files.item(0);
+    for (var i = 0; i < files.length; i++) {
+      console.log("files", files[i])
+      this.files.push(files[i]);
+    }
+    this.preview() ;
+  }
+
+  deleteFile(index) {
+    console.log("===index===",index)
+    this.filesURL.splice(index,1)
+  }
+  preview() {
+    // Show preview 
+    // var mimeType = this.fileData.type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   return;
+    // }
+    console.log('this.files.length',this.files.length)
+    for (let i = 0; i < this.files.length; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.files[i]);
+      reader.onload = (event) => {
+        console.log(reader.result)
+        this.filesURL.push(reader.result)
+        console.log("this.filesURL",this.filesURL)
+      }
+
+
+    }
+
+    console.log("this.filesURL", this.filesURL)
+
+
+
+  }
 }

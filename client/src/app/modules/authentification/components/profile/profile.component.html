@@ -1,1 +1,99 @@
-<p>profile works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header text-uppercase">
+                    Profile
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="profileForm" (ngSubmit)="submit()">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-label">Email:</label>
+                                        <input name="email" formControlName="email" type="email"
+                                            class="form-control shadow-sm form-control-sm" id="recipient-name"
+                                            [ngClass]="{ 'is-invalid': submitted && profileForm.controls.email.errors }"
+                                            disabled>
+                                        <div *ngIf="submitted && profileForm.controls.email.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="submitted && profileForm.controls.email.errors.required">Ce champ
+                                                est
+                                                obligatoire !</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-label text-uppercase">TELEPHONE:</label>
+                                        <input name="phone" formControlName="phone" type="text"
+                                            class="form-control shadow-sm form-control-sm" id="recipient-name"
+                                            [ngClass]="{ 'is-invalid': submitted && profileForm.controls.phone.errors }">
+                                        <div *ngIf="submitted && profileForm.controls.phone.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="submitted && profileForm.controls.phone.errors.required">Ce champ
+                                                est
+                                                obligatoire !</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-label">NOM:</label>
+                                        <input name="firstName" formControlName="firstName" type="text"
+                                            class="form-control shadow-sm form-control-sm" id="recipient-name"
+                                            [ngClass]="{ 'is-invalid': submitted && profileForm.controls.firstName.errors }">
+                                        <div *ngIf="submitted && profileForm.controls.firstName.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="submitted && profileForm.controls.firstName.errors.required">Ce champ
+                                                est
+                                                obligatoire !</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-label">PRENOM:</label>
+                                        <input name="lastName" formControlName="lastName" type="text"
+                                            class="form-control shadow-sm form-control-sm" id="recipient-name"
+                                            [ngClass]="{ 'is-invalid': submitted && profileForm.controls.lastName.errors }">
+                                        <div *ngIf="submitted && profileForm.controls.lastName.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="submitted && profileForm.controls.lastName.errors.required">Ce champ
+                                                est
+                                                obligatoire !</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-label text-uppercase">adresse:</label>
+                                            <input name="adresse" formControlName="adresse" type="text"
+                                                class="form-control shadow-sm form-control-sm" id="recipient-name"
+                                                [ngClass]="{ 'is-invalid': submitted && profileForm.controls.adresse.errors }">
+                                            <div *ngIf="submitted && profileForm.controls.adresse.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="submitted && profileForm.controls.adresse.errors.required">Ce champ
+                                                    est
+                                                    obligatoire !</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-sm btn-secondary text-uppercase">ANNULER</button>
+                            <button type="submit" class="btn btn-sm  btn-primary   text-uppercase">modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

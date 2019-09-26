@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <button class="btn btn-sm btn-outline-primary float-right text-uppercase"
-                            [routerLink]="['../ad']">Ajoutée une nouvelle annoce</button>
+                                [routerLink]="['../ad']">Ajoutée une nouvelle annoce</button>
                         </div>
                     </div>
                     <div class="row">
@@ -118,3 +118,24 @@
     </div>
 </div>
 -->
+
+<div class="container">
+    <div class="row">
+            <span class="material-icons">face</span>
+
+        <div class="mx-auto"  *ngFor="let ad of adsList  | paginate: { itemsPerPage: 10, currentPage:p ,totalItems: totalItems } ;let i = index">
+            <div class="col-md-4">
+                <div class="card border-0" style="width: 18rem;">
+                    <img *ngIf="ad.filesURL[0]===undefined" src="https://via.placeholder.com/350" class="card-img-top"
+                        >
+                    <img *ngIf="ad.filesURL[0]!=undefined" src="{{ad.filesURL[0]}}" class="card-img-top" alt="">
+                    <span class="text-primary price-title">{{ad.price}}</span>
+                    <div class="card-body py-2 px-0" >
+                        <h5 class="card-title">Lorem, ipsum dolor.</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

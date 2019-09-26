@@ -1,4 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+<!-- <header id="header">
+    <div class="d-flex align-items-center justify-content-end">
+        <span class="mr-2 user-login">khadhraoui bilel </span>
+        
+        <i class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"></i>
+        <div class="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item"><i class="fas fa-user-alt mr-2"></i>Profile</a>
+            <a class="dropdown-item" (click)="logout()"><i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>
+        </div>
+    </div>
+</header> -->
+<!-- 
+<nav *ngIf="authentificationService.visible" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,18 +23,35 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Paramétrage
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu p-0">
                     <a class="dropdown-item" [routerLink]="['shopper/ads']">Annonce</a>
                     <a class="dropdown-item" [routerLink]="['shopper/category']">Catégories</a>
                 </div>
             </li>
         </ul>
-        <!-- <ul class="navbar-nav ml-auto">
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-between" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Khadhraoui bilel
+                    <img width="25px" height="25px" class="ml-1" src="../../../assets/icons/img_549112.png">
+                </a>
+                <div class="dropdown-menu p-0">
+                    <a class="dropdown-item" [routerLink]="['profile']">Profile</a>
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                </div>
+            </li>
+        </ul>
+
+
+
+         <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
                 <a class=" text-uppercase btn-sm btn btn-outline-primary rounded-pill" [routerLink]="['shopper/ads']">crée
                     une
                     annonce</a>
             </li>
-        </ul> -->
+        </ul> 
     </div>
-</nav>
+</nav> -->

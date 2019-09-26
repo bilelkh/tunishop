@@ -8,7 +8,7 @@ import { AuthentificationService } from "../../modules/authentification/services
   styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit {
-  public isAuthenticated: boolean = false;
+  public isAuthenticated = false;
   constructor(
     private authentificationService: AuthentificationService,
     private sharedService: SharedService,
@@ -16,8 +16,8 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("  this.authentificationService.isAuthenticated()",  this.authentificationService.isAuthenticated())
-   this.isAuthenticated =  this.authentificationService.isAuthenticated()
+   this.isAuthenticated =  this.authentificationService.isAuthenticated() ;
+   console.log('===this.isAuthenticated===',this.isAuthenticated );
   }
 
   navigate(url) {

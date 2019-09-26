@@ -26,8 +26,8 @@ export class SigninComponent implements OnInit {
     private authentificationService: AuthentificationService
   ) {
     this.loginForm = this.formBuilder.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required]
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -40,13 +40,11 @@ export class SigninComponent implements OnInit {
     this.spinner.show()
     this.authentificationService.signin(this.loginForm.value).subscribe(
       (data: any) => {
-        console.log("data",data)
-
         this.spinner.hide()
         if (data.success) {
-          this.router.navigateByUrl('category')
-          localStorage.setItem('token',data.token) ; 
-        //  this.authentificationService.isAuthenticated() ; 
+          this.router.navigateByUrl('shopper');
+          localStorage.setItem('token', data.token) ;
+         this.authentificationService.show()
         } else {
           if (data.msg === "WRONG EMAIL" || data.msg === "WRONG PASSWORD") {
             this.showErrorMessage = true;

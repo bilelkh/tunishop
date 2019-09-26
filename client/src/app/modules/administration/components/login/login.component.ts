@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   private loginForm: FormGroup;
   private submitted = false;
   private errorMessage: unknown = "incorrect email ou mot de passe";
-  private showErrorMessage: boolean = false;
-  private loading: boolean = true;
+  private showErrorMessage = false;
+  private loading = true;
   constructor(
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   submit() {
     this.spinner.show();
@@ -38,15 +38,15 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         console.log("data", data);
         this.spinner.hide()
-        if (data.success ) {
-          if(data.user.authorization==="admin"){
-          this.router.navigateByUrl('category')
-          localStorage.setItem('token',data.token)
-          localStorage.setItem('user',data.user)
-        }else {
-              this.showErrorMessage = true;
-              this.errorMessage =  "vous n'avez pas la permission"
-        }
+        if (data.success) {
+          if (data.user.authorization === "admin") {
+            this.router.navigateByUrl('category')
+            localStorage.setItem('token', data.token)
+            localStorage.setItem('user', data.user)
+          } else {
+            this.showErrorMessage = true;
+            this.errorMessage = "vous n'avez pas la permission"
+          }
         } else {
           if (data.msg === "WRONG EMAIL" || data.msg === "WRONG PASSWORD") {
             this.showErrorMessage = true;

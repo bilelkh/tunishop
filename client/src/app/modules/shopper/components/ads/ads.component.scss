@@ -1,15 +1,33 @@
-
 .title {
-    background-color: rgba(0, 105, 217, 0.2) ;
+  background-color: rgba(0, 105, 217, 0.2);
 }
 
 .modal-content-mesage {
-        font-size: 15px ;
+  font-size: 15px;
 }
 
-.card-header,.modal-title   {
-font-family: 'Roboto Condensed', sans-serif !important; 
-font-size: 18px ;
-text-transform: uppercase ;
-font-weight: bold ;
+.card-header,
+.modal-title {
+  font-family: 'Roboto Condensed', sans-serif !important;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.card {
+  .card-img-top {
+    position: relative;
+    border-radius: 0px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .price-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
 }

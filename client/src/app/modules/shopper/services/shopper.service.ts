@@ -26,7 +26,7 @@ export class ShopperService {
   }
 
   addAd(ad) {
-    return this.http.post(this.URL + "ad",ad);
+    return this.http.post("http://localhost:5500/ad",ad);
   }
 
   deleteAds(adId) {

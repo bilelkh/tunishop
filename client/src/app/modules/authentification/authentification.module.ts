@@ -18,8 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     LostPasswordComponent,
     ResetPasswordComponent,
     ProfileComponent,
-    
   ],
-  imports: [CommonModule,FormsModule,NgxSpinnerModule,NgxPaginationModule,HttpClientModule ,ReactiveFormsModule, AuthentificationRoutingModule]
+  imports: [CommonModule, FormsModule, NgxSpinnerModule, NgxPaginationModule, HttpClientModule, ReactiveFormsModule, AuthentificationRoutingModule]
 })
-export class AuthentificationModule {}
+export class AuthentificationModule { }

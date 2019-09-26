@@ -3,9 +3,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { CategoryComponent } from "./components/category/category.component";
 import { SubCategoryComponent } from "./components/sub-category/sub-category.component";
 import { AdsComponent } from "./components/ads/ads.component";
-import {  AdComponent } from "./components/ad/ad.component";
+import { AdComponent } from "./components/ad/ad.component";
+import { HomeComponent } from "./components/home/home.component";
+
 const routes: Routes = [
-  { path: "", redirectTo: "category", pathMatch: "full" },
+  { path: "", redirectTo: 'home', pathMatch: 'full' },
+  { path: "home", component: HomeComponent },
   { path: "category", component: CategoryComponent },
   { path: "category/:id", component: SubCategoryComponent },
   { path: "ads", component: AdsComponent },
@@ -15,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ShopperRoutingModule {}
+export class ShopperRoutingModule { }

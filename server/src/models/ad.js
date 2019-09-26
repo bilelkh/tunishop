@@ -13,7 +13,8 @@ const adSchema = new Schema(
     description: { type: String, required: false },
     price: { type: Number, required: false },
     subCategory: subCategory,
-    category: Category
+    category: Category,
+    filesURL :  [String]
   },
   { timestamps: true }
 );
