@@ -1,6 +1,7 @@
-import {  Component, ElementRef,  OnInit,
+import {
+  Component, ElementRef, OnInit,
 
- 
+
 
   ViewChild
 } from '@angular/core';
@@ -52,8 +53,8 @@ export class AdComponent implements OnInit {
   private showDetail = false;
   private files: any[] = [];
   private filesURL: any[] = [];
-  private selectedGovernorate: any; ;
-  private selectedDelegation: any; ;
+  private selectedGovernorate: any;;
+  private selectedDelegation: any;;
 
   constructor(
     private sharedService: SharedService,
@@ -150,8 +151,8 @@ export class AdComponent implements OnInit {
   }
   submit() {
     console.log('====submit====', this.adForm.valid);
-    console.log("this.delegationsList",this.delegationsList);
-    console.log("this.governoratesList",this.governoratesList)
+    console.log("this.delegationsList", this.delegationsList);
+    console.log("this.governoratesList", this.governoratesList)
 
     this.submitted = true;
     if (this.adForm.valid) {
@@ -162,20 +163,20 @@ export class AdComponent implements OnInit {
         delegation: this.adForm.value.delegation,
         category: this.category,
         price: this.adForm.value.price,
-        subCategory: this.subCategory ,
-        filesURL : this.filesURL
+        subCategory: this.subCategory,
+        filesURL: this.filesURL
       };
-      console.log('===ad===',ad)
-      // this.shopperService.addAd(ad).subscribe(
-      //   data => {
-      //     console.log('data', data);
-      //     this.notificationService.showSuccess('', 'annonce ajouté avec succès');
-      //     this.router.navigateByUrl('ads');
-      //   },
-      //   error => {
-      //     console.log('error', error);
-      //   }
-      // );
+      console.log('===ad===', ad)
+      this.shopperService.addAd(ad).subscribe(
+        data => {
+          console.log('data', data);
+          this.notificationService.showSuccess('', 'annonce ajouté avec succès');
+          this.router.navigateByUrl('ads');
+        },
+        error => {
+          console.log('error', error);
+        }
+      );
     }
   }
 
@@ -221,9 +222,9 @@ export class AdComponent implements OnInit {
 
 
   changeGovernorate($event) {
-     const governorateKey =parseInt(this.selectedGovernorate.key);
+    const governorateKey = parseInt(this.selectedGovernorate.key);
     this.delegationsListSelected = this.delegationsList.filter(
-      x => x.governorateKey ===  governorateKey
+      x => x.governorateKey === governorateKey
     )[0].delegations;
     // console.log("=== this.delegationsListSelected===", this.delegationsListSelected)
     //console.log("this.delegationsListSelected",this.delegationsListSelected)
@@ -231,29 +232,29 @@ export class AdComponent implements OnInit {
   }
 
   changeDelegations($event) {
-    console.log("===selectedDelegation===",this.selectedDelegation)
-     const delegationKey = parseInt(this.selectedDelegation.key);
-     console.log("delegationKey",delegationKey)
+    console.log("===selectedDelegation===", this.selectedDelegation)
+    const delegationKey = parseInt(this.selectedDelegation.key);
+    console.log("delegationKey", delegationKey)
     this.delegationSelected = this.delegationsListSelected.filter(
       x => x.key === delegationKey
     )[0];
-    console.log("this.delegationSelected",this.delegationSelected)
+    console.log("this.delegationSelected", this.delegationSelected)
   }
 
   onFileChange(files) {
     console.log('===files===', files);
-    this.filesURL = [] ;
+    this.filesURL = [];
     // this.fileToUpload = files.item(0);
     for (var i = 0; i < files.length; i++) {
       console.log("files", files[i])
       this.files.push(files[i]);
     }
-    this.preview() ;
+    this.preview();
   }
 
   deleteFile(index) {
-    console.log("===index===",index)
-    this.filesURL.splice(index,1)
+    console.log("===index===", index)
+    this.filesURL.splice(index, 1)
   }
   preview() {
     // Show preview 
@@ -261,14 +262,14 @@ export class AdComponent implements OnInit {
     // if (mimeType.match(/image\/*/) == null) {
     //   return;
     // }
-    console.log('this.files.length',this.files.length)
+    console.log('this.files.length', this.files.length)
     for (let i = 0; i < this.files.length; i++) {
       const reader = new FileReader();
       reader.readAsDataURL(this.files[i]);
       reader.onload = (event) => {
         console.log(reader.result)
         this.filesURL.push(reader.result)
-        console.log("this.filesURL",this.filesURL)
+        console.log("this.filesURL", this.filesURL)
       }
 
 
