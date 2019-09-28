@@ -14,6 +14,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdComponent } from './components/ad/ad.component';
 import { HomeComponent } from './components/home/home.component';
+import { SharedModule } from './../../shared/shared.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { HomeComponent } from './components/home/home.component';
     AdsComponent,
     ProfileComponent,
     AdComponent,
-    HomeComponent
+    HomeComponent,
+
   ],
 
   imports: [
@@ -31,6 +34,10 @@ import { HomeComponent } from './components/home/home.component';
     ModalModule,
     NgbModule,
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCcbJ8p8bp7OOC_Rv_H_pSupQJCcapbDyY'
+    }),
+    SharedModule,
     ReactiveFormsModule,
     ShopperRoutingModule,
     NgxPaginationModule,

@@ -17,6 +17,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthentificationModule } from './modules/authentification/authentification.module';
 import { AdministrationModule } from './modules/administration/administration.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SharedModule } from './shared/shared.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     SettingsModule,
     FormsModule,
     ShopperModule,
+        SharedModule,
+
     AuthentificationModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -40,7 +44,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true
-    })
+    }),
+ 
   ],
   providers: [
     NotificationService,

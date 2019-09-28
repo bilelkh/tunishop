@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ConfirmModalComponent } from "./Modals/confirm-modal/confirm-modal.component";
+import { FilterComponent } from './filter/filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ConfirmModalComponent],
-  imports: [CommonModule],
-  entryComponents : [ConfirmModalComponent],
-  exports: [ ConfirmModalComponent ]
+  declarations: [FilterComponent],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  entryComponents : [],
+  exports: [FilterComponent]
 })
 export class SharedModule {}
