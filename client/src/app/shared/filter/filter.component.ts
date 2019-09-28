@@ -1,4 +1,4 @@
-import { Component, OnInit,Input  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
@@ -24,9 +24,9 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("===adsList===",this.adsList);
-    console.log("===delegationsList===",this.delegationsList);
-    console.log("===governoratesList===",this.governoratesList);
+    console.log("===adsList===", this.adsList);
+    console.log("===delegationsList===", this.delegationsList);
+    console.log("===governoratesList===", this.governoratesList);
 
   }
 
