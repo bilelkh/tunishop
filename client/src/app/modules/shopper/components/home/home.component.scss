@@ -1,23 +1,23 @@
-.container {
-  .row {
-    .card-img-top {
-      border-radius: 0px;
-      width: 200px;
-      height: 200px;
-    }
+// .container {
+//   .row {
+//     .card-img-top {
+//       border-radius: 0px;
+//       width: 200px;
+//       height: 200px;
+//     }
+//   }
+// }
+
+.price-text {
+  font-size: 16px ;
+}
+.card {
+  border : none ;
+  img {
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    width: 350px;
+    height: 250px;
   }
-}
 
-
-agm-map {
-  height:300px;
-}
-
-
-* {
-  font-family: Lato;
-}
-
-a {
-  color: darkblue;
 }

@@ -26,7 +26,6 @@ import { AgmCoreModule } from '@agm/core';
     ProfileComponent,
     AdComponent,
     HomeComponent,
-
   ],
 
   imports: [

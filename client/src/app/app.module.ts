@@ -18,7 +18,6 @@ import { AuthentificationModule } from './modules/authentification/authentificat
 import { AdministrationModule } from './modules/administration/administration.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
-import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,8 +30,7 @@ import { AgmCoreModule } from '@agm/core';
     SettingsModule,
     FormsModule,
     ShopperModule,
-        SharedModule,
-
+    SharedModule,
     AuthentificationModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -45,7 +43,7 @@ import { AgmCoreModule } from '@agm/core';
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),
- 
+
   ],
   providers: [
     NotificationService,

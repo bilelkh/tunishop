@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   constructor(private notificationService: NotificationService,
               private formBuilder: FormBuilder,
               private router: Router,
+              private sharedService :SharedService,
               private spinner: NgxSpinnerService,
               private shopperService: ShopperService,
               private subCategoryService: SubCategoryService,
@@ -56,6 +57,7 @@ export class HomeComponent implements OnInit {
     this.delegationsList = Delegations;
     console.log('this.delegationsList', this.delegationsList);
     this.getAds(1);
+    this.getCategory()
   }
   getAds(page) {
     this.p = page;
@@ -74,5 +76,17 @@ export class HomeComponent implements OnInit {
   }
 
   
+  getCategory() {
+    this.sharedService.getCategory().subscribe(
+      (data: any) => {
+        this.categoryList = data.categorys;
+      },
+      error => {
+        console.log('error', error);
+        throw error;
+      }
+    );
+  }
+
 
 }

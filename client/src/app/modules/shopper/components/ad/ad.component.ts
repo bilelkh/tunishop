@@ -1,10 +1,4 @@
-import {
-  Component, ElementRef, OnInit,
-
-
-
-  ViewChild
-} from '@angular/core';
+import {Component, ElementRef, OnInit,ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
