@@ -8,7 +8,6 @@ import { SharedService } from "../../../../shared/services/shared.service";
 import { SubCategoryService } from "../../../settings/services/sub-category.service";
 import { Governorates } from "../../../../enum/governorate";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-import { ConfirmModalComponent } from "../../../../shared/modals/confirm-modal/confirm-modal.component";
 import { Delegations } from "../../../../enum/delegations";
 
 @Component({
