@@ -30,6 +30,11 @@ export class SharedService {
     return this.http.get(this.URL + "subCategory");
   }
 
+  getAdById(id:string) {
+    return this.http.get(this.URL + "ad/"+id);
+
+  }
+
 
 
 

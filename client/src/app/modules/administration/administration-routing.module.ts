@@ -1,9 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LoginComponent } from "./components/login/login.component";
+import {CategoryComponent} from "./components/category/category.component"
+import {SubCategoryComponent} from "./components/sub-category/sub-category.component"
+
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "login", component: LoginComponent }
+  { path: "", redirectTo: 'category', pathMatch: 'full' },
+  { path: "category", component: CategoryComponent },
+  { path: "sub-category", component: SubCategoryComponent },
+
 ];
 
 @NgModule({

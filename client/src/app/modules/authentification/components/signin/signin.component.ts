@@ -32,8 +32,7 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isAuthenticated =  this.authentificationService.isAuthenticated()
-
+    this.authentificationService.hide() ;
   }
 
   submit() {
@@ -42,9 +41,11 @@ export class SigninComponent implements OnInit {
       (data: any) => {
         this.spinner.hide()
         if (data.success) {
-          this.router.navigateByUrl('shopper');
           localStorage.setItem('token', data.token) ;
-         this.authentificationService.show()
+          this.authentificationService.show()
+          console.log("this.authentificationService.show()",this.authentificationService.show())
+          data.user.authorization==='admin' ?  this.router.navigateByUrl('administration') : this.router.navigateByUrl('shopper') ;
+
         } else {
           if (data.msg === "WRONG EMAIL" || data.msg === "WRONG PASSWORD") {
             this.showErrorMessage = true;

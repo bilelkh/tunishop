@@ -4,8 +4,8 @@ const UserSchema = new mongoose.Schema({
     lastName: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    phone: { type: String, required: true },
-    adresse: { type: String, required: true },
+    phone: { type: String, required: false },
+    adresse: { type: String, required: false },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     authorization  : String

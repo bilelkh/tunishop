@@ -16,6 +16,8 @@ import { AdComponent } from './components/ad/ad.component';
 import { HomeComponent } from './components/home/home.component';
 import { SharedModule } from './../../shared/shared.module';
 import { AgmCoreModule } from '@agm/core';
+import { UserAdsComponent } from './components/user-ads/user-ads.component';
+import { AdDetailsComponent } from './components/ad-details/ad-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { AgmCoreModule } from '@agm/core';
     ProfileComponent,
     AdComponent,
     HomeComponent,
+    UserAdsComponent,
+    AdDetailsComponent,
   ],
 
   imports: [

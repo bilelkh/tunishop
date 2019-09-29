@@ -24,10 +24,12 @@ export class SignupComponent implements OnInit {
   }); }
 
   ngOnInit() {
+    this.authentificationService.hide() ;
   }
 
 
   submit(){
+    this.signupForm.value.authorization = "user"
         this.authentificationService.signup(this.signupForm.value).subscribe(data=>{
             console.log("data",data)
         },error=> {

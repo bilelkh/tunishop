@@ -12,7 +12,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './shared/services/notification.service';
 import { RouterModule } from '@angular/router';
 import { ShopperModule } from './modules/shopper/shopper.module';
-import { SettingsModule } from './modules/settings/settings.module';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthentificationModule } from './modules/authentification/authentification.module';
 import { AdministrationModule } from './modules/administration/administration.module';
@@ -27,7 +26,6 @@ import { SharedModule } from './shared/shared.module';
     PagesModule,
     RouterModule,
     AdministrationModule,
-    SettingsModule,
     FormsModule,
     ShopperModule,
     SharedModule,

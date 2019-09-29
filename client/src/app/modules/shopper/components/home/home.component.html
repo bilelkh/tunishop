@@ -1,9 +1,9 @@
- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="line-scale-pulse-out">
-   <p style="font-size: 20px; color: #fff"></p>
- </ngx-spinner>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="line-scale-pulse-out">
+  <p style="font-size: 20px; color: #fff"></p>
+</ngx-spinner>
 
- <div class="container mt-5">
-   <!-- <div class="row">
+<div class="container mt-5">
+  <!-- <div class="row">
         <div class="col-md-12">
             <agm-map [latitude]="36.862499" [longitude]="10.195556" [zoom]="zoom" [disableDefaultUI]="false"
                 [zoomControl]="false" (mapClick)="mapClicked($event)">
@@ -11,13 +11,13 @@
         </div>
 
     </div> -->
-   <div class="row mt-3">
-     <div class="col-md-12">
-       <app-filter [categoryList]="categoryList" [adsList]="adsList" [delegationsList]="delegationsList"
-         [governoratesList]="governoratesList"></app-filter>
-     </div>
-   </div>
-   <!-- <div class="row mt-3">
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <app-filter [categoryList]="categoryList" [adsList]="adsList" [delegationsList]="delegationsList"
+        [governoratesList]="governoratesList"></app-filter>
+    </div>
+  </div>
+  <!-- <div class="row mt-3">
         <div class="mx-auto"
             >
             <div class="col-md-3">
@@ -34,24 +34,7 @@
             </div>
         </div>
     </div> -->
-   <div class="row mt-3 ">
-     <div class="d-flex justify-content-center mx-auto" >
-       <div *ngFor="let ad of adsList  | paginate: { itemsPerPage: 10, currentPage:p ,totalItems: totalItems } ;let i = index" class="col-md-4">
-         <div class="card mb-4 shadow-sm">
-                <img *ngIf="ad.filesURL[0]===undefined" src="https://via.placeholder.com/350" class="card-img-top" alt="...">
-                <img *ngIf="ad.filesURL[0]!=undefined" src="{{ad.filesURL[0]}}" class="card-img-top" alt="">
-           <div class="card-body">
-               <h5>Lorem, ipsum.</h5>
-             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-               content. This content is a little bit longer.</p>
-             <div class="d-flex justify-content-between align-items-center">
-               <small class="font-weight-light price-text">prix :  <span class="text-danger">{{ad.price}}</span></small>
-               <small class="font-weight-light text-primary">{{ad.createdAt| date: 'dd-MM-yyyy'}}</small>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-
-   </div>
- </div>
+  <div class="row mt-3 ">
+    <app-list-ads [adsList]="adsList"></app-list-ads>
+  </div>
+</div>

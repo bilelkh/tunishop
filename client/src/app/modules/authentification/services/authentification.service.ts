@@ -10,10 +10,10 @@ import { JwtHelperService } from '@auth0/angular-jwt/src/jwthelper.service';
 })
 export class AuthentificationService {
   public URL: string = environment.URL;
-  public isLoggedIn  =false ; 
+  public isLoggedIn = false;
   public visible: boolean = true;
 
-  constructor(public jwtHelper: JwtHelperService  , private router: Router, private http: HttpClient) {
+  constructor(public jwtHelper: JwtHelperService, private router: Router, private http: HttpClient) {
   }
 
   signin(user) {
@@ -31,7 +31,7 @@ export class AuthentificationService {
   logout() {
     localStorage.clear();
     this.router.navigateByUrl('signin');
-    this.hide() ;
+    this.hide();
   }
 
   hide() { this.visible = false; }
@@ -40,12 +40,12 @@ export class AuthentificationService {
 
   toggle() { this.visible = !this.visible; }
 
-   isAuthenticated(): boolean {
+  isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
   decodeToken() {
-   return this.jwtHelper.decodeToken(localStorage.getItem('token').split(' ')[1]).data  ;
+    return localStorage.getItem('token') ? this.jwtHelper.decodeToken(localStorage.getItem('token').split(' ')[1]).data : null;
   }
 
   editProfile(user) {
