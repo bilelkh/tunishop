@@ -1,62 +1,57 @@
 <div class="container mt-5  mb-5">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    Liste des Annonces
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <button class="btn btn-sm btn-outline-primary float-right text-uppercase"
-                                [routerLink]="['../ad']">Ajoutée une nouvelle annoce</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <table class="table">
-                            <thead>
-                                <tr class="text-uppercase">
-                                    <th scope="col">#</th>
-                                    <th scope="col">TITRE</th>
-                                    <th scope="col">catégorie</th>
-                                    <th scope="col">sous catégorie</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr
-                                    *ngFor="let ad of adsList  | paginate: { itemsPerPage: 10, currentPage:p ,totalItems: totalItems } ;let i = index">
-                                    <th scope="row">{{i}}</th>
-                                    <td>{{ad.title}}</td>
-                                    <td>{{ad.category.title}}</td>
-                                    <td>{{ad.subCategory.title}}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary mr-1" (click)='confirmModal(ad)'><i
-                                                class="fas fa-trash-alt" data-toggle="modal"
-                                                data-target="#deleteModal"></i></button>
-                                        <button class="btn btn-sm btn-primary mr-1" (click)='edit(ad)'
-                                            data-toggle="modal" data-target="#addModal"><i
-                                                class="far fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-primary " data-toggle="modal"
-                                            data-target="#detailsModal" (click)="detail(ad)"><i
-                                                class="fas fa-info-circle"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 float-right mr-5">
-                            <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel=""
-                                screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
-                                class="float-right pagination py-auto" (pageChange)="getCategory($event)">
-                            </pagination-controls>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Liste des Annonces
         </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <button class="btn btn-sm btn-outline-primary float-right text-uppercase" [routerLink]="['../ad']">Ajoutée
+                une nouvelle annoce</button>
+            </div>
+          </div>
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr class="text-uppercase">
+                  <th scope="col">#</th>
+                  <th scope="col">TITRE</th>
+                  <th scope="col">catégorie</th>
+                  <th scope="col">sous catégorie</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let ad of adsList  | paginate: { itemsPerPage: 10, currentPage:p ,totalItems: totalItems } ;let i = index">
+                  <th scope="row">{{i}}</th>
+                  <td>{{ad.title}}</td>
+                  <td>{{ad.category.title}}</td>
+                  <td>{{ad.subCategory.title}}</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary mr-1" (click)='confirmModal(ad)'><i class="fas fa-trash-alt"
+                        data-toggle="modal" data-target="#deleteModal"></i></button>
+                    <button class="btn btn-sm btn-primary " data-toggle="modal" data-target="#detailsModal"
+                      (click)="detail(ad)"><i class="fas fa-info-circle"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-12 float-right mr-5">
+              <pagination-controls previousLabel="" nextLabel="" screenReaderPaginationLabel=""
+                screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
+                class="float-right pagination py-auto" (pageChange)="getCategory($event)">
+              </pagination-controls>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
 </div>

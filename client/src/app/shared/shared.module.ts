@@ -7,10 +7,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { SharedAdDetailsComponent } from './components/shared-ad-details/shared-ad-details.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 @NgModule({
-  declarations: [FilterComponent, ListAdsComponent, SharedAdDetailsComponent],
+  declarations: [FilterComponent, ListAdsComponent, SharedAdDetailsComponent, ConfirmModalComponent],
   imports: [CommonModule,FormsModule, ReactiveFormsModule, NgxSpinnerModule, NgxPaginationModule],
-  entryComponents: [],
-  exports: [FilterComponent,SharedAdDetailsComponent, ListAdsComponent]
+  entryComponents: [ConfirmModalComponent],
+  exports: [FilterComponent,SharedAdDetailsComponent, ListAdsComponent,ConfirmModalComponent]
 })
 export class SharedModule { }

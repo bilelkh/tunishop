@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit ,ViewChild} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -9,6 +9,7 @@ import { SubCategoryService } from "../../../administration/services/sub-categor
 import { Governorates } from "../../../../enum/governorate";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { Delegations } from "../../../../enum/delegations";
+import { ConfirmModalComponent } from "../../../../shared/components/confirm-modal/confirm-modal.component"
 
 @Component({
   selector: "app-ads",
@@ -45,6 +46,12 @@ export class AdsComponent implements OnInit {
   private showDetail: boolean = false;
   private images: string[] = [];
 
+  public url: any;
+  private modalRef: BsModalRef;
+  private message: string;
+
+  // @ViewChild(ConfirmModalComponent,null)  ConfirmModalComponent : ConfirmModalComponent; ////// missing declaration
+
   constructor(
     private sharedService: SharedService,
     private notificationService: NotificationService,
@@ -54,7 +61,8 @@ export class AdsComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private shopperService: ShopperService,
     private subCategoryService: SubCategoryService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    public bsModalRef: BsModalRef
   ) {
     this.adsForm = this.formBuilder.group({
       _id: [""],
@@ -74,14 +82,13 @@ export class AdsComponent implements OnInit {
     this.getAds(1);
     this.getCategory();
   }
-  public url :any ; 
   getAds(page) {
     this.p = page;
     this.spinner.show();
     this.shopperService.getAds(5, page).subscribe(
       (data: any) => {
         this.adsList = data.ads;
-        console.log("===this.adsList===",this.adsList) ;
+        console.log("===this.adsList===", this.adsList);
         // console.log("ad.filesURL[0]",this.adsList[1].filesURL[0]);
         //esthis.url = this.adsList[1].filesURL[0] ; 
         this.totalItems = data.totalItem;
@@ -138,12 +145,13 @@ export class AdsComponent implements OnInit {
       subCategory => subCategory._id === this.subCategoryId
     )[0];
   }
-  
+
 
 
   confirmModal(ad: unknown) {
-    this.showConfirmModal = true;
-    this.ad = ad;
+    console.log("===ConfirmModalComponent===",ConfirmModalComponent)
+    this.modalRef = this.modalService.show(ConfirmModalComponent , { class: 'modal-sm' }).content;
+    console.log("===this.bsModalRef.content===",this.bsModalRef.content)
   }
 
   edit(ad) {

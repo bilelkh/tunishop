@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild ,ElementRef} from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { CategoryService } from "../../services/category.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -18,11 +18,11 @@ export class CategoryComponent implements OnInit {
   private showModal: boolean = false;
   private categoryList = [];
   private p: number = 1;
-  private searchText :string = ""
-  private pageSize : number = 5 ;  
-  public totalItems : number = 0 ; 
+  private searchText: string = ""
+  private pageSize: number = 5;
+  public totalItems: number = 0;
   constructor(
-    private notificationService : NotificationService,
+    private notificationService: NotificationService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -39,15 +39,15 @@ export class CategoryComponent implements OnInit {
     this.getCategory(1);
   }
   search($event) {
-    this.searchText= $event.target.value ;
+    this.searchText = $event.target.value;
   }
   getCategory(page) {
-    this.p=page ; 
+    this.p = page;
     this.spinner.show();
-    this.categoryService.getCategory(this.pageSize , page).subscribe(
+    this.categoryService.getCategory(this.pageSize, page).subscribe(
       (data: any) => {
         this.categoryList = data.categorys;
-        this.totalItems = data.totalItem ;
+        this.totalItems = data.totalItem;
         this.spinner.hide();
       },
       error => {
@@ -58,19 +58,16 @@ export class CategoryComponent implements OnInit {
   }
 
   submit() {
-    console.log(1)
     this.submitted = true;
-    console.log("this.categoryForm",this.categoryForm.controls)
-        if (this.categoryForm.invalid) {
-            return;
-        }
-        console.log("this.categoryForm.value",this.categoryForm.value)
+    if (this.categoryForm.invalid) {
+      return;
+    }
     if (this.categoryForm.value._id) {
       this.categoryService.edit(this.categoryForm.value).subscribe(
         data => {
-          this.notificationService.showSuccess("categorie modifieé avec succes","succes") ; 
-          this.showModal = false ;
-          document.getElementsByClassName("modal-backdrop")[0].remove() ;
+          this.notificationService.showSuccess("categorie modifieé avec succes", "succes");
+          this.showModal = false;
+          document.getElementsByClassName("modal-backdrop")[0].remove();
           this.getCategory(1);
           this.categoryForm.reset();
         },
@@ -81,9 +78,9 @@ export class CategoryComponent implements OnInit {
     } else {
       this.categoryService.add(this.categoryForm.value).subscribe(
         data => {
-          this.notificationService.showSuccess("categorie ajoutée avec succes","succes") ; 
-          this.showModal = false ;
-          document.getElementsByClassName("modal-backdrop")[0].remove() ;
+          this.notificationService.showSuccess("categorie ajoutée avec succes", "succes");
+          this.showModal = false;
+          document.getElementsByClassName("modal-backdrop")[0].remove();
           this.getCategory(1);
           this.categoryForm.reset();
         },
@@ -92,8 +89,8 @@ export class CategoryComponent implements OnInit {
         }
       );
     }
-  this.submitted=false ;
-    
+    this.submitted = false;
+
   }
 
   edit(category) {
@@ -106,9 +103,8 @@ export class CategoryComponent implements OnInit {
   delete(category) {
     this.categoryService.delete(category._id).subscribe(
       data => {
-        this.notificationService.showSuccess("categorie supprimée avec succes","succes") ; 
+        this.notificationService.showSuccess("categorie supprimée avec succes", "succes");
         this.getCategory(1);
-
       },
       error => {
         console.log("Error", error);
@@ -124,9 +120,9 @@ export class CategoryComponent implements OnInit {
 
   }
 
-  onchangePageSize($event){
-      this.pageSize= parseInt($event.target.value) ; 
-      this.getCategory(1) ;
+  onchangePageSize($event) {
+    this.pageSize = parseInt($event.target.value);
+    this.getCategory(1);
   }
 
 }
