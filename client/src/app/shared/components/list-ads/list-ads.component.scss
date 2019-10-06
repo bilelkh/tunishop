@@ -1,14 +1,22 @@
-.card {
-  &:hover {
-    cursor: pointer;
-  }
-  border-radius: 0px;
-  border: none;
-  img {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    width: 350px;
-    height: 250px;
+  .card {
+    height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    border-radius: 0px;
+    border: none;
+
+    img {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+      width: 100%;
+      height: 250px;
+    }
+
   }
 
-}
+  .ad {
+    margin-bottom: 5px ;
+  }

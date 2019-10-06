@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit,ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,6 +9,8 @@ import { SubCategoryService } from '../../../administration/services/sub-categor
 import { Governorates } from '../../../../enum/governorate';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Delegations } from '../../../../enum/delegations';
+import { AuthentificationService } from "../../../authentification/services/authentification.service" ;
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-ad',
@@ -49,7 +51,7 @@ export class AdComponent implements OnInit {
   private filesURL: any[] = [];
   private selectedGovernorate: any;;
   private selectedDelegation: any;;
-
+  private user : any ;
   constructor(
     private sharedService: SharedService,
     private notificationService: NotificationService,
@@ -59,7 +61,9 @@ export class AdComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private shopperService: ShopperService,
     private subCategoryService: SubCategoryService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private authentificationService :AuthentificationService,
+    private location: Location
   ) {
     this.adForm = this.formBuilder.group({
       _id: [''],
@@ -71,6 +75,9 @@ export class AdComponent implements OnInit {
       governorate: ['', Validators.required],
       delegation: ['', Validators.required]
     });
+
+    this.user  = this.authentificationService.decodeToken() ; 
+    console.log("==user==",this.user)
   }
 
 
@@ -144,13 +151,10 @@ export class AdComponent implements OnInit {
     console.log('====subCategory====', this.subCategory);
   }
   submit() {
-    console.log('====submit====', this.adForm.valid);
-    console.log("this.delegationsList", this.delegationsList);
-    console.log("this.governoratesList", this.governoratesList)
-
     this.submitted = true;
     if (this.adForm.valid) {
       const ad = {
+        userId : this.user._id ,
         title: this.adForm.value.title,
         description: this.adForm.value.description,
         governorate: this.adForm.value.governorate,
@@ -160,12 +164,11 @@ export class AdComponent implements OnInit {
         subCategory: this.subCategory,
         filesURL: this.filesURL
       };
-      console.log('===ad===', ad)
       this.shopperService.addAd(ad).subscribe(
         data => {
           console.log('data', data);
           this.notificationService.showSuccess('', 'annonce ajouté avec succès');
-          this.router.navigateByUrl('ads');
+          this.location.back() ;
         },
         error => {
           console.log('error', error);
