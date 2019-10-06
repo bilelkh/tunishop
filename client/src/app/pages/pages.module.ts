@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { PageTopComponent } from './page-top/page-top.component';
 import { NotFoundComponent } from './not-found/not-found.component'
+import { AvatarModule } from 'ngx-avatar';
+
 @NgModule({
   declarations: [
     PagesComponent,
@@ -19,9 +21,10 @@ import { NotFoundComponent } from './not-found/not-found.component'
     SidebarComponent,
     HomeComponent,
     PageTopComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,AvatarModule],
   exports: [NavbarComponent, PageTopComponent, FooterComponent],
   providers: [SharedService]
 })

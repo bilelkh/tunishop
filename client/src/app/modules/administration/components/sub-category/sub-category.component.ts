@@ -61,7 +61,6 @@ export class SubCategoryComponent implements OnInit {
     this.spinner.show();
     this.subCategoryService.getSubCategory(this.pageSize, page).subscribe(
       (data: any) => {
-        console.log("dat", data);
         this.subCategoryList = data.subCategorys;
         this.totalItems = data.totalItem;
         this.spinner.hide();

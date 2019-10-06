@@ -15,10 +15,11 @@ export class NavbarComponent implements OnInit {
     private sharedService: SharedService,
     private router: Router
   ) {}
-
+private username :string ;
   ngOnInit() {
    this.isAuthenticated =  this.authentificationService.isAuthenticated() ;
    this.user=this.authentificationService.decodeToken() ; 
+   this.username = this.user.lastName + ' ' + this.user.firstName ;
    console.log("user",this.user)
   }
 

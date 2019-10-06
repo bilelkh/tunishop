@@ -17,6 +17,7 @@ import { AuthentificationModule } from './modules/authentification/authentificat
 import { AdministrationModule } from './modules/administration/administration.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +36,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     NgxPaginationModule,
     NgxSpinnerModule,
+    AvatarModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3000,

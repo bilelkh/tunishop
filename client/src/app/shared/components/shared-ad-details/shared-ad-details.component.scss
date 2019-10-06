@@ -1,0 +1,14 @@
+.container {
+    img {
+      width: 200px;
+      height: 200px;
+    }
+    .list-group  {
+      li {
+        border-bottom: 1px solid black ;
+        &:last-child {
+          border-bottom: none ;
+        }
+      }
+    }
+  }

@@ -1,1 +1,19 @@
-<p>shared-ad-details works!</p>
+<div *ngIf="ad" class="container mt-5">
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <a (click)="goBack()" class="btn btn-sm btn-primary text-uppercase">RETOUR</a>
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="mr-1 mb-2" *ngFor="let fileURL of ad.filesURL let i = index">
+      <img class="shadow" src="{{fileURL}}">
+    </div>
+    <ul class="list-group ml-5">
+      <li>{{ad.title}}</li>
+      <li><b>Prix : </b>{{ad.price}} DT</li>
+      <li><b>Adresse : </b>{{ad.governorate.value}}</li>
+      <li><b>Publié a : </b>{{ad.createdAt}}</li>
+      <li><b>Description: </b>{{ad.description}}</li>
+
+    </ul>
+  </div>

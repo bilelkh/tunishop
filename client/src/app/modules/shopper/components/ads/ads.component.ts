@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild} from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -78,7 +78,6 @@ export class AdsComponent implements OnInit {
   ngOnInit() {
     this.governoratesList = Governorates;
     this.delegationsList = Delegations;
-    console.log("this.delegationsList", this.delegationsList);
     this.getAds(1);
     this.getCategory();
   }
@@ -88,7 +87,7 @@ export class AdsComponent implements OnInit {
     this.shopperService.getAds(5, page).subscribe(
       (data: any) => {
         this.adsList = data.ads;
-        console.log("===this.adsList===", this.adsList);
+        //   console.log("===this.adsList===", this.adsList);
         // console.log("ad.filesURL[0]",this.adsList[1].filesURL[0]);
         //esthis.url = this.adsList[1].filesURL[0] ; 
         this.totalItems = data.totalItem;
@@ -149,9 +148,21 @@ export class AdsComponent implements OnInit {
 
 
   confirmModal(ad: unknown) {
-    console.log("===ConfirmModalComponent===",ConfirmModalComponent)
-    this.modalRef = this.modalService.show(ConfirmModalComponent , { class: 'modal-sm' }).content;
-    console.log("===this.bsModalRef.content===",this.bsModalRef.content)
+    console.log("===ConfirmModalComponent===", ConfirmModalComponent)
+    let bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-sm' });
+    // console.log("===this.bsModalRef.content===",this.bsModalRef.content)
+    // this.modalService.onHide.subscribe(data => {
+    //   console.log("==data==", data)
+    // }, error => {
+    //   console.log("error", error)
+    // })
+    bsModalRef.content.action.subscribe((action) => {
+      if (action) { bsModalRef.hide() ;    this.onDelete(ad) ; }
+      
+    });
+    //  this.modalRef.content.action.take(1).subscribe((value) => {
+    //     console.log(value) // here you will get the value
+    //     });
   }
 
   edit(ad) {
@@ -170,9 +181,8 @@ export class AdsComponent implements OnInit {
     this.showDetail = true;
   }
 
-  confirmDelete(response) {
-    if (response) {
-      this.shopperService.deleteAds(this.ad._id).subscribe(
+ onDelete(ad) {
+      this.shopperService.deleteAds(ad._id).subscribe(
         data => {
           this.getAds(1);
           this.notificationService.showSuccess(
@@ -184,7 +194,6 @@ export class AdsComponent implements OnInit {
           throw error;
         }
       );
-    }
   }
 
   getFileDetails($event) {
@@ -213,5 +222,9 @@ export class AdsComponent implements OnInit {
       x => x.key == delegationKey
     )[0];
     console.log(" this.delegationSelected", this.delegationSelected);
+  }
+
+  navigateToAd(id: string) {
+    this.router.navigateByUrl(`shopper/ad/${id}`);
   }
 }

@@ -1,25 +1,31 @@
-import { Component, OnInit,Input } from '@angular/core';
-import {SharedService} from "../../services/shared.service"
+import { Component, OnInit, Input } from '@angular/core';
+import { SharedService } from "../../services/shared.service";
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-shared-ad-details',
   templateUrl: './shared-ad-details.component.html',
   styleUrls: ['./shared-ad-details.component.scss']
 })
 export class SharedAdDetailsComponent implements OnInit {
-  @Input() adId :string ;
-  constructor(public sharedService : SharedService) { }
+  @Input() adId: string;
+  private ad : any ; 
+  constructor(private location: Location,public sharedService: SharedService) { }
 
   ngOnInit() {
-    console.log("id",this.adId)
     this.getAdById()
   }
 
   getAdById() {
-    this.sharedService.getAdById(this.adId).subscribe(data=>{
-        console.log("data",data)
-    },error=>{
-        console.log("error",error)
+    this.sharedService.getAdById(this.adId).subscribe(data => {
+      this.ad = data
+    }, error => {
+      console.log("error", error)
     })
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

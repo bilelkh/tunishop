@@ -25,6 +25,8 @@ export class ShopperService {
     return this.http.get(this.URL + "ads?pageSize="+pageSize+"&page="+page);
   }
 
+ 
+
   addAd(ad) {
     return this.http.post("http://localhost:5500/ad",ad);
   }

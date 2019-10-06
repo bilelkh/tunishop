@@ -1,13 +1,12 @@
-.price-text {
-  font-size: 16px;
-}
-
 .card {
+  &:hover {
+    cursor: pointer;
+  }
+  border-radius: 0px;
   border: none;
-
   img {
-    border-top-left-radius: 3px !important;
-    border-top-right-radius: 3px !important;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
     width: 350px;
     height: 250px;
   }
