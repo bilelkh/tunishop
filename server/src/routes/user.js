@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 // GET /task/posts
 router.post('/signup', userController.signup);
 router.post('/signin/', userController.signin);
+router.get('/users/', userController.getUsers);
 router.get('/profile/', passport.authenticate('jwt', { session: false }), userController.profile);
 router.post('/forgot-password/', userController.forgotPassword);
 

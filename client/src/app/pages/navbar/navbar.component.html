@@ -13,7 +13,7 @@
         <ngx-avatar bgColor="#007bff" fgColor="#000" size="40" [name]="username" value="75%"></ngx-avatar>
         <i class="ml-1 fas  fa-chevron-down"></i>
       </div>
-         <div class="dropdown-menu p-0">
+      <div class="dropdown-menu p-0">
         <a class="dropdown-item" [routerLink]="['profile']">Profile</a>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
@@ -22,7 +22,7 @@
 
 </nav>
 
-<nav *ngIf="authentificationService.visible" class="navbar navbar-expand-lg navbar-light bg-light ">
+<nav *ngIf="authentificationService.visible" class="navbar navbar-expand-lg navbar-light bg-dark ">
   <ul class="navbar-nav mr-auto">
     <li *ngIf="user && user.authorization==='admin'" class="nav-item ">
       <a class="text-uppercase nav-link ml-auto" [routerLink]="['./administration/category']">Catégories </a>
@@ -32,6 +32,9 @@
     </li>
     <li *ngIf="user && user.authorization==='admin'" class="nav-item ">
       <a class="text-uppercase nav-link" [routerLink]="['./administration/ads']">annonces </a>
+    </li>
+    <li *ngIf="user && user.authorization==='admin'" class="nav-item ">
+      <a class="text-uppercase nav-link" [routerLink]="['./administration/users']">utilisateurs</a>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">

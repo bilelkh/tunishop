@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
     if (this.isAuthenticated) {
       this.user = this.authentificationService.decodeToken();
       this.username = this.user.lastName + ' ' + this.user.firstName;
-      console.log("user", this.user)
     }
   }
   navigate(url) {

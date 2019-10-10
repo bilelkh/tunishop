@@ -1,0 +1,7 @@
+thead {
+  tr {
+    &:first-child {
+      border-top: none !important;
+    }
+  }
+}

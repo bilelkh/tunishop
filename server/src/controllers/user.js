@@ -181,3 +181,35 @@ const comparePassword = function(candidatePassword, hash, callback) {
         callback(null, isMatch);
     });
 }
+
+
+exports.getUsers = async(req, res, next) => {
+
+    console.log("===req.query.page===",req.query.page);
+    console.log("===req.query.pageSize===",req.query.pageSize)
+
+    var query = {};
+    if (req.query.page && req.query.pageSize) {
+        var page = parseInt(req.query.page);
+        var pageSize = parseInt(req.query.pageSize);
+        query.skip = pageSize * (page - 1);
+        query.limit = pageSize;
+        var totalItem = await User.count({});
+    }
+    await User.find({'authorization': 'user'}, {}, query).select("_id email lastName firstName createdAt")
+        .then(users => {
+            if (!users) {
+                const error = new Error("Could not find users.");
+                error.statusCode = 404;
+                throw error;
+            }
+            res.status(200).json({ totalItem: totalItem, users: users });
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+};
+
