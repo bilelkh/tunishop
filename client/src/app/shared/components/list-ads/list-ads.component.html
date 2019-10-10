@@ -1,5 +1,5 @@
 <div class="row mx-auto" >
-    <div class="col-md-4 ad mb-5" *ngFor="let ad of adsList  | paginate: { itemsPerPage: 10, currentPage:p ,totalItems: totalItems } ;let i = index" class="col-md-4">
+    <div class="col-md-4 mb-5" *ngFor="let ad of adsList">
       <div (click)="navigateToAd(ad._id)" class="card  shadow-sm">
              <img *ngIf="ad.filesURL[0]===undefined" src="https://via.placeholder.com/350" class="card-img-top" alt="...">
              <img *ngIf="ad.filesURL[0]!=undefined" src="{{ad.filesURL[0]}}" class="card-img-top" alt="">

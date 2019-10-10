@@ -9,20 +9,21 @@ import { AuthentificationService } from "../../modules/authentification/services
 })
 export class NavbarComponent implements OnInit {
   public isAuthenticated = false;
-  public user :any;
+  public user: any;
   constructor(
     private authentificationService: AuthentificationService,
     private sharedService: SharedService,
     private router: Router
-  ) {}
-private username :string ;
+  ) { }
+  private username: string;
   ngOnInit() {
-   this.isAuthenticated =  this.authentificationService.isAuthenticated() ;
-   this.user=this.authentificationService.decodeToken() ; 
-   this.username = this.user.lastName + ' ' + this.user.firstName ;
-   console.log("user",this.user)
+    this.isAuthenticated = this.authentificationService.isAuthenticated();
+    if (this.isAuthenticated) {
+      this.user = this.authentificationService.decodeToken();
+      this.username = this.user.lastName + ' ' + this.user.firstName;
+      console.log("user", this.user)
+    }
   }
-
   navigate(url) {
     this.router.navigateByUrl(url);
   }

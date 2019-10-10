@@ -22,8 +22,9 @@ exports.signup = (req, res, next) => {
 // Authenticate
 exports.signin = (req, res, next) => {
     User.findOne({ email: req.body.email }, (err, user) => {
-        if (err) throw err;
+        if (err)  {  console.log("===error===",err)}
         if (!user) {
+            console.log("===user===",user)
             return res.json({ success: false, msg: 'WRONG EMAIL' });
         }
         comparePassword(req.body.password, user.password, (err, isMatch) => {
@@ -73,23 +74,23 @@ module.exports.forgotPassword = function(req, res) {
             });
         },
         function(token, callback) {
-            User.findOne({ email: req.body.email }, function(err, user) {
+            User.findOne({ email: req.body.email }).then(function (user) {
                 if (!user) {
-                    res.send({ error: 'No account with that email address exists.' });
+                    return  res.send({ error: 'No account with that email address exists.' });
                 }
                 user.resetPasswordToken = token;
                 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
                 req.user = user;
                 user.save(function(err) {
                     callback(err, token, user);
-                });
+                })
             });
         },
         function(token, user, callback) {
             var smtpTransport = nodemailer.createTransport(
                 sendgridTransport({
                     auth: {
-                        api_key: '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'
+                        api_key: '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'
                     }
                 })
             );
@@ -102,12 +103,15 @@ module.exports.forgotPassword = function(req, res) {
                     'http://localhost:4200/reset-password/' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
+            console.log("===mailOptions===",mailOptions)
             smtpTransport.sendMail(mailOptions, function(err) {
+                console.log('==error==',err)
                 callback(err, 'done');
             });
         }
     ], function(err) {
         if (err) return next(err);
+        console.log("==err==",err)
         res.send({ success: true, msg: "Email send successfully", user: req.user })
     });
 }

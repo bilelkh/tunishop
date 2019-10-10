@@ -56,7 +56,7 @@ app.use((error, req, res, next) => {
 
 
 
-mongoose.connect("mongodb://admin:azerty123#@ds157901.mlab.com:57901/falti", { useNewUrlParser: true }).catch(err => console.log(err));;
+mongoose.connect("mongodb://admin:azerty123#@ds233198.mlab.com:33198/discountapp", { useNewUrlParser: true }).catch(err => console.log(err));;
 mongoose.connection.on('connected', () => {
     console.log("\x1b[31m",'---->DATABASE CONNECTED SUCCESFULLY<----');
 });
