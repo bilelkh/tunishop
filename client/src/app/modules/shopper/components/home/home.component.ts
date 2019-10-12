@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
   private adsList = [];
   private p = 1;
   zoom: number = 8;
-  
   // initial center position for the map
   lat: number = 51.673858;
   lng: number = 7.815982;
@@ -56,6 +55,7 @@ export class HomeComponent implements OnInit {
     this.governoratesList = Governorates;
     this.delegationsList = Delegations;
     console.log('this.delegationsList', this.delegationsList);
+
     this.getAds(1);
     this.getCategory()
   }
@@ -79,7 +79,11 @@ export class HomeComponent implements OnInit {
   getCategory() {
     this.sharedService.getCategory().subscribe(
       (data: any) => {
+        console.log('===data===',data);
+
         this.categoryList = data.categorys;
+        console.log('===this.categoryList===', this.categoryList);
+
       },
       error => {
         console.log('error', error);

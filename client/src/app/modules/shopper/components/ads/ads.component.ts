@@ -37,7 +37,6 @@ export class AdsComponent implements OnInit {
   private delegationsList: any = [];
   private delegationsListSelected: any = [];
   private delegationSelected: any = [];
-
   private adsForm: FormGroup;
   private category: any;
   private subCategory: any;
@@ -45,7 +44,6 @@ export class AdsComponent implements OnInit {
   private ad: any;
   private showDetail: boolean = false;
   private images: string[] = [];
-
   public url: any;
   private modalRef: BsModalRef;
   private message: string;
@@ -157,8 +155,8 @@ export class AdsComponent implements OnInit {
     //   console.log("error", error)
     // })
     bsModalRef.content.action.subscribe((action) => {
-      if (action) { bsModalRef.hide() ;    this.onDelete(ad) ; }
-      
+      if (action) { bsModalRef.hide(); this.onDelete(ad); }
+
     });
     //  this.modalRef.content.action.take(1).subscribe((value) => {
     //     console.log(value) // here you will get the value
@@ -181,19 +179,19 @@ export class AdsComponent implements OnInit {
     this.showDetail = true;
   }
 
- onDelete(ad) {
-      this.shopperService.deleteAds(ad._id).subscribe(
-        data => {
-          this.getAds(1);
-          this.notificationService.showSuccess(
-            "annonces a été supprimé avec succès",
-            ""
-          );
-        },
-        error => {
-          throw error;
-        }
-      );
+  onDelete(ad) {
+    this.shopperService.deleteAds(ad._id).subscribe(
+      data => {
+        this.getAds(1);
+        this.notificationService.showSuccess(
+          "annonces a été supprimé avec succès",
+          ""
+        );
+      },
+      error => {
+        throw error;
+      }
+    );
   }
 
   getFileDetails($event) {

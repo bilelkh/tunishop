@@ -10,18 +10,19 @@ import { ShopperService } from "../../../modules/shopper/services/shopper.servic
 export class FilterComponent implements OnInit {
   private filterForm: FormGroup;
   @Input() adsList: any;
-  @Input() delegationsList: string;
-  @Input() governoratesList: string;
+  @Input() delegationsList: any;
+  @Input() governoratesList: any;
   @Input() categoryList: any;
-  categoryId: any
-  category: any
-  subCategoryId: any
-  subCategory: any
-  subCategoryList: any = []
-  showSubCategory = false;
-  value: number = 100;
+  @Input() subCategoryList: any;
 
-
+  private categoryId: any
+  private category: any
+  private subCategoryId: any
+  private subCategory: any
+  private showSubCategory = false;
+  private value: number = 100;
+  private delegationsListSelected: any
+  private  delegationSelected: any
   constructor(private shopperService: ShopperService, private formBuilder: FormBuilder, ) {
     this.filterForm = this.formBuilder.group({
       _id: [''],
@@ -34,11 +35,10 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("===adsList===", this.adsList);
-    console.log("===delegationsList===", this.delegationsList);
-    console.log("===governoratesList===", this.governoratesList);
+ //   console.log("===adsList===", this.adsList);
+ //   console.log("===delegationsList===", this.delegationsList);
+ //   console.log("===governoratesList===", this.governoratesList);
     console.log("===categoryList===", this.categoryList);
-
   }
 
   getSubCategory() {
@@ -72,5 +72,17 @@ export class FilterComponent implements OnInit {
       subCategory => subCategory._id === this.subCategoryId
     )[0];
     console.log('====subCategory====', this.subCategory);
+  }
+
+  changeGovernorate($event) {
+    let governorateKey = this.filterForm.value.governorate.key;
+    this.delegationsListSelected = this.delegationsList.filter(
+      x => x.governorateKey == governorateKey
+    )[0].delegations;
+    console.log("delegationsListSelected", this.delegationsListSelected);
+  }
+  changeDelegations($event) {
+    this.delegationSelected  = this.filterForm.value.delegation ;
+    console.log("===this.delegationSelected===",this.delegationSelected)
   }
 }

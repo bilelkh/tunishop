@@ -1,7 +1,26 @@
-thead {
-  tr {
-    &:first-child {
-      border-top: none !important;
+table {
+  width: 100%;
+  overflow-x: scroll;
+  thead {
+    tr {
+      // th {
+      //   display: inline;
+      // }
+
+      &:first-child {
+        border-top: none !important;
+      }
     }
+  }
+}
+
+
+.card {
+  border: none;
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
+  border-radius: 4px;
+  .card-header {
+      border-top: none;
+      background-color: #fff;
   }
 }

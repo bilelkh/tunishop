@@ -51,22 +51,24 @@ ul {
   border: 0;
 }
 
-.fs-14 {
-  font-size: 14px !important;
-}
 
 .text-gray {
   color: #8f9396 !important;
 }
-
-
-.card-header {
-  font-family: 'Roboto Condensed', sans-serif !important;
-  font-size: 18px;
-  text-transform: uppercase;
-  font-weight: bold;
-  background-color: #fff;
+.card {
+  border: none;
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
+  border-radius: 4px;
+  .card-header {
+      border-top: none;
+      background-color: #fff;
+      font-family: 'Roboto Condensed', sans-serif !important;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: bold;
+  }
 }
+
 
 .dropdown-menu {
   border-radius: 0px;
@@ -114,4 +116,18 @@ ul {
   font-size: 18px;
 }
 
+
+.table {
+  tbody {
+    tr {
+      &:first-child {
+        td {
+          &:last-child {
+              display: flex;
+          }
+        }
+      }
+    }
+  }
+}
 

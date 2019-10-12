@@ -10,6 +10,7 @@ import {Location} from '@angular/common';
 export class SharedAdDetailsComponent implements OnInit {
   @Input() adId: string;
   private ad : any ; 
+  private image : any
   constructor(private location: Location,public sharedService: SharedService) { }
 
   ngOnInit() {
@@ -27,5 +28,9 @@ export class SharedAdDetailsComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
+  showImage(image) {
+    this.image = image ;
+    }
 
 }
