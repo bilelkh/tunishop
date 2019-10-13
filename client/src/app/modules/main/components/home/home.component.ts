@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../../../../shared/services/notification.service';
-import { ShopperService } from '../../services/shopper.service';
+import { ShopperService } from '../../../main/services/shopper.service';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { SubCategoryService } from '../../../administration/services/sub-category.service';
 import { Governorates } from '../../../../enum/governorate';

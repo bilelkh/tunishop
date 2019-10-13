@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
           break;
         }
         case "profile": {
-          this.router.navigateByUrl('./profile')
+          this.router.navigateByUrl('profile')
           break;
         }
         case "change-password": {

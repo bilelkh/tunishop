@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ShopperService } from "../../../modules/shopper/services/shopper.service"
+import { ShopperService } from "../../../modules/main/services/shopper.service"
 
 @Component({
   selector: 'app-filter',

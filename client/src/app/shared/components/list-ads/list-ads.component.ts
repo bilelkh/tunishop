@@ -15,6 +15,6 @@ export class ListAdsComponent implements OnInit {
 
 
   navigateToAd(id: string) {
-    this.router.navigateByUrl(`shopper/ad/${id}`);
+    this.router.navigateByUrl(`ad/${id}`);
     }
 }

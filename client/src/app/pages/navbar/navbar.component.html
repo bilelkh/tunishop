@@ -1,5 +1,5 @@
 
-<nav class="nav py-2">
+<nav *ngIf="authentificationService.visible"  class="nav py-2">
   <ul class=" d-flex  bd-highlight align-items-center mr-auto  ">
     <li class="nav-item ml-2 mr-1">
       <a class="btn-primary btn-sm">AN</a>
@@ -8,7 +8,6 @@
       <a class="btn-primary btn-sm">FR</a>
     </li>
   </ul>
-
   <ul class="d-flex flex-row-reverse bd-highlight align-items-center ml-autopy-2">
     <li class="nav-item mr-3">
       <span class="badge badge-danger  favoris-badge">21</span>
@@ -22,11 +21,9 @@
       <i class="far fa-user fa-2x"> </i>
     </li>
   </ul>
-
 </nav>
 
-
-<nav  class="navbar navbar-expand-lg navbar-light bg-dark ">
+<nav *ngIf="authentificationService.visible"   class="navbar navbar-expand-lg navbar-light bg-dark ">
   <ul class="navbar-nav mr-auto">
     <li *ngIf="user && user.authorization==='admin'" class="nav-item ">
       <a class="text-uppercase nav-link ml-auto" [routerLink]="['./administration/category']">Catégories </a>

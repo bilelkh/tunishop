@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './shared/services/notification.service';
 import { RouterModule } from '@angular/router';
-import { ShopperModule } from './modules/shopper/shopper.module';
+import { MainModule } from './modules/main/main.module';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthentificationModule } from './modules/authentification/authentification.module';
 import { AdministrationModule } from './modules/administration/administration.module';
@@ -22,10 +22,11 @@ import { AvatarModule } from 'ngx-avatar';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     PagesModule,
     RouterModule,
-    ShopperModule,
+    MainModule,
     AdministrationModule,
     FormsModule,
     SharedModule,
@@ -41,8 +42,7 @@ import { AvatarModule } from 'ngx-avatar';
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),
-    AppRoutingModule,
-
+    
   ],
   providers: [
     NotificationService,

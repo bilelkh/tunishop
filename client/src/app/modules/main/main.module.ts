@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ShopperRoutingModule } from './shopper-routing.module';
 import { SharedService } from '../../shared/services/shared.service';
+import { CommonModule } from '@angular/common';
 import { CategoryComponent } from './components/category/category.component';
 import { SubCategoryComponent } from './components/sub-category/sub-category.component';
 import { ProductComponent } from './components/product/product.component';
@@ -18,10 +17,11 @@ import { SharedModule } from './../../shared/shared.module';
 import { AgmCoreModule } from '@agm/core';
 import { UserAdsComponent } from './components/user-ads/user-ads.component';
 import { AdDetailsComponent } from './components/ad-details/ad-details.component';
+import { MainRoutingModule } from './main-routing.module';
+
 
 @NgModule({
-  declarations: [
-    CategoryComponent,
+  declarations: [ CategoryComponent,
     SubCategoryComponent,
     ProductComponent,
     AdsComponent,
@@ -29,11 +29,10 @@ import { AdDetailsComponent } from './components/ad-details/ad-details.component
     AdComponent,
     HomeComponent,
     UserAdsComponent,
-    AdDetailsComponent,
-  ],
-
+    AdDetailsComponent,],
   imports: [
     CommonModule,
+    MainRoutingModule,
     ModalModule,
     NgbModule,
     FormsModule,
@@ -42,9 +41,10 @@ import { AdDetailsComponent } from './components/ad-details/ad-details.component
     }),
     SharedModule,
     ReactiveFormsModule,
-    ShopperRoutingModule,
     NgxPaginationModule,
-    NgxSpinnerModule],
+    NgxSpinnerModule
+  ],
   providers: [SharedService]
+
 })
-export class ShopperModule { }
+export class MainModule { }

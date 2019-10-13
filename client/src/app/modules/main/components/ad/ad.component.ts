@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../../../../shared/services/notification.service';
-import { ShopperService } from '../../services/shopper.service';
+import { ShopperService } from '../../../main/services/shopper.service';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { SubCategoryService } from '../../../administration/services/sub-category.service';
 import { Governorates } from '../../../../enum/governorate';
@@ -77,7 +77,6 @@ export class AdComponent implements OnInit {
     });
 
     this.user  = this.authentificationService.decodeToken() ; 
-    console.log("==user==",this.user)
   }
 
 
@@ -85,7 +84,6 @@ export class AdComponent implements OnInit {
   ngOnInit() {
     this.governoratesList = Governorates;
     this.delegationsList = Delegations;
-    console.log('this.delegationsList', this.delegationsList);
     this.getAds(1);
     this.getCategory();
   }
@@ -112,7 +110,6 @@ export class AdComponent implements OnInit {
         this.categoryList = data.categorys;
       },
       error => {
-        console.log('error', error);
         throw error;
       }
     );
@@ -137,7 +134,6 @@ export class AdComponent implements OnInit {
         }
       },
       error => {
-        console.log('error', error);
         throw error;
       }
     );
@@ -148,7 +144,6 @@ export class AdComponent implements OnInit {
     this.subCategory = this.subCategoryList.filter(
       subCategory => subCategory._id === this.subCategoryId
     )[0];
-    console.log('====subCategory====', this.subCategory);
   }
   submit() {
     this.submitted = true;
@@ -166,7 +161,6 @@ export class AdComponent implements OnInit {
       };
       this.shopperService.addAd(ad).subscribe(
         data => {
-          console.log('data', data);
           this.notificationService.showSuccess('', 'annonce ajouté avec succès');
           this.location.back() ;
         },
@@ -229,28 +223,22 @@ export class AdComponent implements OnInit {
   }
 
   changeDelegations($event) {
-    console.log("===selectedDelegation===", this.selectedDelegation)
     const delegationKey = parseInt(this.selectedDelegation.key);
-    console.log("delegationKey", delegationKey)
     this.delegationSelected = this.delegationsListSelected.filter(
       x => x.key === delegationKey
     )[0];
-    console.log("this.delegationSelected", this.delegationSelected)
   }
 
   onFileChange(files) {
-    console.log('===files===', files);
     this.filesURL = [];
     // this.fileToUpload = files.item(0);
     for (var i = 0; i < files.length; i++) {
-      console.log("files", files[i])
       this.files.push(files[i]);
     }
     this.preview();
   }
 
   deleteFile(index) {
-    console.log("===index===", index)
     this.filesURL.splice(index, 1)
   }
   preview() {
@@ -259,22 +247,22 @@ export class AdComponent implements OnInit {
     // if (mimeType.match(/image\/*/) == null) {
     //   return;
     // }
-    console.log('this.files.length', this.files.length)
     for (let i = 0; i < this.files.length; i++) {
       const reader = new FileReader();
       reader.readAsDataURL(this.files[i]);
       reader.onload = (event) => {
         console.log(reader.result)
         this.filesURL.push(reader.result)
-        console.log("this.filesURL", this.filesURL)
       }
 
 
     }
 
-    console.log("this.filesURL", this.filesURL)
 
 
+  }
 
+  goBack(){
+    this.router.navigateByUrl('')
   }
 }

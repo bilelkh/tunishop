@@ -30,8 +30,7 @@ export class AuthentificationService {
 
   logout() {
     localStorage.clear();
-    console.log("===./authentification/signin ===")
-    this.router.navigateByUrl('./authentification/signin');
+    this.router.navigateByUrl('authentification/signin');
     this.hide();
   }
 
