@@ -9,10 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedAdDetailsComponent } from './components/shared-ad-details/shared-ad-details.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { TableListComponent } from './components/table-list/table-list.component';
+import { SettingModalComponent } from './components/setting-modal/setting-modal.component';
 @NgModule({
-  declarations: [FilterComponent, ListAdsComponent, SharedAdDetailsComponent, ConfirmModalComponent, TableListComponent],
+  declarations: [FilterComponent, ListAdsComponent, SharedAdDetailsComponent, ConfirmModalComponent, TableListComponent, SettingModalComponent],
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, NgxSpinnerModule, NgxPaginationModule],
-  entryComponents: [ConfirmModalComponent],
-  exports: [FilterComponent, SharedAdDetailsComponent, ListAdsComponent, TableListComponent, ConfirmModalComponent]
+  entryComponents: [ConfirmModalComponent,SettingModalComponent],
+  exports: [FilterComponent,SettingModalComponent, SharedAdDetailsComponent, ListAdsComponent, TableListComponent, ConfirmModalComponent]
 })
 export class SharedModule { }

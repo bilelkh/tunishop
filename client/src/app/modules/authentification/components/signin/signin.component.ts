@@ -44,7 +44,7 @@ export class SigninComponent implements OnInit {
           localStorage.setItem('token', data.token) ;
           this.authentificationService.show()
           console.log("this.authentificationService.show()",this.authentificationService.show())
-          data.user.authorization==='admin' ?  this.router.navigateByUrl('administration') : this.router.navigateByUrl('shopper') ;
+          data.user.authorization==='admin' ?  this.router.navigateByUrl('administration') : this.router.navigateByUrl('home') ;
 
         } else {
           if (data.msg === "WRONG EMAIL" || data.msg === "WRONG PASSWORD") {

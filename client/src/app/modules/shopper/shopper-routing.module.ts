@@ -8,13 +8,14 @@ import { HomeComponent } from "./components/home/home.component";
 import { AdDetailsComponent } from "./components/ad-details/ad-details.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: 'home', pathMatch: 'full' },
-  { path: "home", component: HomeComponent },
+  { path: "", component: HomeComponent },
+  { path: '**', redirectTo: "" },
   { path: "category", component: CategoryComponent },
   { path: "category/:id", component: SubCategoryComponent },
   { path: "ads", component: AdsComponent },
   { path: "ad", component: AdComponent },
-  { path: "ad/:id", component: AdDetailsComponent },
+  { path: "ad/:id", component: AdDetailsComponent }
+
 
 ];
 @NgModule({

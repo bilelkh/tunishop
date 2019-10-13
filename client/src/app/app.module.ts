@@ -22,15 +22,13 @@ import { AvatarModule } from 'ngx-avatar';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    AppRoutingModule,
     BrowserModule,
     PagesModule,
     RouterModule,
+    ShopperModule,
     AdministrationModule,
     FormsModule,
-    ShopperModule,
     SharedModule,
-    AuthentificationModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -43,6 +41,7 @@ import { AvatarModule } from 'ngx-avatar';
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),
+    AppRoutingModule,
 
   ],
   providers: [

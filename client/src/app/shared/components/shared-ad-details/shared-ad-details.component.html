@@ -1,31 +1,33 @@
 <div *ngIf="ad" class="container mt-5">
-  <div class="row mb-4">
+  <div class="row mb-4 ">
     <div class="col-md-12">
       <a (click)="goBack()" class="btn btn-sm btn-primary text-uppercase">RETOUR</a>
     </div>
   </div>
-  <div class="ads-box">
-    <div class="mr-1 mb-2" *ngFor="let fileURL of ad.filesURL let i = index">
-      <img class="shadow" (click)="showImage(fileURL)" src="{{fileURL}}" data-target="#modalIMG" data-toggle="modal">
+  <div class="row mb-5">
+    <div class="col-md-6 card ads-box shadow-sm p-2">
+        <div class="mr-2 mb-2" *ngFor="let fileURL of ad.filesURL let i = index">
+            <img class="shadow" (click)="showImage(fileURL)" src="{{fileURL}}" data-target="#modalIMG" data-toggle="modal">
+          </div>
     </div>
-    <ul class="list-group ml-5">
-      <li>{{ad.title}}</li>
-      <li><b>Prix : </b>{{ad.price}} DT</li>
-      <li><b>Adresse : </b>{{ad.governorate.value}}</li>
-      <li><b>Publié a : </b>{{ad.createdAt}}</li>
-      <li><b>Description: </b>{{ad.description}}</li>
-    </ul>
+    <div class="col-md-6 card shadow-sm p-2">
+      <ul class="list-group card pr-0 ">
+        <li class="pl-2">{{ad.title}}</li>
+        <li class="pl-2"><span>Prix : </span>{{ad.price}} DT</li>
+        <li class="pl-2"><span>Adresse : </span>{{ad.governorate.value}}</li>
+        <li class="pl-2"><span>Publié a : </span>{{ad.createdAt}}</li>
+        <li class="pl-2"><span>Description: </span>{{ad.description}}</li>
+      </ul>
+    </div>
   </div>
-
-
-
   <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="modalIMG" role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-body mb-0 p-0"> 
-         <button type="button " class="btn btn-sm btn-dark text-center text-uppercase" data-dismiss="modal" aria-label="Close">
-              Fermer
-            </button>  
+        <div class="modal-body mb-0 p-0">
+          <button type="button " class="btn btn-sm btn-dark text-center text-uppercase" data-dismiss="modal"
+            aria-label="Close">
+            Fermer
+          </button>
           <img height="100%" width="100%" src="{{image}}">
         </div>
       </div>

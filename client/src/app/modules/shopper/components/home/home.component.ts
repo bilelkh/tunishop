@@ -37,11 +37,6 @@ export class HomeComponent implements OnInit {
   private filesURL: any[] = [];
   private adsList = [];
   private p = 1;
-  zoom: number = 8;
-  // initial center position for the map
-  lat: number = 51.673858;
-  lng: number = 7.815982;
-
   constructor(private notificationService: NotificationService,
               private formBuilder: FormBuilder,
               private router: Router,
@@ -62,7 +57,7 @@ export class HomeComponent implements OnInit {
   getAds(page) {
     this.p = page;
     this.spinner.show();
-    this.shopperService.getAds(5, page).subscribe(
+    this.shopperService.getAds(10, page).subscribe(
       (data: any) => {
         this.adsList = data.ads;
         this.totalItems = data.totalItem;

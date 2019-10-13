@@ -55,22 +55,25 @@ ul {
 .text-gray {
   color: #8f9396 !important;
 }
+
 .card {
   border: none;
   box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
-  border-radius: 4px;
+  border-radius: 2px;
+
   .card-header {
-      border-top: none;
-      background-color: #fff;
-      font-family: 'Roboto Condensed', sans-serif !important;
-      font-size: 18px;
-      text-transform: uppercase;
-      font-weight: bold;
+    border-top: none;
+    background-color: #fff;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 }
 
 
 .dropdown-menu {
+  z-index: 1000;
   border-radius: 0px;
   border: none !important;
   background-color: #e0e0e0;
@@ -123,7 +126,7 @@ ul {
       &:first-child {
         td {
           &:last-child {
-              display: flex;
+            display: flex;
           }
         }
       }
@@ -131,3 +134,7 @@ ul {
   }
 }
 
+
+.modal {
+  z-index: 10000000000000000;
+}

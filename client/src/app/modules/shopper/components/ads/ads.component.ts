@@ -146,7 +146,6 @@ export class AdsComponent implements OnInit {
 
 
   confirmModal(ad: unknown) {
-    console.log("===ConfirmModalComponent===", ConfirmModalComponent)
     let bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-sm' });
     // console.log("===this.bsModalRef.content===",this.bsModalRef.content)
     // this.modalService.onHide.subscribe(data => {
