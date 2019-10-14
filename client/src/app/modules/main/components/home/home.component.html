@@ -2,13 +2,42 @@
   <p style="font-size: 20px; color: #fff"></p>
 </ngx-spinner>
 
-<div class="container mt-5">
-  <div class="row mt-3 p-2">
-    <div class="col-md-12">
-      <app-filter [subCategoryList]="subCategoryList" [categoryList]="categoryList" [adsList]="adsList" [delegationsList]="delegationsList"
-        [governoratesList]="governoratesList"></app-filter>
+<div class="container-fluid mt-5">
+  <div class="row mt-3  p-2">
+    <div class="col-md-6 col-sm-12 ">
+      <app-filter [subCategoryList]="subCategoryList" [categoryList]="categoryList" [adsList]="adsList"
+        [delegationsList]="delegationsList" [governoratesList]="governoratesList"></app-filter>
+    </div>
+    <div class="col-md-6 col-sm-12 card shadow-sm pr-0 pl-0">
+      <agm-map
+      [latitude]="36.862499" [longitude]="10.195556"
+      (mapClick)="addMarker($event.coords.lat, $event.coords.lng)"
+    >
+      <agm-marker
+        *ngFor="let marker of markers"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+        [opacity]="marker.alpha"
+        [markerDraggable]="false"
+        (markerClick)="selectMarker($event)"
+      >
+      </agm-marker>
+      <agm-circle [latitude]="currentLatitude" [longitude]="currentLongitude" 
+      [radius]="500000"
+      [fillColor]="'#0069d9'"
+      [circleDraggable]="false"
+      [editable]="false">
+  </agm-circle>
+    </agm-map>
+    <p *ngIf="selectedMarker">
+      Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}
+    </p>
     </div>
   </div>
+</div>
+
+
+<div class="container mt-5">
   <div class="row mt-3 p-2">
     <app-list-ads [adsList]="adsList"></app-list-ads>
   </div>

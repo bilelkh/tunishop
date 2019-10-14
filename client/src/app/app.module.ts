@@ -18,6 +18,8 @@ import { AdministrationModule } from './modules/administration/administration.mo
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
 import { AvatarModule } from 'ngx-avatar';
+import { GoogleMapsAPIWrapper } from '@agm/core';
+import {MapsAPILoader} from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +37,7 @@ import { AvatarModule } from 'ngx-avatar';
     BrowserAnimationsModule,
     NgxPaginationModule,
     NgxSpinnerModule,
+    AuthentificationModule,
     AvatarModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot({
@@ -44,10 +47,11 @@ import { AvatarModule } from 'ngx-avatar';
     }),
     
   ],
-  providers: [
+  providers: [  
     NotificationService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService
+    JwtHelperService,
+    GoogleMapsAPIWrapper
   ],
   bootstrap: [AppComponent]
 })

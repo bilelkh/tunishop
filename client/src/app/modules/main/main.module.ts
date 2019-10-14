@@ -18,10 +18,11 @@ import { AgmCoreModule } from '@agm/core';
 import { UserAdsComponent } from './components/user-ads/user-ads.component';
 import { AdDetailsComponent } from './components/ad-details/ad-details.component';
 import { MainRoutingModule } from './main-routing.module';
-
-
+import { GoogleMapsAPIWrapper } from '@agm/core';
+import { MarkerManager } from '@agm/core';
+ import {MapsAPILoader} from '@agm/core';
 @NgModule({
-  declarations: [ CategoryComponent,
+  declarations: [CategoryComponent,
     SubCategoryComponent,
     ProductComponent,
     AdsComponent,
@@ -37,14 +38,15 @@ import { MainRoutingModule } from './main-routing.module';
     NgbModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCcbJ8p8bp7OOC_Rv_H_pSupQJCcapbDyY'
+      apiKey: 'AIzaSyCcbJ8p8bp7OOC_Rv_H_pSupQJCcapbDyY',
+      libraries: ["places"]
     }),
     SharedModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     NgxSpinnerModule
   ],
-  providers: [SharedService]
+  providers: [SharedService, GoogleMapsAPIWrapper,MarkerManager]
 
 })
 export class MainModule { }

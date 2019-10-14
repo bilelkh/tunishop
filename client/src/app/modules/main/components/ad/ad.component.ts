@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ElementRef, Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,8 +9,12 @@ import { SubCategoryService } from '../../../administration/services/sub-categor
 import { Governorates } from '../../../../enum/governorate';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Delegations } from '../../../../enum/delegations';
-import { AuthentificationService } from "../../../authentification/services/authentification.service" ;
-import {Location} from '@angular/common';
+import { AuthentificationService } from "../../../authentification/services/authentification.service";
+import { Location } from '@angular/common';
+import { FormControl } from "@angular/forms";
+import { MapsAPILoader } from '@agm/core';
+
+declare var google: any;
 
 @Component({
   selector: 'app-ad',
@@ -20,6 +24,12 @@ import {Location} from '@angular/common';
 export class AdComponent implements OnInit {
   @ViewChild('labelImport', null)
   labelImport: ElementRef;
+  public latitude: number;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
+
+  @ViewChild('search',{ read: true, static: false }) searchElementRef: ElementRef;
 
   private fileToUpload: File = null;
   private modalTitle = 'AJOUTER UN NOUVEAU CATEGORIES';
@@ -51,8 +61,12 @@ export class AdComponent implements OnInit {
   private filesURL: any[] = [];
   private selectedGovernorate: any;;
   private selectedDelegation: any;;
-  private user : any ;
+  private user: any;
+  private place: any;
+
   constructor(
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
     private sharedService: SharedService,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
@@ -62,9 +76,42 @@ export class AdComponent implements OnInit {
     private shopperService: ShopperService,
     private subCategoryService: SubCategoryService,
     private modalService: BsModalService,
-    private authentificationService :AuthentificationService,
+    private authentificationService: AuthentificationService,
     private location: Location
   ) {
+    this.latitude = 36.8;
+    this.longitude = 10.2;
+    this.setCurrentPosition();
+    this.mapsAPILoader.load().then(() => {
+    
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement,{ });
+      
+      autocomplete.setComponentRestrictions({'country' : ['tn']});
+
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+ 
+
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.place = place ;
+
+          console.log("===place===",  this.place)
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+
+           this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
+
     this.adForm = this.formBuilder.group({
       _id: [''],
       title: ['', Validators.required],
@@ -73,21 +120,48 @@ export class AdComponent implements OnInit {
       description: ['', Validators.required],
       price: ['', Validators.required],
       governorate: ['', Validators.required],
-      delegation: ['', Validators.required]
+      delegation: ['', Validators.required],
     });
-
-    this.user  = this.authentificationService.decodeToken() ; 
+    this.searchControl = new FormControl();
+    this.user = this.authentificationService.decodeToken();
   }
 
 
 
   ngOnInit() {
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
+
     this.governoratesList = Governorates;
     this.delegationsList = Delegations;
     this.getAds(1);
     this.getCategory();
   }
-
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
+  }
   getAds(page) {
     this.p = page;
     this.spinner.show();
@@ -147,9 +221,11 @@ export class AdComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
+    console.log("==place==",this.place)
+
     if (this.adForm.valid) {
       const ad = {
-        userId : this.user._id ,
+        userId: this.user._id,
         title: this.adForm.value.title,
         description: this.adForm.value.description,
         governorate: this.adForm.value.governorate,
@@ -157,17 +233,21 @@ export class AdComponent implements OnInit {
         category: this.category,
         price: this.adForm.value.price,
         subCategory: this.subCategory,
-        filesURL: this.filesURL
-      };
-      this.shopperService.addAd(ad).subscribe(
-        data => {
-          this.notificationService.showSuccess('', 'annonce ajouté avec succès');
-          this.location.back() ;
-        },
-        error => {
-          console.log('error', error);
-        }
-      );
+        filesURL: this.filesURL,
+        adersse :this.place.formatted_address,
+        latitude : this.latitude ,
+        longitude :   this.longitude
+      }
+
+      // this.shopperService.addAd(ad).subscribe(
+      //   data => {
+      //     this.notificationService.showSuccess('', 'annonce ajouté avec succès');
+      //     this.location.back();
+      //   },
+      //   error => {
+      //     console.log('error', error);
+      //   }
+      // );
     }
   }
 
@@ -262,7 +342,7 @@ export class AdComponent implements OnInit {
 
   }
 
-  goBack(){
+  goBack() {
     this.router.navigateByUrl('')
   }
 }

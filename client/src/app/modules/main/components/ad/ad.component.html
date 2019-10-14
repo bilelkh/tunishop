@@ -66,20 +66,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input id="custom-input" (change)="onFileChange($event.target.files)"
-                                            type="file" multiple #fileInput accept="image/x-png,image/jpeg">
-                                        <a class="btn btn-outline-primary btn-sm text-uppercase"
-                                            (click)="fileInput.click()">choisir des images</a>
-                                        <div class="mt-2">
-                                            <div class="row">
-                                                <div class="images-box d-flex justify-content-between"
-                                                    *ngFor="let fileURL of filesURL let i = index">
-                                                    <img class="mr-2 mb-2 shadow" src="{{fileURL}}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                        <label class="form-label text-uppercase">Adresse:</label>
+                                        <input placeholder=" " autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+                                            class="form-control shadow-sm form-control-sm" #search
+                                            [formControl]="searchControl"> </div>
+                                    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false"
+                                        [zoom]="zoom">
+                                        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                                    </agm-map>
                                     <div class="form-group">
                                         <input name="id" formControlName="_id" type="hidden"
                                             class="form-control shadow-sm form-control-sm" id="recipient-name">
@@ -145,6 +139,21 @@
                                                 obligatoire !</div>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <input id="custom-input" (change)="onFileChange($event.target.files)"
+                                            type="file" multiple #fileInput accept="image/x-png,image/jpeg">
+                                        <a class="btn btn-outline-primary btn-sm text-uppercase"
+                                            (click)="fileInput.click()">choisir des images</a>
+                                        <div class="mt-2">
+                                            <div class="row">
+                                                <div class="images-box d-flex justify-content-between"
+                                                    *ngFor="let fileURL of filesURL let i = index">
+                                                    <img class="mr-2 mb-2 shadow" src="{{fileURL}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -158,4 +167,3 @@
         </div>
     </div>
 </div>
-
