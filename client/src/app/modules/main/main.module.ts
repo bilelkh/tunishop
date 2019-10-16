@@ -39,7 +39,7 @@ import { MarkerManager } from '@agm/core';
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcbJ8p8bp7OOC_Rv_H_pSupQJCcapbDyY',
-      libraries: ["places"]
+      libraries: ['places'],
     }),
     SharedModule,
     ReactiveFormsModule,

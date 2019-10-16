@@ -16,7 +16,6 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core'
 })
 export class HomeComponent implements OnInit {
   private pageSize = 5;
-  private totalItems = 0;
   private categoryList = [];
   private subCategoryList: any = [];
   private categoryId: string;
@@ -36,10 +35,13 @@ export class HomeComponent implements OnInit {
   private filesURL: any[] = [];
   private adsList = [];
   private p = 1;
+  private itemsPerPage: 10 ;
+  private currentPage: 1 ;
+  private totalItems: 100
   // @ViewChild('search')
   public searchElementRef: ElementRef;
-  private currentLatitude ; 
-  private currentLongitude ; 
+  private currentLatitude;
+  private currentLongitude;
 
   constructor(private notificationService: NotificationService,
     private formBuilder: FormBuilder,
@@ -55,17 +57,14 @@ export class HomeComponent implements OnInit {
   lat = 36.8;
   selectedMarker;
   markers = [
-    // These are all just random coordinates from https://www.random.org/geographic-coordinates/
-    { lat: 36.834688, lng: 10.111341, alpha: 1 },
-    { lat: 35.856064, lng: 9.195557, alpha: 1 },
-    { lat: 35.854854, lng: 9.568598, alpha: 1 },
+
   ];
 
   currentPostion() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.currentLatitude = position.coords.latitude ;
-        this.currentLongitude = position.coords.longitude ;
+        this.currentLatitude = position.coords.latitude;
+        this.currentLongitude = position.coords.longitude;
 
       });
     } else {
@@ -94,8 +93,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.governoratesList = Governorates;
     this.delegationsList = Delegations;
-    console.log('this.delegationsList', this.delegationsList);
-
     this.getAds(1);
     this.getCategory()
   }
@@ -105,6 +102,10 @@ export class HomeComponent implements OnInit {
     this.shopperService.getAds(10, page).subscribe(
       (data: any) => {
         this.adsList = data.ads;
+        for (const ad of this.adsList) {
+          this.markers = [...this.markers, { lat: ad.latitude, lng: ad.longitude }]
+        }
+        console.log("=== this.markers===", this.markers)
         this.totalItems = data.totalItem;
         this.spinner.hide();
       },

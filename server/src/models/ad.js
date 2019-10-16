@@ -14,7 +14,10 @@ const adSchema = new Schema(
     price: { type: Number, required: false },
     subCategory: subCategory,
     category: Category,
-    filesURL :  [String]
+    filesURL :  [String],
+    address :{ type: String, required: false },
+    latitude :{ type: Number, required: false },
+    longitude :  { type: Number, required: false },
   },
   { timestamps: true }
 );

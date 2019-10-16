@@ -67,15 +67,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label text-uppercase">Adresse:</label>
-                                        <input placeholder=" " autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
-                                            class="form-control shadow-sm form-control-sm" #search
-                                            [formControl]="searchControl"> </div>
+                                        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+                                    </div>
                                     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false"
                                         [zoom]="zoom">
                                         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                                     </agm-map>
                                     <div class="form-group">
-                                        <input name="id" formControlName="_id" type="hidden"
+                                        <input name="id"  formControlName="_id" type="hidden"
                                             class="form-control shadow-sm form-control-sm" id="recipient-name">
                                     </div>
                                 </div>

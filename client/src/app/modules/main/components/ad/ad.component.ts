@@ -13,6 +13,7 @@ import { AuthentificationService } from "../../../authentification/services/auth
 import { Location } from '@angular/common';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
+import { google } from '@google/maps';
 
 declare var google: any;
 
@@ -29,8 +30,10 @@ export class AdComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
 
-  @ViewChild('search',{ read: true, static: false }) searchElementRef: ElementRef;
 
+
+  @ViewChild("search",null)
+  public searchElementRef: ElementRef;
   private fileToUpload: File = null;
   private modalTitle = 'AJOUTER UN NOUVEAU CATEGORIES';
   private btnName = 'Ajouter';
@@ -38,7 +41,6 @@ export class AdComponent implements OnInit {
   private submitted = false;
   private showModal = false;
   private adsList = [];
-  private p = 1;
   private searchText = '';
   private pageSize = 5;
   private totalItems = 0;
@@ -63,6 +65,7 @@ export class AdComponent implements OnInit {
   private selectedDelegation: any;;
   private user: any;
   private place: any;
+  private p = 1;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -77,40 +80,8 @@ export class AdComponent implements OnInit {
     private subCategoryService: SubCategoryService,
     private modalService: BsModalService,
     private authentificationService: AuthentificationService,
-    private location: Location
+    private location: Location,
   ) {
-    this.latitude = 36.8;
-    this.longitude = 10.2;
-    this.setCurrentPosition();
-    this.mapsAPILoader.load().then(() => {
-    
-
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement,{ });
-      
-      autocomplete.setComponentRestrictions({'country' : ['tn']});
-
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
- 
-
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          this.place = place ;
-
-          console.log("===place===",  this.place)
-
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-
-
-           this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 12;
-        });
-      });
-    });
 
     this.adForm = this.formBuilder.group({
       _id: [''],
@@ -129,13 +100,22 @@ export class AdComponent implements OnInit {
 
 
   ngOnInit() {
+    this.zoom = 4;
+    this.latitude = 39.8282;
+    this.longitude = -98.5795;
+    this.searchControl = new FormControl();
+    this.setCurrentPosition();
+
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.place =place ;
+          //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
@@ -147,7 +127,6 @@ export class AdComponent implements OnInit {
         });
       });
     });
-
     this.governoratesList = Governorates;
     this.delegationsList = Delegations;
     this.getAds(1);
@@ -221,7 +200,7 @@ export class AdComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
-    console.log("==place==",this.place)
+    console.log("==place==", this.place)
 
     if (this.adForm.valid) {
       const ad = {
@@ -234,20 +213,20 @@ export class AdComponent implements OnInit {
         price: this.adForm.value.price,
         subCategory: this.subCategory,
         filesURL: this.filesURL,
-        adersse :this.place.formatted_address,
-        latitude : this.latitude ,
-        longitude :   this.longitude
+        adersse: this.place.formatted_address,
+        latitude: this.latitude,
+        longitude: this.longitude
       }
 
-      // this.shopperService.addAd(ad).subscribe(
-      //   data => {
-      //     this.notificationService.showSuccess('', 'annonce ajouté avec succès');
-      //     this.location.back();
-      //   },
-      //   error => {
-      //     console.log('error', error);
-      //   }
-      // );
+      this.shopperService.addAd(ad).subscribe(
+        data => {
+          this.notificationService.showSuccess('', 'annonce ajouté avec succès');
+          this.location.back();
+        },
+        error => {
+          console.log('error', error);
+        }
+      );
     }
   }
 
@@ -297,8 +276,7 @@ export class AdComponent implements OnInit {
     this.delegationsListSelected = this.delegationsList.filter(
       x => x.governorateKey === governorateKey
     )[0].delegations;
-    // console.log("=== this.delegationsListSelected===", this.delegationsListSelected)
-    //console.log("this.delegationsListSelected",this.delegationsListSelected)
+    console.log("=== this.delegationsListSelected ===", this.delegationsListSelected )
     //console.log("selectedGovernorate",this.selectedGovernorate)
   }
 

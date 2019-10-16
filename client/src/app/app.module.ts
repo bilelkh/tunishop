@@ -20,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
 import { AvatarModule } from 'ngx-avatar';
 import { GoogleMapsAPIWrapper } from '@agm/core';
 import {MapsAPILoader} from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,7 +46,9 @@ import {MapsAPILoader} from '@agm/core';
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),
-    
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCcbJ8p8bp7OOC_Rv_H_pSupQJCcapbDyY'
+    }),
   ],
   providers: [  
     NotificationService,
