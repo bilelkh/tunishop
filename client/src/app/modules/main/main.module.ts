@@ -20,7 +20,9 @@ import { AdDetailsComponent } from './components/ad-details/ad-details.component
 import { MainRoutingModule } from './main-routing.module';
 import { GoogleMapsAPIWrapper } from '@agm/core';
 import { MarkerManager } from '@agm/core';
- import {MapsAPILoader} from '@agm/core';
+import { MapsAPILoader } from '@agm/core';
+import { AuthGuard } from "../../guards/auth-guard.service"
+import { ChangePasswordComponent } from "./components/change-password/change-password.component"
 @NgModule({
   declarations: [CategoryComponent,
     SubCategoryComponent,
@@ -30,6 +32,7 @@ import { MarkerManager } from '@agm/core';
     AdComponent,
     HomeComponent,
     UserAdsComponent,
+     ChangePasswordComponent,
     AdDetailsComponent,],
   imports: [
     CommonModule,
@@ -46,7 +49,7 @@ import { MarkerManager } from '@agm/core';
     NgxPaginationModule,
     NgxSpinnerModule
   ],
-  providers: [SharedService, GoogleMapsAPIWrapper,MarkerManager]
+  providers: [SharedService, AuthGuard, GoogleMapsAPIWrapper, MarkerManager]
 
 })
 export class MainModule { }

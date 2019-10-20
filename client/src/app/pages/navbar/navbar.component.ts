@@ -5,7 +5,7 @@ import { AuthentificationService } from "../../modules/authentification/services
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { SettingModalComponent } from '../../shared/components/setting-modal/setting-modal.component'
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component'
-
+import { AlertModalComponent } from "../../shared/components/alert-modal/alert-modal.component"
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -59,5 +59,11 @@ export class NavbarComponent implements OnInit {
       }
       bsModalRef.hide();
     })
+  }
+
+  goToCreateAd() {
+
+    this.router.navigateByUrl('ad');
+
   }
 }

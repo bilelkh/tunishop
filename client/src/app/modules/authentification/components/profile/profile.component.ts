@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from "../../services/authentification.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -37,15 +38,22 @@ export class ProfileComponent implements OnInit {
   }
 
   submit() {
-    const user  = {
-      email: this.profileForm.value.email,
+    const user:any  = {
       firstName: this.profileForm.value.firstName,
       lastName: this.profileForm.value.lastName,
       phone: this.profileForm.value.phone,
-      adresse: this.profileForm.value.adresse
+      adresse: this.profileForm.value.adresse,
+      _id :  this.userData._id 
     }
-    console.log("user",user)
-    console.log("===this.profileForm==",this.profileForm.value)
+  
+    console.log("===user===",user)
+
+    this.authentificationService.updateUserData(user).subscribe(data=>{
+        console.log("===data===",data)
+    },error=>{
+        console.log("==error==",error)
+    })
+  
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthentificationService } from "../../../authentification/services/authentification.service"
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authentificationService : AuthentificationService) { }
 
   ngOnInit() {
+  }
+
+
+  updateProfile(user) {
+        this.authentificationService.updateProfile(user).subscribe(data=>{
+            console.log("===data===",data)
+        },error=>{
+            console.log("===error===",error) ; 
+            throw error ; 
+        })
   }
 
 }

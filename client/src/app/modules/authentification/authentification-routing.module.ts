@@ -5,6 +5,7 @@ import { SignupComponent } from "./components/signup/signup.component";
 import { LostPasswordComponent } from "./components/lost-password/lost-password.component";
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 import { ProfileComponent } from "./components/profile/profile.component"
+import { AuthGuard } from "../../guards/auth-guard.service"
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: 'signin' },
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: "signup", component: SignupComponent },
   { path: "lost-password", component: LostPasswordComponent },
   { path: "reset-password/:token", component: ResetPasswordComponent },
-  { path: "profile", component: ProfileComponent }
+  { path: "profile",canActivate: [AuthGuard] , component: ProfileComponent }
 
 ];
 

@@ -5,7 +5,9 @@ const async = require("async");
 const crypto = require("crypto");
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
-// Register
+
+
+
 exports.signup = (req, res, next) => {
     let newUser = new User(req.body);
     console.log("newUser", newUser);
@@ -18,21 +20,21 @@ exports.signup = (req, res, next) => {
         }
     });
 };
-
 // Authenticate
 exports.signin = (req, res, next) => {
     User.findOne({ email: req.body.email }, (err, user) => {
-        if (err)  {  console.log("===error===",err)}
+        if (err) { console.log("===error===", err) }
         if (!user) {
-            console.log("===user===",user)
+            console.log("===user===", user)
             return res.json({ success: false, msg: 'WRONG EMAIL' });
         }
         comparePassword(req.body.password, user.password, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
-                const token = jwt.sign({ data: user }, "FLATI", {
-                    expiresIn: 604800 // 1 week
+                const token = jwt.sign({ data: user }, "2k19", {
+                    expiresIn: '1h' 
                 });
+                console.log("token",token)
                 res.json({
                     success: true,
                     token: 'JWT ' + token,
@@ -53,17 +55,14 @@ exports.signin = (req, res, next) => {
     });
 };
 
-// Profile
 exports.profile = (req, res, next) => {
+    con
     res.json({ user: req.user });
 };
-
-
 
 module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);
 }
-
 
 module.exports.forgotPassword = function(req, res) {
     async.waterfall([
@@ -74,9 +73,9 @@ module.exports.forgotPassword = function(req, res) {
             });
         },
         function(token, callback) {
-            User.findOne({ email: req.body.email }).then(function (user) {
+            User.findOne({ email: req.body.email }).then(function(user) {
                 if (!user) {
-                    return  res.send({ error: 'No account with that email address exists.' });
+                    return res.send({ error: 'No account with that email address exists.' });
                 }
                 user.resetPasswordToken = token;
                 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -87,36 +86,34 @@ module.exports.forgotPassword = function(req, res) {
             });
         },
         function(token, user, callback) {
-            var smtpTransport = nodemailer.createTransport(
-                sendgridTransport({
-                    auth: {
-                        api_key: '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'
-                    }
-                })
-            );
+            var smtpTransport = nodemailer.createTransport({ sendmail: true }, sendgridTransport({
+                auth: {
+                    api_key: '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'
+                }
+            }));
+
+            console.log("===req.body.email===", req.body.email)
             var mailOptions = {
                 to: req.body.email,
-                from: 'passwordreset@demo.com',
+                from: 'bilel.khadhraoui@esprit.tn',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
                     'http://localhost:4200/reset-password/' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
-            console.log("===mailOptions===",mailOptions)
+            console.log("===mailOptions===", mailOptions)
             smtpTransport.sendMail(mailOptions, function(err) {
-                console.log('==error==',err)
+                console.log('==error==', err)
                 callback(err, 'done');
             });
         }
     ], function(err) {
         if (err) return next(err);
-        console.log("==err==",err)
+        console.log("==err==", err)
         res.send({ success: true, msg: "Email send successfully", user: req.user })
     });
 }
-
-
 
 module.exports.reset = function(req, res) {
     async.waterfall([
@@ -160,33 +157,58 @@ module.exports.reset = function(req, res) {
     });
 }
 
+exports.changePassword = (req, res, next) => {
+    User.findOne({ email: req.body.email }, (err, user) => {
+        console.log("===user===", user)
+        if (err) {
+            res.status(404).json({ err: err });
 
-const addUser = function(newUser, callback) {
-    bcrypt.genSalt(10, (err, salt) => {
-        console.log("newUser.password", newUser.password);
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
+        }
+        comparePassword(req.body.currentPassword, user.password, (err, isMatch) => {
             if (err) throw err;
-            newUser.password = hash;
-            newUser.save(callback);
+            if (isMatch) {
+          
+
+                if (checkIfEqual(req.body.newPassword, req.body.confirmNewPassword)) {
+                    bcrypt.genSalt(10, (err, salt) => {
+                        bcrypt.hash(req.body.newPassword, salt, (err, hash) => {
+                            if (err) throw err;
+                            User.updateOne({email : req.body.email }, {password:hash}, (err, result) => {
+                                if (err) throw err;
+                                return   res.status(200).json({success: true, msg: 'PASSWIRD UPDATED SUCCESFULLY ' });
+                              });
+                        });
+                    });
+                }
+                else
+                {
+                    return res.json({ success: false, msg: 'PASSWORDS NOT EQUALS' });
+                }
+
+
+            } else {
+                return res.json({ success: false, msg: 'WRONG PASSWORD' });
+            }
         });
     });
-}
 
 
 
 
-const comparePassword = function(candidatePassword, hash, callback) {
-    bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
-        if (err) throw err;
-        callback(null, isMatch);
-    });
-}
 
+    // let newUser = new User(req.body);
+    // console.log("newUser", newUser);
+    // addUser(newUser, (err, user) => {
+    //     if (err) {
+    //         console.log("err", err)
+    //         res.json({ success: false, msg: 'Failed to register user' });
+    //     } else {
+    //         res.json({ success: true, msg: 'User registered' });
+    //     }
+    // });
+};
 
 exports.getUsers = async(req, res, next) => {
-
-    console.log("===req.query.page===",req.query.page);
-    console.log("===req.query.pageSize===",req.query.pageSize)
 
     var query = {};
     if (req.query.page && req.query.pageSize) {
@@ -196,7 +218,7 @@ exports.getUsers = async(req, res, next) => {
         query.limit = pageSize;
         var totalItem = await User.count({});
     }
-    await User.find({'authorization': 'user'}, {}, query).select("_id email lastName firstName createdAt")
+    await User.find({ 'authorization': 'user' }, {}, query).select("_id email lastName firstName createdAt")
         .then(users => {
             if (!users) {
                 const error = new Error("Could not find users.");
@@ -213,3 +235,49 @@ exports.getUsers = async(req, res, next) => {
         });
 };
 
+
+
+
+exports.updateUserData = async(req, res, next) => {
+    User.findOneAndUpdate({ _id: req.params.userId },
+        req.body, { new: true },
+        (err, result) => {
+            if (err) {
+                res.send(err);
+            }
+            res.json(result);
+        }
+    );
+};
+
+
+
+
+
+
+
+
+
+
+
+const addUser = function(newUser, callback) {
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save(callback);
+        });
+    });
+}
+
+
+const comparePassword = function(candidatePassword, hash, callback) {
+    bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
+        if (err) throw err;
+        callback(null, isMatch);
+    });
+}
+
+const checkIfEqual = function(newPassword, confirmNewPassword) {
+    return newPassword === confirmNewPassword;
+}

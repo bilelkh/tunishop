@@ -51,4 +51,18 @@ export class AuthentificationService {
   editProfile(user) {
     return this.http.post(this.URL + 'signin', user);
   }
+
+
+  channgeUserPassword(data) {
+    return this.http.post(this.URL + 'changePassword', data);
+  }
+
+  updateUserData(user){
+    return this.http.put(this.URL + 'updateUserData/'+user._id, user);
+
+  }
+
+  getUserData(){
+    
+  }
 }

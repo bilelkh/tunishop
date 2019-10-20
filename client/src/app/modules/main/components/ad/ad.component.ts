@@ -12,7 +12,7 @@ import { Delegations } from '../../../../enum/delegations';
 import { AuthentificationService } from "../../../authentification/services/authentification.service";
 import { Location } from '@angular/common';
 import { FormControl } from "@angular/forms";
-import { MapsAPILoader } from '@agm/core';
+import{ MapsAPILoader } from '@agm/core';
 import { google } from '@google/maps';
 
 declare var google: any;
