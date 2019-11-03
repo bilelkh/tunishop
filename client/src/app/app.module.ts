@@ -31,11 +31,6 @@ import {SidenavService} from "./shared/services/sidenav.service"
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    // MatSidenavModule,
-    // MatButtonModule,
-    // MatCardModule,
-    //  MatSidenavContent,
-    // MatSidenav,
     MaterialModule,
     AppRoutingModule,
     BrowserModule,
