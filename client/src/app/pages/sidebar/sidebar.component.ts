@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  @ViewChild('sidenav',null) sidenav: MatSidenav;
 
-  constructor() { }
+  reason = '';
+  opened = false;
 
-  ngOnInit() {
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
   }
+
+
+  
+  constructor() {
+   }
+
+  ngOnInit() {    console.log("===sidenav===",this.sidenav)
+
+  }
+
+
+
 
 }

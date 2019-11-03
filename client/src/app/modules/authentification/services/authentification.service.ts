@@ -62,7 +62,8 @@ export class AuthentificationService {
 
   }
 
-  getUserData(){
-    
+  getProfile(){
+    return this.http.get(this.URL + 'profile');
+
   }
 }

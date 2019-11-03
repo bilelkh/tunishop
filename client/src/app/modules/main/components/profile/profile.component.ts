@@ -13,13 +13,13 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  updateProfile(user) {
-        this.authentificationService.updateProfile(user).subscribe(data=>{
-            console.log("===data===",data)
-        },error=>{
-            console.log("===error===",error) ; 
-            throw error ; 
-        })
-  }
+  // updateProfile(user) {
+  //       this.authentificationService.updateProfile(user).subscribe(data=>{
+  //           console.log("===data===",data)
+  //       },error=>{
+  //           console.log("===error===",error) ; 
+  //           throw error ; 
+  //       })
+  // }
 
 }

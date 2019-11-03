@@ -11,10 +11,11 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 import { TableListComponent } from './components/table-list/table-list.component';
 import { SettingModalComponent } from './components/setting-modal/setting-modal.component';
 import { AlertModalComponent } from './components/alert-modal/alert-modal.component';
+import { MenuComponent } from './components/menu/menu.component';
 @NgModule({
-  declarations: [FilterComponent, ListAdsComponent, SharedAdDetailsComponent, ConfirmModalComponent, TableListComponent, SettingModalComponent, AlertModalComponent],
+  declarations: [FilterComponent, ListAdsComponent, SharedAdDetailsComponent, ConfirmModalComponent, TableListComponent, SettingModalComponent, AlertModalComponent, MenuComponent],
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, NgxSpinnerModule, NgxPaginationModule],
   entryComponents: [ConfirmModalComponent,SettingModalComponent,AlertModalComponent],
-  exports: [FilterComponent,SettingModalComponent, SharedAdDetailsComponent, ListAdsComponent, TableListComponent, ConfirmModalComponent,AlertModalComponent]
+  exports: [FilterComponent,MenuComponent,SettingModalComponent, SharedAdDetailsComponent, ListAdsComponent, TableListComponent, ConfirmModalComponent,AlertModalComponent]
 })
 export class SharedModule { }

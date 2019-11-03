@@ -1,11 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import {OnInit ,ChangeDetectorRef, Component, OnDestroy } from "@angular/core";
+import {MediaMatcher} from '@angular/cdk/layout';
 import { Router, ActivatedRoute } from "@angular/router";
 import { SharedService } from "../../shared/services/shared.service";
 import { AuthentificationService } from "../../modules/authentification/services/authentification.service";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { SettingModalComponent } from '../../shared/components/setting-modal/setting-modal.component'
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component'
-import { AlertModalComponent } from "../../shared/components/alert-modal/alert-modal.component"
+import { AlertModalComponent } from "../../shared/components/alert-modal/alert-modal.component" ; 
+import {SidenavService} from "../../shared/services/sidenav.service"
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -16,20 +18,21 @@ export class NavbarComponent implements OnInit {
   public isAuthenticated = false;
   public user: any;
   private modalRef: BsModalRef;
-
+ 
+  
   constructor(
+    private sidenavService : SidenavService ,
     private authentificationService: AuthentificationService,
     private sharedService: SharedService,
     private router: Router,
     private modalService: BsModalService,
     public bsModalRef: BsModalRef
-  ) { }
-  private username: string;
+  ) {   }  
+ 
   ngOnInit() {
     this.isAuthenticated = this.authentificationService.isAuthenticated();
     if (this.isAuthenticated) {
       this.user = this.authentificationService.decodeToken();
-      this.username = this.user.lastName + ' ' + this.user.firstName;
     }
   }
   navigate(url) {
@@ -39,6 +42,11 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authentificationService.logout();
   }
+
+  toggleRightSidenav() {
+    console.log('===toggle===')
+    this.sidenavService.toggle();
+ }
 
   openSettingModal(ad: unknown) {
     let bsModalRef = this.modalService.show(SettingModalComponent, { class: 'modal-sm' });
@@ -62,8 +70,6 @@ export class NavbarComponent implements OnInit {
   }
 
   goToCreateAd() {
-
     this.router.navigateByUrl('ad');
-
   }
 }

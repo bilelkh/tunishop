@@ -56,8 +56,7 @@ exports.signin = (req, res, next) => {
 };
 
 exports.profile = (req, res, next) => {
-    con
-    res.json({ user: req.user });
+    res.json({ user: req.user.data });
 };
 
 module.exports.getUserById = function(id, callback) {
@@ -239,6 +238,9 @@ exports.getUsers = async(req, res, next) => {
 
 
 exports.updateUserData = async(req, res, next) => {
+    console.log("===req.params.userId===",req.params.userId)
+    console.log("===req.params.body===",req.body)
+
     User.findOneAndUpdate({ _id: req.params.userId },
         req.body, { new: true },
         (err, result) => {

@@ -19,12 +19,24 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
 import { AvatarModule } from 'ngx-avatar';
 import { GoogleMapsAPIWrapper } from '@agm/core';
-import {MapsAPILoader} from '@agm/core';
+import { MapsAPILoader } from '@agm/core';
 import { AgmCoreModule } from '@agm/core';
+import { HttpConfigInterceptor } from "./interceptor/httpconfig.interceptor"
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MaterialModule} from "./modules/material-module"
+import 'hammerjs';
+
+import {SidenavService} from "./shared/services/sidenav.service"
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    // MatSidenavModule,
+    // MatButtonModule,
+    // MatCardModule,
+    //  MatSidenavContent,
+    // MatSidenav,
+    MaterialModule,
     AppRoutingModule,
     BrowserModule,
     PagesModule,
@@ -46,11 +58,18 @@ import { AgmCoreModule } from '@agm/core';
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),
+
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcbJ8p8bp7OOC_Rv_H_pSupQJCcapbDyY'
     }),
   ],
-  providers: [  
+  providers: [
+    SidenavService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigInterceptor,
+      multi: true
+    },
     NotificationService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,

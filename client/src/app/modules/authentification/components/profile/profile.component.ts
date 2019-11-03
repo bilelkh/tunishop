@@ -27,33 +27,39 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserData() {
-    this.userData = this.authentificationService.decodeToken();
-    this.profileForm.patchValue({
-      email: this.userData.email,
-      firstName: this.userData.firstName,
-      lastName: this.userData.lastName,
-      phone: this.userData.phone,
-      adresse: this.userData.adresse
+
+    this.authentificationService.getProfile().subscribe((data: any) => {
+      this.userData = data.user;
+      this.profileForm.patchValue({
+        email: this.userData.email,
+        firstName: this.userData.firstName,
+        lastName: this.userData.lastName,
+        phone: this.userData.phone,
+        adresse: this.userData.adresse
+      })
+    }, error => {
+      console.log("error", error)
     })
+
   }
 
   submit() {
-    const user:any  = {
+    const user: any = {
       firstName: this.profileForm.value.firstName,
       lastName: this.profileForm.value.lastName,
       phone: this.profileForm.value.phone,
       adresse: this.profileForm.value.adresse,
-      _id :  this.userData._id 
+      _id: this.userData._id
     }
-  
-    console.log("===user===",user)
 
-    this.authentificationService.updateUserData(user).subscribe(data=>{
-        console.log("===data===",data)
-    },error=>{
-        console.log("==error==",error)
+    console.log("===user===", user)
+
+    this.authentificationService.updateUserData(user).subscribe(data => {
+      console.log("===data===", data)
+    }, error => {
+      console.log("==error==", error)
     })
-  
+
   }
 
 }

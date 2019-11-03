@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
         console.log("===error===",error)
         return res.status(401).json({
             success :false , 
-            message: 'authentication failed'
+            message: 'Unauthorized'
         });
     }
 }
