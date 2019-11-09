@@ -23,10 +23,10 @@ import { MapsAPILoader } from '@agm/core';
 import { AgmCoreModule } from '@agm/core';
 import { HttpConfigInterceptor } from "./interceptor/httpconfig.interceptor"
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {MaterialModule} from "./modules/material-module"
+import { MaterialModule } from "./modules/material-module"
 import 'hammerjs';
 
-import {SidenavService} from "./shared/services/sidenav.service"
+import { SidenavService } from "./shared/services/sidenav.service"
 
 @NgModule({
   declarations: [AppComponent],

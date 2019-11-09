@@ -48,7 +48,6 @@ export class AdsComponent implements OnInit {
   private modalRef: BsModalRef;
   private message: string;
 
-  // @ViewChild(ConfirmModalComponent,null)  ConfirmModalComponent : ConfirmModalComponent; ////// missing declaration
 
   constructor(
     private sharedService: SharedService,

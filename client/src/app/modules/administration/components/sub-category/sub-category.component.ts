@@ -4,10 +4,15 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from "../../../../shared/services/notification.service";
+import { SubCategoryModalComponent } from "../../../../shared/components/sub-category-modal/sub-category-modal.component"
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+
 @Component({
   selector: "app-sub-category",
   templateUrl: "./sub-category.component.html",
-  styleUrls: ["./sub-category.component.scss"]
+  styleUrls: ["./sub-category.component.scss"],
+  providers: [BsModalService, BsModalRef]
+
 })
 export class SubCategoryComponent implements OnInit {
   private modalTitle: string = "AJOUTER UN NOUVEAU SOUS CATEGORIES";
@@ -23,13 +28,17 @@ export class SubCategoryComponent implements OnInit {
   private searchText: string = "";
   private pageSize: number = 5;
   public totalItems: number = 0;
+  private modalRef: BsModalRef;
+
   constructor(
+    public bsModalRef: BsModalRef,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     public subCategoryService: SubCategoryService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private modalService: BsModalService,
   ) {
     this.subCategoryForm = this.formBuilder.group({
       _id: [""],
@@ -44,10 +53,12 @@ export class SubCategoryComponent implements OnInit {
   }
 
   getAllCategory() {
+    console.log('===getAllCategory===')
     this.subCategoryService.getCategory().subscribe(
-      (data: any) => {
-        console.log("data", data);
+      (data: any) => {  
         this.categoryList = data.categorys;
+        console.log("===this.categoryList===", this.categoryList);
+
       },
       error => {
         console.log("error", error);
@@ -66,58 +77,12 @@ export class SubCategoryComponent implements OnInit {
         this.spinner.hide();
       },
       error => {
-        console.log("error", error);
         throw error;
       }
     );
   }
 
-  submit() {
-    this.submitted = true;
-    if (this.subCategoryForm.invalid) {
-      return;
-    }
-    let subCategory = {
-      _id: this.subCategoryForm.value._id,
-      title: this.subCategoryForm.value.title,
-      category: this.category
-    };
-    if (this.subCategoryForm.value._id) {
-      this.subCategoryService.edit(subCategory).subscribe(
-        data => {
-          console.log("data", data);
-          this.notificationService.showSuccess(
-            "sous categorie modifieé avec succes",
-            "succes"
-          );
-          this.showModal = false;
-          document.getElementsByClassName("modal-backdrop")[0].remove();
-          this.getSubCategory(1);
-          this.subCategoryForm.reset();
-        },
-        error => {
-          console.log("Error", error);
-        }
-      );
-    } else {
-      this.subCategoryService.add(subCategory).subscribe(
-        data => {
-          this.notificationService.showSuccess(
-            "sous categorie  ajoutée avec succes",
-            "succes"
-          );
-          this.showModal = false;
-          document.getElementsByClassName("modal-backdrop")[0].remove();
-          this.getSubCategory(1);
-          this.subCategoryForm.reset();
-        },
-        error => {
-          console.log("Error", error);
-        }
-      );
-    }
-    this.submitted = false;
-  }
+ 
 
   edit(subCategory) {
     this.modalTitle = "modifier la sous CATEGORIES  " + subCategory.title;
@@ -146,7 +111,14 @@ export class SubCategoryComponent implements OnInit {
   }
 
   add() {
-    this.showModal = true;
+    const initialState = {
+      categoryList:this.categoryList
+    };
+
+    console.log("===initialState===",initialState)
+
+    let bsModalRef = this.modalService.show(SubCategoryModalComponent, {initialState , class: 'modal-dialog' });
+
     this.btnName = "ajouter";
     this.modalTitle = "AJOUTER UN NOUVEAU sous CATEGORIES";
     this.subCategoryForm.reset();
@@ -161,10 +133,5 @@ export class SubCategoryComponent implements OnInit {
     this.searchText = $event.target.value;
   }
 
-  changeCategory($event) {
-    this.category = this.categoryList.filter(
-      object => object._id === $event.target.value
-    )[0];
-    console.log("$event", $event.target.value);
-  }
+  
 }

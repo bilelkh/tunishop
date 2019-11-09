@@ -1,5 +1,4 @@
 import {OnInit ,ChangeDetectorRef, Component, OnDestroy } from "@angular/core";
-import {MediaMatcher} from '@angular/cdk/layout';
 import { Router, ActivatedRoute } from "@angular/router";
 import { SharedService } from "../../shared/services/shared.service";
 import { AuthentificationService } from "../../modules/authentification/services/authentification.service";

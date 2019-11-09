@@ -1,8 +1,13 @@
 ul {
-    margin: 1.5rem;
-    li {
-        padding: 10px;
-        border-bottom: 1px solid black;
-        cursor: pointer;
+  margin: 1.5rem;
+
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+    a {
+      color: #fff !important;
+      font-family: 'Oswald', sans-serif !important;
     }
+  }
 }

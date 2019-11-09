@@ -32,7 +32,6 @@ export class SharedService {
 
   getAdById(id:string) {
     return this.http.get(this.URL + "ad/"+id);
-
   }
 
 

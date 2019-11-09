@@ -1,8 +1,8 @@
 <div class="modal-body card p-0">
     <div class="card-body">
       <ul class="text-center">
-        <li (click)="navigate('profile')">Profile</li>
-        <li (click)="navigate('change-password')">Changer mot de passe.</li>
+        <li *ngIf="isAuthenticated && user.authorization!=='admin'" (click)="navigate('profile')">Profile</li>
+        <li  *ngIf="isAuthenticated && user.authorization!=='admin'"(click)="navigate('change-password')">Changer mot de passe.</li>
         <li (click)="navigate('logout')">Log Out.</li>
       </ul>
     </div>
