@@ -15,12 +15,7 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 })
 export class SubCategoryComponent implements OnInit {
-  private modalTitle: string = "AJOUTER UN NOUVEAU SOUS CATEGORIES";
-  private btnName: string = "Ajouter";
-  private subCategoryForm: FormGroup;
   private loading: boolean = false;
-  private submitted: boolean = false;
-  private showModal: boolean = false;
   private subCategoryList = [];
   private categoryList = [];
   private category: any;
@@ -29,7 +24,7 @@ export class SubCategoryComponent implements OnInit {
   private pageSize: number = 5;
   public totalItems: number = 0;
   private modalRef: BsModalRef;
-
+  private action: string = '';
   constructor(
     public bsModalRef: BsModalRef,
     private notificationService: NotificationService,
@@ -40,11 +35,7 @@ export class SubCategoryComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private modalService: BsModalService,
   ) {
-    this.subCategoryForm = this.formBuilder.group({
-      _id: [""],
-      title: ["", Validators.required],
-      category: ["", Validators.required]
-    });
+
   }
 
   ngOnInit() {
@@ -55,7 +46,7 @@ export class SubCategoryComponent implements OnInit {
   getAllCategory() {
     console.log('===getAllCategory===')
     this.subCategoryService.getCategory().subscribe(
-      (data: any) => {  
+      (data: any) => {
         this.categoryList = data.categorys;
         console.log("===this.categoryList===", this.categoryList);
 
@@ -82,17 +73,20 @@ export class SubCategoryComponent implements OnInit {
     );
   }
 
- 
+
 
   edit(subCategory) {
-    this.modalTitle = "modifier la sous CATEGORIES  " + subCategory.title;
-    this.showModal = true;
-    this.btnName = "modifier";
-    this.subCategoryForm.setValue({
-      _id: subCategory._id,
-      title: subCategory.title,
-      category: subCategory.category._id
-    });
+    const initialState = {
+      categoryList: this.categoryList,
+      action :"edit",
+      subCategory : subCategory 
+    };
+
+
+    console.log("==initialState===",initialState)
+    let bsModalRef = this.modalService.show(SubCategoryModalComponent, { initialState, class: 'modal-dialog' });
+
+   
   }
 
   delete(subCategory) {
@@ -112,16 +106,16 @@ export class SubCategoryComponent implements OnInit {
 
   add() {
     const initialState = {
-      categoryList:this.categoryList
+      categoryList: this.categoryList,
+      action :"e"
     };
 
-    console.log("===initialState===",initialState)
 
-    let bsModalRef = this.modalService.show(SubCategoryModalComponent, {initialState , class: 'modal-dialog' });
+    let bsModalRef = this.modalService.show(SubCategoryModalComponent, { initialState, class: 'modal-dialog' });
 
-    this.btnName = "ajouter";
-    this.modalTitle = "AJOUTER UN NOUVEAU sous CATEGORIES";
-    this.subCategoryForm.reset();
+    // this.btnName = "ajouter";
+    // this.modalTitle = "AJOUTER UN NOUVEAU sous CATEGORIES";
+    // this.subCategoryForm.reset();
   }
 
   onchangePageSize($event) {
@@ -133,5 +127,5 @@ export class SubCategoryComponent implements OnInit {
     this.searchText = $event.target.value;
   }
 
-  
+
 }

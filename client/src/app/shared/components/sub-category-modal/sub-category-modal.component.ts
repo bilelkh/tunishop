@@ -13,35 +13,43 @@ export class SubCategoryModalComponent implements OnInit {
   private modalTitle: string = "AJOUTER UN NOUVEAU SOUS CATEGORIES";
   private subCategoryForm: FormGroup;
   private btnName: string = "Ajouter";
-  private categoryList :any ;
-  private category :any;
-  private submitted :boolean =false ;
+  private categoryList: any;
+  private category: any;
+  private submitted: boolean = false;
+  private subCategory: any;
   constructor(
     private notificationService: NotificationService,
-    private subCategoryService : SubCategoryService,
+    private subCategoryService: SubCategoryService,
     private formBuilder: FormBuilder) {
     this.subCategoryForm = this.formBuilder.group({
       _id: [""],
       title: ["", Validators.required],
       category: ["", Validators.required]
     });
+
+
   }
 
 
   ngOnInit() {
-    console.log('===categoryList===',this.categoryList)
+    console.log('===categoryList===', this.categoryList);
+    console.log("===this.subCategory===", this.subCategory)
+    if (this.subCategory) {
+      this.subCategoryForm.patchValue({ _id: this.subCategory._id, title: this.subCategory.title, category: this.subCategory.category._id })
+    }
   }
   submit() {
     this.submitted = true;
     if (this.subCategoryForm.invalid) {
-      return;
+      return false;
     }
     let subCategory = {
       _id: this.subCategoryForm.value._id,
       title: this.subCategoryForm.value.title,
       category: this.category
     };
-    if (this.subCategoryForm.value._id) {
+
+    if (this.subCategoryForm.value._id || this.subCategoryForm.value._id !== '') {
       this.subCategoryService.edit(subCategory).subscribe(
         data => {
           console.log("data", data);
@@ -56,6 +64,7 @@ export class SubCategoryModalComponent implements OnInit {
         }
       );
     } else {
+      delete subCategory['_id'];
       this.subCategoryService.add(subCategory).subscribe(
         data => {
           this.notificationService.showSuccess(
