@@ -146,3 +146,24 @@ ul {
     border-color: #007bff !important;
   }
 }
+
+
+
+@media (max-width: 991.98px) {
+  .navbar {
+    display: block;
+    .navbar-nav {
+      .nav-item {
+        margin-bottom: 5px;
+        width: 100%;
+        a {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .card {
+    margin-bottom: 5px;
+    
+  }
+}

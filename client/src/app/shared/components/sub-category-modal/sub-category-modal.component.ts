@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SubCategoryService } from "../../../modules/administration/services/sub-category.service";
 import { NotificationService } from "../../../shared/services/notification.service";
-
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import {Subject} from "rxjs"
 
 @Component({
   selector: 'app-sub-category-modal',
   templateUrl: './sub-category-modal.component.html',
-  styleUrls: ['./sub-category-modal.component.scss']
+  styleUrls: ['./sub-category-modal.component.scss'],
+  providers: [BsModalService, BsModalRef]
+
 })
 export class SubCategoryModalComponent implements OnInit {
   private modalTitle: string = "AJOUTER UN NOUVEAU SOUS CATEGORIES";
@@ -17,7 +20,11 @@ export class SubCategoryModalComponent implements OnInit {
   private category: any;
   private submitted: boolean = false;
   private subCategory: any;
+  private modalRef: BsModalRef;
+  private subject = new Subject<any>();
   constructor(
+    private modalService: BsModalService,
+    private bsModalRef: BsModalRef,
     private notificationService: NotificationService,
     private subCategoryService: SubCategoryService,
     private formBuilder: FormBuilder) {
@@ -35,7 +42,12 @@ export class SubCategoryModalComponent implements OnInit {
     console.log('===categoryList===', this.categoryList);
     console.log("===this.subCategory===", this.subCategory)
     if (this.subCategory) {
+      this.btnName = 'modifier'
       this.subCategoryForm.patchValue({ _id: this.subCategory._id, title: this.subCategory.title, category: this.subCategory.category._id })
+    }
+    else {
+      this.btnName = 'ajouter'
+
     }
   }
   submit() {
@@ -52,13 +64,14 @@ export class SubCategoryModalComponent implements OnInit {
     if (this.subCategoryForm.value._id || this.subCategoryForm.value._id !== '') {
       this.subCategoryService.edit(subCategory).subscribe(
         data => {
-          console.log("data", data);
+          console.log("===edit===",data)
+          this.subject.next({action : 'edit'}) ;
           this.notificationService.showSuccess(
             "sous categorie modifieé avec succes",
             "succes"
           );
           this.subCategoryForm.reset();
-        },
+        }, 
         error => {
           console.log("Error", error);
         }
@@ -67,6 +80,7 @@ export class SubCategoryModalComponent implements OnInit {
       delete subCategory['_id'];
       this.subCategoryService.add(subCategory).subscribe(
         data => {
+          this.subject.next({action : 'add'})
           this.notificationService.showSuccess(
             "sous categorie  ajoutée avec succes",
             "succes"
@@ -86,6 +100,10 @@ export class SubCategoryModalComponent implements OnInit {
       object => object._id === $event.target.value
     )[0];
     console.log("$event", $event.target.value);
+  }
+
+  onHide() {
+    this.bsModalRef.hide();
   }
 
 }

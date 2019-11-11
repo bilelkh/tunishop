@@ -1,27 +1,22 @@
-// .container {
-//   .row {
-//     .card-img-top {
-//       border-radius: 0px;
-//       width: 200px;
-//       height: 200px;
-//     }
-//   }
-// }
+.container {
+  .row {
+    .card-img-top {
+      border-radius: 0px;
+      width: 200px;
+      height: 200px;
+    }
+  }
+}
 
 
 
 agm-map {
-  height: 100%;
-}
-
-
-.container-fluid {
+  height: 250px;
   width: 100%;
-  padding-right: 100px;
-  padding-left: 100px;
-  margin-right: auto;
-  margin-left: auto;
 }
+
+
+
 
 
 .overlay{

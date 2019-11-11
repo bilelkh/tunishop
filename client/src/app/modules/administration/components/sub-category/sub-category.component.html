@@ -30,10 +30,9 @@
                             <td>{{subCategory.title}}</td>
                             <td>{{subCategory.category.title}}</td>
                             <td>
-                                <button class="btn btn-sm btn-sm btn-primary mr-1" (click)='delete(subCategory)'><i
+                                <button class="btn btn-sm btn-sm btn-primary mr-1" (click)='confirmModal(subCategory)'><i
                                         class="fas fa-trash-alt"></i></button>
-                                <button class="btn btn-sm btn-sm btn-primary" (click)='edit(subCategory)'
-                                    data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-sm btn-sm btn-primary" (click)='edit(subCategory)'><i class="far fa-edit"></i></button>
                             </td>
                         </tr>
                     </tbody>

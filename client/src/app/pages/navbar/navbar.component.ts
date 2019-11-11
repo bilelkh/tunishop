@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
     this.isAuthenticated = this.authentificationService.isAuthenticated();
     if (this.isAuthenticated) {
       this.user = this.authentificationService.decodeToken();
+      console.log("===user===",this.user)
     }
   }
   navigate(url) {

@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from "../../../../shared/services/notification.service";
 import { SubCategoryModalComponent } from "../../../../shared/components/sub-category-modal/sub-category-modal.component"
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { ConfirmModalComponent } from "../../../../shared/components/confirm-modal/confirm-modal.component"
 
 @Component({
   selector: "app-sub-category",
@@ -78,19 +79,23 @@ export class SubCategoryComponent implements OnInit {
   edit(subCategory) {
     const initialState = {
       categoryList: this.categoryList,
-      action :"edit",
-      subCategory : subCategory 
+      subCategory: subCategory
     };
 
 
-    console.log("==initialState===",initialState)
+    console.log("==initialState===", initialState)
     let bsModalRef = this.modalService.show(SubCategoryModalComponent, { initialState, class: 'modal-dialog' });
-
-   
+    bsModalRef.content.subject.subscribe((action) => {
+      if (action) {
+        this.getSubCategory(1);
+        bsModalRef.hide()
+      }
+    })
   }
 
-  delete(subCategory) {
-    this.subCategoryService.delete(subCategory._id).subscribe(
+  onDelete(id) {
+    console.log("===id===", id)
+    this.subCategoryService.delete(id).subscribe(
       data => {
         this.notificationService.showSuccess(
           "sous categorie supprimée avec succes",
@@ -107,12 +112,18 @@ export class SubCategoryComponent implements OnInit {
   add() {
     const initialState = {
       categoryList: this.categoryList,
-      action :"e"
     };
 
 
     let bsModalRef = this.modalService.show(SubCategoryModalComponent, { initialState, class: 'modal-dialog' });
+    console.log('===subject===', bsModalRef.content.subject)
+    bsModalRef.content.subject.subscribe((action) => {
+      if (action) {
+        this.getSubCategory(1);
+        bsModalRef.hide()
+      }
 
+    });
     // this.btnName = "ajouter";
     // this.modalTitle = "AJOUTER UN NOUVEAU sous CATEGORIES";
     // this.subCategoryForm.reset();
@@ -125,6 +136,14 @@ export class SubCategoryComponent implements OnInit {
 
   search($event) {
     this.searchText = $event.target.value;
+  }
+
+  confirmModal(subCategory: any) {
+    let bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-sm' });
+    bsModalRef.content.action.subscribe((action) => {
+      if (action) { bsModalRef.hide(); this.onDelete(subCategory._id); }
+
+    });
   }
 
 
