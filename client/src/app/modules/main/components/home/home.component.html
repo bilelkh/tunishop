@@ -2,7 +2,7 @@
   <p style="font-size:30px; color: #000000"></p>
 </ngx-spinner>
 
-<div class="container-fluid mt-5 mb-3">
+<div class="container mt-5 mb-3">
   <div class="row mt-3  p-2 mb-3">
      <div class="col-md-12  card shadow-sm pr-0 pl-0 mb-2" >
       <agm-map [latitude]="36.862499" [longitude]="10.195556"
@@ -24,7 +24,7 @@
 </div>
 
 
-<div *ngIf="adsList.length>0" class="container mt-5">
+<div *ngIf="adsList.length>0" class="container mt-5 mb-5">
   <div class="row mt-3 p-2">
     <app-list-ads [adsList]="adsList"></app-list-ads>
   </div>

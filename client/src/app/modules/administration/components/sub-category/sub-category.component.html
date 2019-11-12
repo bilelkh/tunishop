@@ -5,16 +5,15 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12 pr-0"> <button (click)="add()" data-toggle="modal" data-target="#addModal"
-                        data-whatever="@mdo"
-                        class="btn btn-sm btn-outline-primary mb-3 float-right text-uppercase mr-1 ">Ajouter une
+                <div class="col-md-12 pr-0"> <button (click)="add()" 
+                        class="btn btn-sm btn-outline-primary float-right text-uppercase mr-1  mb-3 ">Ajouter une
                         nouvelle sous catégorie </button></div>
             </div>
             <div class="row">
                 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="line-scale-pulse-out">
                     <p style="font-size: 20px; color: #fff"></p>
                 </ngx-spinner>
-                <table class="table  table-striped">
+                <table class="table">
                     <thead>
                         <tr class="text-uppercase">
                             <th scope="col">#</th>
