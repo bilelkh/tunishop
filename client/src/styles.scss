@@ -148,22 +148,34 @@ ul {
 }
 
 
+.form-group {
+  label {
+    font-size: 13px;
+    color: #2d2d2d;
+    font-weight: 400;
+    display: inline-block;
+  }
+}
+
 
 @media (max-width: 991.98px) {
   .navbar {
     display: block;
+
     .navbar-nav {
       .nav-item {
         margin-bottom: 5px;
         width: 100%;
+
         a {
           width: 100%;
         }
       }
     }
   }
+
   .card {
     margin-bottom: 5px;
-    
+
   }
 }

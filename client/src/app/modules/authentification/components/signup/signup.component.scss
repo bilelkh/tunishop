@@ -1,44 +1,39 @@
 .main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
+  position: relative;
+
+  .section {
     position: relative;
-    .section {
-        position: relative;
-        padding: 65px 0;
-        #loginform {
-            .form-group {
-                margin-bottom: 1.5rem;
-                label {
-                    font-size: 14px;
-                    color: #2d2d2d;
-                    margin-bottom: 0.25rem;
-                    font-weight: 700;
-                    display: inline-block;
-                }
-                .form-sublink {
-                    display: inline-block !important;
-                    float: right;
-                    color: #838e95;
-                    font-size: 12px;
-                    margin-top: 0.3rem;
-                }
-            }
+    padding: 65px 0;
+
+    #loginform {
+      .form-group {
+        .form-sublink {
+          float: right;
+          color: #838e95;
+          font-size: 12px;
+          margin-top: 0.3rem;
         }
-        .text-gray-soft {
-            color: #838E95 !important;
-        }
+      }
     }
+
+    .text-gray-soft {
+      color: #838E95 !important;
+    }
+  }
 }
 
 @media (min-width: 768px) {
-    .container--mini {
-        max-width: 380px;
-    }
+  .container--mini {
+    max-width: 380px;
+  }
 }
 
 .main-title {
-    font-weight: 700 !important;
-    font-size: 23px;
-    @media (max-width: 768px) {
-        font-size: 18px;
-    }
+  font-weight: 700 !important;
+  font-size: 23px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 }

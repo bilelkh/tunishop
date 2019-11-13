@@ -8,17 +8,8 @@
             border-radius: 2px ;
         }
         #loginform {
-            .form-group {
-                margin-bottom: 1.5rem;
-                label {
-                    font-size: 14px;
-                    color: #2d2d2d;
-                    margin-bottom: 0.25rem;
-                    font-weight: 700;
-                    display: inline-block;
-                }
+            
                 .form-sublink {
-                    display: inline-block !important;
                     float: right;
                     color: #000;
                     font-size: 12px;
@@ -31,7 +22,6 @@
             margin-top: 5px ;
             font-size: 14px ;
         }
-    }
 }
 
 @media (min-width: 768px) {

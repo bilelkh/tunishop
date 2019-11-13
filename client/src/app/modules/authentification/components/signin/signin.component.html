@@ -15,12 +15,12 @@
                         <form class="card-body" [formGroup]="loginForm" (ngSubmit)="submit()" id="loginform">
                             <div class="form-group">
                                 <label for="user_login">Email</label>
-                                <input formControlName="email" type="text" class="form-control " value="" size="20">
+                                <input formControlName="email" type="text" class="form-control  form-control-sm"  size="20">
                             </div>
                             <div class="form-group">
                                 <label for="user_pass">Mot de passe</label>
                                 <a class="form-sublink" [routerLink]="['../lost-password']">mot de passe oublié?</a>
-                                <input formControlName="password" type="password" name="pwd" class="form-control"
+                                <input formControlName="password" type="password" name="pwd" class="form-control form-control-sm"
                                     value="" size="20">
                             </div>
                             <div class="form-group">
