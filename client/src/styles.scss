@@ -62,12 +62,15 @@ ul {
   border-radius: 2px;
 
   .card-header {
+   
     border-top: none;
     background-color: #fff;
     font-family: 'Roboto Condensed', sans-serif !important;
     font-size: 18px;
     text-transform: uppercase;
     font-weight: bold;
+    padding:5px 25px 5px 25px !important;
+    border-bottom: 1px solid rgba(0,0,0,1)  !important;
   }
 }
 
@@ -149,11 +152,21 @@ ul {
 
 
 .form-group {
-  label {
+  .form-label {
     font-size: 13px;
-    color: #2d2d2d;
+    color: #000 !important;
     font-weight: 400;
     display: inline-block;
+  }
+
+  .form-control {
+    color: #000 !important;
+    border: 1px solid black;
+
+    &:focus {
+      border: 1px solid #0069D9 !important;
+    }
+
   }
 }
 
