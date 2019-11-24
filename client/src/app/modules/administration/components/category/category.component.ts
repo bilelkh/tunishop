@@ -4,22 +4,21 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from "../../../../shared/services/notification.service";
-import { ConfirmModalComponent } from "../../../../shared/components/confirm-modal/confirm-modal.component"
+import { ConfirmModalComponent } from "../../../../shared/components/confirm-modal/confirm-modal.component";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-import { CategoryModalComponent } from "../../../../shared/components/category-modal/category-modal.component"
+import { CategoryModalComponent } from "../../../../shared/components/category-modal/category-modal.component";
 @Component({
   selector: "app-category",
   templateUrl: "./category.component.html",
   styleUrls: ["./category.component.scss"],
   providers: [BsModalService, BsModalRef]
-
 })
 export class CategoryComponent implements OnInit {
   private categoryForm: FormGroup;
   private loading: boolean = false;
   private categoryList = [];
   private p: number = 1;
-  private searchText: string = ""
+  private searchText: string = "";
   private pageSize: number = 5;
   public totalItems: number = 0;
   constructor(
@@ -33,7 +32,7 @@ export class CategoryComponent implements OnInit {
   ) {
     this.categoryForm = this.formBuilder.group({
       _id: [""],
-      title: ["", Validators.required],
+      title: ["", Validators.required]
     });
   }
 
@@ -59,8 +58,6 @@ export class CategoryComponent implements OnInit {
     );
   }
 
-
-
   edit(category) {
     // this.modalTitle = "modifier la CATEGORIES  " + category.title;
     // this.showModal = true;
@@ -69,17 +66,24 @@ export class CategoryComponent implements OnInit {
   }
 
   confirmModal(category: any) {
-    let bsModalRef = this.modalService.show(ConfirmModalComponent, { class: 'modal-sm' });
-    bsModalRef.content.action.subscribe((action) => {
-      if (action) { bsModalRef.hide(); this.onDelete(category._id); }
-
+    let bsModalRef = this.modalService.show(ConfirmModalComponent, {
+      class: "modal-sm"
+    });
+    bsModalRef.content.action.subscribe(action => {
+      if (action) {
+        bsModalRef.hide();
+        this.onDelete(category._id);
+      }
     });
   }
 
   onDelete(id) {
     this.categoryService.delete(id).subscribe(
       data => {
-        this.notificationService.showSuccess("categorie supprimée avec succes", "succes");
+        this.notificationService.showSuccess(
+          "categorie supprimée avec succes",
+          "succes"
+        );
         this.getCategory(1);
       },
       error => {
@@ -94,12 +98,14 @@ export class CategoryComponent implements OnInit {
     // this.modalTitle = "AJOUTER UN NOUVEAU CATEGORIES";
     // this.categoryForm.reset();
     const initialState = {
-      categoryList: this.categoryList,
+      categoryList: this.categoryList
     };
 
-
-    let bsModalRef = this.modalService.show(CategoryModalComponent, { initialState, class: 'modal-dialog' });
-    console.log('===subject===', bsModalRef.content.subject)
+    let bsModalRef = this.modalService.show(CategoryModalComponent, {
+      initialState,
+      class: "modal-dialog"
+    });
+    console.log("===subject===", bsModalRef.content.subject);
     // bsModalRef.content.subject.subscribe((action) => {
     //   if (action) {
     //     bsModalRef.hide()
@@ -111,5 +117,4 @@ export class CategoryComponent implements OnInit {
     this.pageSize = parseInt($event.target.value);
     this.getCategory(1);
   }
-
 }
