@@ -9,9 +9,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { UsersComponent } from './components/users/users.component';
 import { AdsComponent } from './components/ads/ads.component';
 import { SharedModule } from './../../shared/shared.module';
+import { AgGridModule } from 'ag-grid-angular';
+import { ButtonRendererComponent } from '../../shared/components/renderer-button/button-renderer.component';
 
 @NgModule({
-  declarations: [CategoryComponent, SubCategoryComponent, UsersComponent, AdsComponent],
+  declarations: [CategoryComponent,ButtonRendererComponent, SubCategoryComponent, UsersComponent, AdsComponent],
   imports: [
     NgxSpinnerModule,
     NgxPaginationModule,
@@ -19,7 +21,8 @@ import { SharedModule } from './../../shared/shared.module';
     SharedModule,
     ReactiveFormsModule,
     CommonModule,
-    AdministrationRoutingModule
+    AdministrationRoutingModule,
+    AgGridModule.withComponents([ButtonRendererComponent])
   ]
 })
 export class AdministrationModule { }

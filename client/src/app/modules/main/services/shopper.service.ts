@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders  } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 
-const HttpOptions = {
-  headers: new HttpHeaders({'Content-Type':"application/x-www-form-urlencoded"})
-}
+
 
 @Injectable({
   providedIn: 'root'
