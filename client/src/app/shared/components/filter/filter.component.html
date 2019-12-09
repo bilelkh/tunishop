@@ -1,95 +1,83 @@
-<div class="accordion" id="accordionExample">
+<div class="card p-3 row">
+    <div class="card-header">
+        <div class="card-title flex-grow-1 bd-highlight text-uppercase">CHERCHER</div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="filterForm" (ngSubmit)="submit()">
 
-    <div class="card row">
-        <div class="card-header d-flex d-highlight align-items-center">
-            <div class="card-title flex-grow-1 bd-highlight text-uppercase">CHERCHER</div>
-            <button class="btn btn-link mb-1 text-uppercase mr-auto bd-highlight" type="button" data-toggle="collapse" data-target="#collapseOne"   aria-expanded="true" aria-controls="collapseOne">
-                <i class="fas fa-angle-down fa-2x mr-auto"></i>
-            </button>
-        </div>
-
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-
-            <div class="card-body">
-                <form [formGroup]="filterForm" (ngSubmit)="submit()">
-
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-label">TITRE:</label>
-                                    <input name="title" formControlName="title" type="text"
-                                        class="form-control shadow-sm form-control-sm" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-label text-uppercase">gouvernorat:</label>
-                                    <select [(ngModel)]="selectedGovernorate"
-                                        class="form-control shadow-sm  form-control-sm" id="recipient-name"
-                                        (change)="changeGovernorate($event)" formControlName="governorate"
-                                        [ngClass]="{ 'is-invalid': submitted && filterForm.controls.governorate.errors }">
-                                        <option value=""></option>
-                                        <option *ngFor="let governorate of governoratesList" name="governorate"
-                                            [ngValue]="governorate">
-                                            {{governorate.value}}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-label text-uppercase">délégations:</label>
-                                    <select [(ngModel)]="selectedDelegation"
-                                        class="form-control shadow-sm form-control-sm" id="recipient-name"
-                                        (change)="changeDelegations($event)" formControlName="delegation"
-                                        [ngClass]="{ 'is-invalid': submitted && filterForm.controls.delegation.errors }">
-                                        <option value=""></option>
-                                        <option *ngFor="let delegations of delegationsListSelected"
-                                            [ngValue]="delegations" name="delegation">
-                                            {{delegations.value}}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input name="id" formControlName="_id" type="hidden"
-                                        class="form-control shadow-sm form-control-sm" id="recipient-name">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label text-uppercase">Catégories:</label>
-                                    <select class="form-control shadow-sm form-control-sm" id="recipient-name"
-                                        (change)="changeCategory($event)" formControlName="category">
-                                        <option value=""></option>
-                                        <option *ngFor="let category of categoryList" name="category"
-                                            value="{{category._id}}">
-                                            {{category.title}}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group" *ngIf='showSubCategory'>
-                                    <label for="recipient-name" class="form-label text-uppercase">Sous
-                                        Catégories:</label>
-                                    <select class="form-control shadow-sm form-control-sm" id="recipient-name"
-                                        (change)="onChangeSubCategory($event)" formControlName="subCategory">
-                                        <option *ngFor="let subCategory of subCategoryList" name="category"
-                                            value="{{subCategory._id}}">
-                                            {{subCategory.title}}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-label text-uppercase">PRIX MIN :</label>
-                                    <input name="title" formControlName="title" type="number"
-                                        class="form-control shadow-sm form-control-sm" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="form-label text-uppercase">PRIX MAX :</label>
-                                    <input name="title" formControlName="title" type="number"
-                                        class="form-control shadow-sm form-control-sm" id="recipient-name">
-                                </div>
-                            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">TITRE:</label>
+                            <input name="title" formControlName="title" type="text"
+                                class="form-control shadow-sm form-control-sm" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label text-uppercase">gouvernorat:</label>
+                            <select [(ngModel)]="selectedGovernorate" class="form-control shadow-sm  form-control-sm"
+                                id="recipient-name" (change)="changeGovernorate($event)" formControlName="governorate"
+                                [ngClass]="{ 'is-invalid': submitted && filterForm.controls.governorate.errors }">
+                                <option value=""></option>
+                                <option *ngFor="let governorate of governoratesList" name="governorate"
+                                    [ngValue]="governorate">
+                                    {{governorate.value}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label text-uppercase">délégations:</label>
+                            <select [(ngModel)]="selectedDelegation" class="form-control shadow-sm form-control-sm"
+                                id="recipient-name" (change)="changeDelegations($event)" formControlName="delegation"
+                                [ngClass]="{ 'is-invalid': submitted && filterForm.controls.delegation.errors }">
+                                <option value=""></option>
+                                <option *ngFor="let delegations of delegationsListSelected" [ngValue]="delegations"
+                                    name="delegation">
+                                    {{delegations.value}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input name="id" formControlName="_id" type="hidden"
+                                class="form-control shadow-sm form-control-sm" id="recipient-name">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-sm btn-secondary text-uppercase">ANNULER</button>
-                        <button type="submit" class="btn btn-sm  btn-primary   text-uppercase">CHERCHER</button>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label text-uppercase">Catégories:</label>
+                            <select class="form-control shadow-sm form-control-sm" id="recipient-name"
+                                (change)="changeCategory($event)" formControlName="category">
+                                <option value=""></option>
+                                <option *ngFor="let category of categoryList" name="category" value="{{category._id}}">
+                                    {{category.title}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf='showSubCategory'>
+                            <label for="recipient-name" class="form-label text-uppercase">Sous
+                                Catégories:</label>
+                            <select class="form-control shadow-sm form-control-sm" id="recipient-name"
+                                (change)="onChangeSubCategory($event)" formControlName="subCategory">
+                                <option *ngFor="let subCategory of subCategoryList" name="category"
+                                    value="{{subCategory._id}}">
+                                    {{subCategory.title}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label text-uppercase">PRIX MIN :</label>
+                            <input name="title" formControlName="title" type="number"
+                                class="form-control shadow-sm form-control-sm" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label text-uppercase">PRIX MAX :</label>
+                            <input name="title" formControlName="title" type="number"
+                                class="form-control shadow-sm form-control-sm" id="recipient-name">
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-sm btn-secondary text-uppercase">ANNULER</button>
+                <button type="submit" class="btn btn-sm  btn-primary   text-uppercase">CHERCHER</button>
+            </div>
+        </form>
     </div>
+
+</div>
