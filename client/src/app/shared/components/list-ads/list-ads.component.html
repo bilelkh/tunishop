@@ -1,22 +1,22 @@
 <div class="card p-3 pb-5">
   <div class="card-header d-flex bd-highlight">
     <div class="card-title mr-auto bd-highlight">Liste des annonces</div>
-    <div class="list-icons  bd-highlight">
+    <!-- <div class="list-icons  bd-highlight">
       <button (click)="showList('list')" class="btn btn-outline-dark btn-sm mr-2"> <i
           class="fas fa-list-ol"></i></button>
       <button (click)="showList('card')" class="btn btn-outline-dark btn-sm"><i class="fas fa-ellipsis-h"></i></button>
-    </div>
+    </div> -->
   </div>
   <div class="card-body">
     <div *ngIf="displayType==='card'" class="row mx-auto">
-      <div class="col-md-3 pb-5" *ngFor="let ad of adsList | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
-        <div (click)="navigateToAd(ad._id)" class="card mb-3  shadow-sm">
-          <img *ngIf="ad.filesURL[0]===undefined" src="https://via.placeholder.com/350" class="shadow-sm card-img-top" alt="...">
-          <img *ngIf="ad.filesURL[0]!=undefined" src="{{ad.filesURL[0]}}" class="card-img-top" alt="">
+      <div class="col-md-3 ad " *ngFor="let ad of adsList | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+        <div (click)="navigateToAd(ad._id)" class="card  mb-3  shadow-sm">
+          <img *ngIf="ad.filesURL[0]===undefined" src="https://via.placeholder.com/350" class="shadow-sm card-img-top"
+            alt="...">
+          <img *ngIf="ad.filesURL[0]!=undefined" src="{{ad.filesURL[0]}}" class="card-img-top shadow-sm" alt="">
           <div class="card-body">
             <div>{{ad.title}}</div>
-            <p>{{ad.description}}</p>
-            <hr>
+            <div class="description">{{ad.description}}</div>
             <div><span>Publié : </span>{{ad.createdAt}}</div>
             <div class="text-danger font-weight-light"><span>Prix :</span>{{ad.price}} DT</div>
           </div>
@@ -24,24 +24,25 @@
       </div>
     </div>
 
-    <div *ngIf="displayType==='list'" class="row mx-auto ">
+    <!-- <div *ngIf="displayType==='list'" class="row mx-auto ">
       <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
-              <th nowrap class="text-uppercase " scope="col">#</th>
-              <th nowrap class="text-uppercase" scope="col">Title</th>
-              <th nowrap class="text-uppercase" scope="col">Category</th>
-              <th nowrap class="text-uppercase" scope="col">Sous category</th>
-              <th nowrap class="text-uppercase" scope="col">Governorate</th>
-              <th nowrap class="text-uppercase" scope="col">Delegation</th>
-              <th nowrap class="text-uppercase" scope="col">Date de création</th>
-              <th nowrap class="text-uppercase" scope="col">Description</th>
+              <th nowrap scope="col">#</th>
+              <th nowrap scope="col">Title</th>
+              <th nowrap scope="col">Category</th>
+              <th nowrap scope="col">Sous category</th>
+              <th nowrap scope="col">Governorate</th>
+              <th nowrap scope="col">Delegation</th>
+              <th nowrap scope="col">Date de création</th>
+              <th nowrap scope="col">Description</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of adsList  | paginate: { itemsPerPage: itemsPerPage, currentPage:p ,totalItems: totalItems } ;let i = index ">
+            <tr
+              *ngFor="let data of adsList  | paginate: { itemsPerPage: itemsPerPage, currentPage:p ,totalItems: totalItems } ;let i = index ">
               <th scope="row">{{i}}</th>
               <td>{{data.title}}</td>
               <td>{{data.category.title}}</td>
@@ -59,7 +60,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="row mt-4">

@@ -9,7 +9,7 @@ export class ListAdsComponent implements OnInit {
   @Input() adsList: any;
   private displayType = 'card'
   private p = 1 ;
-  private itemsPerPage = 8 ;
+  private itemsPerPage = 4 ;
   constructor(private router: Router) { }
 
   ngOnInit() {

@@ -1,7 +1,15 @@
   .card {
     height: 100%;
+
     &:hover {
       cursor: pointer;
+    }
+
+    .card-body {
+      .description {
+        margin-bottom: 5px;
+        border-bottom: 1px solid #000;
+      }
     }
 
     border-radius: 0px;
@@ -21,5 +29,7 @@
   }
 
   .ad {
-    margin-bottom: 5px;
+    padding: 5px;
   }
+
+ 
