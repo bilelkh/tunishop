@@ -8,7 +8,11 @@ const UserSchema = new mongoose.Schema({
     adresse: { type: String, required: false },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    authorization  : String
+    role: {
+        type: String,
+        default: 'user',
+        enum: ["user", "admin"]
+    }
 }, { timestamps: true });
 
 const User = mongoose.model('User', UserSchema);

@@ -82,37 +82,37 @@ ul {
 }
 
 
-.dropdown-menu {
-  z-index: 1000;
-  border-radius: 0px;
-  border: none !important;
-  background-color: #e0e0e0;
+// .dropdown-menu {
+//   z-index: 1000;
+//   border-radius: 0px;
+//   border: none !important;
+//   background-color: #e0e0e0;
 
-  .dropdown-item {
-    color: #000 !important;
-    margin-right: 100px;
-    font-size: 13px !important;
+//   .dropdown-item {
+//     color: #000 !important;
+//     margin-right: 100px;
+//     font-size: 13px !important;
 
-    &:hover {
-      background-color: #fff !important;
-      cursor: pointer;
-    }
-  }
+//     &:hover {
+//       background-color: #fff !important;
+//       cursor: pointer;
+//     }
+//   }
 
-  li {
-    &:hover {
-      background-color: #f8f8fb !important;
+//   li {
+//     &:hover {
+//       background-color: #f8f8fb !important;
 
-      a {
-        &:hover {
-          background-color: #f8f8fb !important;
-          color: #5867dd !important;
-          cursor: pointer !important;
-        }
-      }
-    }
-  }
-}
+//       a {
+//         &:hover {
+//           background-color: #f8f8fb !important;
+//           color: #5867dd !important;
+//           cursor: pointer !important;
+//         }
+//       }
+//     }
+//   }
+// }
 
 .form-control:focus,
 .btn:focus {
@@ -146,7 +146,7 @@ ul {
 
 
 .modal {
-  z-index: 10000000000000000;
+  z-index: 14500;
 }
 
 .ngx-pagination {
@@ -154,6 +154,8 @@ ul {
     color: #fff !important;
     background-color: #007bff !important;
     border-color: #007bff !important;
+    border-radius: 50px !important;
+    border: 1px solid black !important;
   }
 }
 
@@ -191,13 +193,15 @@ ul {
 @media (max-width: 991.98px) {
   .navbar {
     display: block;
-
+    button {
+      float: right;
+    }
     .navbar-nav {
       .nav-item {
         margin-bottom: 5px;
         width: 100%;
-
         a {
+          text-align: left !important;
           width: 100%;
         }
       }
@@ -206,6 +210,12 @@ ul {
 
   .card {
     margin-bottom: 5px;
+   }
+}
 
-  }
+
+/*utlity*/
+
+.btn.btn-primary {
+  border: 1px solid #000;
 }
