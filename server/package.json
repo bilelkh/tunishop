@@ -30,7 +30,7 @@
         "jsonwebtoken": "^8.3.0",
         "mongoose": "^5.3.2",
         "multer": "^1.4.2",
-        "nodemailer": "^4.6.8",
+        "nodemailer": "^6.4.16",
         "nodemailer-sendgrid-transport": "^0.2.0",
         "passport": "^0.4.0",
         "passport-jwt": "3.0.1",
